@@ -1,0 +1,465 @@
+## Tiles
+# Keep ordered
+# Add items to the back only
+
+## Land tiles
+# Order determines tile index (position 0 → Tile index 1).
+# Keep ordered — tile constants are assigned by index.
+
+[[land_tile]]
+name = "sand"
+ticks_to_walk = 2
+
+[[land_tile]]
+name = "snow"
+ticks_to_walk = 3
+border = "#ffffff"
+
+[[land_tile]]
+name = "road"
+ticks_to_walk = 1
+corner = "diagonal"
+border = "#959595"
+height = 3
+
+[[land_tile]]
+name = "floor"
+sprite = "floor_tiles3"
+ticks_to_walk = 1
+cost = {stone = 1}
+
+[[land_tile]]
+name = "floor_decor"
+sprite = "floor_tile_decor"
+ticks_to_walk = 1
+cost = {stone = 1}
+
+## Wall tiles
+
+[[wall_tile]]
+name = "wall"
+sprite = "block24"
+cost = { stone = 1 }
+health = 100
+corner = "rounded"
+
+[[wall_tile]]
+name = "wall2"
+sprite = "wall_mud"
+cost = { stone = 1 }
+health = 100
+corner = "triangle"
+
+[[wall_tile]]
+# indestructible
+name = "granite"
+sprite = "block25"
+health = 100
+corner = "none"
+
+## Ore tiles
+
+[[ore_tile]]
+name = "greystone"
+sprite = "greystone"
+resource = "rock"
+amount = 50
+
+[[ore_tile]]
+name = "orestone"
+sprite = "orestone"
+resource = "rawore"
+amount = 50
+
+[[ore_tile]]
+name = "coalstone"
+sprite = "coalstone"
+resource = "rawcoal"
+amount = 50
+
+
+
+## Special tiles (hard-coded tiles configured here)
+
+[[special_tile]]
+name = "canal"
+sprite = "canal"
+cost = { stone = 8 }
+corner = "circle"
+
+[[special_tile]]
+name = "sea"
+sprite = "sea"
+corner = "circle"
+
+[[special_tile]]
+name = "lake"
+sprite = "water7"
+corner = "circle"
+
+## Items
+# Keep ordered
+# Add items to the back only
+
+
+[[item]]
+name = "zerobad"
+
+[[item]]
+name = "rawwheat"
+sprite = "wheat2"
+special = 1
+
+[[item]]
+name = "food"
+sprite = "chicken"
+special = 2
+
+[[item]]
+name = "rock"
+
+[[item]]
+name = "wheat"
+calories = 5
+sprite = "leaf"
+
+[[item]]
+name = "stone"
+sprite = "brick"
+
+[[item]]
+name = "rawore"
+sprite = "ore"
+
+[[item]]
+name = "coal"
+sprite = "coalpack"
+
+[[item]]
+name = "iron"
+
+[[item]]
+name = "apple"
+sprite = "apple"
+calories = 100
+
+[[item]]
+name = "rawbread"
+sprite = "bread"
+calories = 500
+#on_heat = "bread"  # when heated, it becomes bread
+
+[[item]]
+name = "clay"
+
+[[item]]
+name = "rawapple"
+sprite = "apple"
+
+[[item]]
+name = "rawcoal"
+sprite = "coal"
+
+[[item]]
+name = "iron_ore"
+sprite = "orepack"
+#on_heat = "iron"
+
+[[item]]
+name = "painting"
+sprite = "painting1"
+
+[[item]]
+name = "canvas"
+
+[[item]]
+name = "plank"
+
+[[item]]
+name = "wood"
+
+[[item]]
+name = "paper"
+sprite = "scroll"
+
+[[item]]
+name = "appletart"
+sprite = "cake_apple"
+calories = 1000
+
+[[item]]
+name = "bread"
+sprite = "bread"
+calories = 500
+
+[[item]]
+name = "skeleton"
+sprite = "skeleton"
+
+[[building]]
+name = "home"
+size = 2
+sprite = "floor_wood2"
+housing = 1
+walls = "wall"
+floor = "floor_decor"
+cost = {stone = 10, wheat = 20}
+
+[[building]]
+name = "appletree"
+sprite = "appletree"
+shadow = "treeshade"
+size = 2
+output = "apple"
+input = {}
+fruit_per_cycle = 0.03
+neutral = true
+
+[[building]]
+name = "tree"
+sprite = "tree"
+shadow = "treeshade"
+size = 2
+output = "wood"
+fruit_per_cycle = 0.03
+neutral = true
+
+[[building]]
+name = "smalltree"
+sprite = "tree"
+shadow = "treeshade"
+size = 1
+neutral = true
+
+## Pawns are things that can move
+# Keep ordered
+
+[[pawn]]
+name = "king"
+sprite = "king"
+on_spawn = [{spawn = "butterfly"}]
+
+[[pawn]]
+name = "swordsman"
+sprite = "pawn"
+ticks_per_attack = 5
+melee_damage = 10
+cost = { stone = 5 }
+
+[[pawn]]
+name = "archer"
+sprite = "pawn6"
+health = 70
+ticks_per_attack = 5
+# arrow: track_target=true (default), sprite=None ⇒ line visual, range=12 (default)
+shoots_projectile = { damage = 10, range = 5, track_target = true, sprite = "arrow_red" }
+cost = { stone = 3, wood = 2 }
+on_killed = [
+    {animation = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]}},
+]
+
+[[pawn]]
+name = "demon"
+sprite = "demon"
+health = 200
+ticks_per_attack = 2
+# fixed-tile fireball: damage at impact tile, spawn "fire" blueprint there
+shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire" }
+cost = { stone = 10 }
+on_killed = [{spawn = "fire"}]
+
+## Animal-style pawns (wandering grazers, no attack).
+## Listed after combat pawns so existing SoldierTyp indices stay stable.
+## Keep ordered — SoldierTyp is assigned by index.
+
+[[pawn]]
+name = "tiger"
+hop_distance = 30
+hop_wait = 50
+vision_range = 20
+neutral = true
+
+[[pawn]]
+name = "bunny"
+hop_distance = 10
+hop_wait = 20
+eats = ["rawwheat"]
+neutral = true
+
+#[[pawn]]
+#name = "kitten"
+#sprite = "kit7"
+#hop_distance = 4
+#hop_wait = 10
+
+[[pawn]]
+name = "evilcat"
+sprite = "kit3"
+hop_distance = 10
+shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire" }
+
+[[pawn]]
+name = "crane"
+sprite = "crane_l"
+#hop_distance = 10
+animations = {
+    walk = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]},
+    walk_up = { sprites = ["crane_u", "crane_u2", "crane_u3", "crane_u4"]},
+    walk_down = { sprites = ["crane_d", "crane_d2", "crane_d3", "crane_d4"]},
+}
+neutral = true
+
+[[pawn]]
+name = "redpanda"
+hop_distance = 10
+eats = ["apple"]
+neutral = true
+
+[[pawn]]
+name = "baby"
+sprite = "pawn_baby"
+hop_distance = 1
+hop_wait = 30
+neutral = true
+
+[[pawn]]
+name = "child"
+sprite = "pawn_child"
+hop_distance = 10
+neutral = true
+
+[[pawn]]
+name = "human"
+sprite = "pawn1"
+hop_distance = 12
+neutral = true
+
+[[pawn]]
+name = "moth"
+hop_distance = 10
+neutral = true
+
+[[pawn]]
+name = "butterfly"
+hop_distance = 10
+neutral = true
+
+## Worker — a pawn that works rather than fights.
+## Kept at the end so combat/animal SoldierTyp indices stay stable.
+
+[[pawn]]
+name = "worker"
+sprite = "pawn1"
+health = 10
+range = 0
+awake_time = 500
+sleep_time = 100
+hat_offset = [-1, 0]
+hungry_below_calories = 200
+on_killed = [{ spawn = "skeleton" }]
+animations = { walk = { sprites = ["walk1", "walk2"], speed = 0.5 } }
+first_names = ["Billy", "Bob"]
+last_names = ["A", "B"]
+
+
+[[building]]
+name = "farm"
+sprite = "workspace"
+output = "wheat"
+hat = "hat_farmer"
+input = { rawwheat = 2 }
+ticks_to_make = 10
+size = 3
+cost = {stone = 10}
+range = 10
+walls = "wall"
+housing = 2
+
+[[building]]
+name = "coal_mine"
+sprite = "workspace"
+output = "coal"
+hat = "hat_miner"
+housing = 0
+input = { rawcoal = 2 }
+ticks_to_make = 5
+size = 2
+cost = {stone = 10}
+range = 12
+
+[[building]]
+name = "quarry"
+sprite = "workspace"
+output = "stone"
+hat = "hat_miner"
+walls = "wall2"
+housing = 0
+input = { rock = 2 }
+ticks_to_make = 15
+size = 2
+cost = {stone = 10}
+
+[[building]]
+name = "bakery"
+sprite = "workspace"
+output = "bread"
+housing = 0
+input = { coal = 1, wheat = 1 }
+ticks_to_make = 30
+size = 2
+cost = {stone = 10}
+walls = "wall"
+
+## HQ (Headquarters) — a special building with unique_per_team=true.
+[[building]]
+name = "hq"
+sprite = "hq"
+size = 3
+walls = "wall"
+health = 255
+cost = {}                  # HQ is free to place
+input = { stone = 1000, wheat = 1000, iron = 1000, plank = 1000 }
+initial_resources = 50
+unique_per_team = true
+
+[[building]]
+name = "sawmill"
+sprite = "workspace"
+output = "plank"
+housing = 0
+input = { wood = 2 }
+ticks_to_make = 20
+size = 2
+cost = {stone = 10}
+
+
+[[building]]
+name = "iron_mine"
+sprite = "workspace"
+output = "iron"
+housing = 0
+input = { rawore = 3, coal = 1 }
+ticks_to_make = 30
+size = 2
+cost = {stone = 10}
+
+
+# General game settings
+[game]
+
+# For how many ticks decal effects (e.g. blood splatters) remain visible
+decal_ttl = 50
+
+
+## User interface (menus, buttons, ...)
+[ui]
+
+# UI background color: red, green, blue, alpha (opacity). values 0-255.
+# E.g. semi-transparent green = [0,  255, 0,   128],
+#                                ^   ^    ^    ^
+#                               red green blue alpha
+bg_color = [50, 50, 60, 200]
+
+# UI border color
+border_color = [196, 196, 196, 196]
+

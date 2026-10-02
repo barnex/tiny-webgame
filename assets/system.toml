@@ -1,0 +1,1313 @@
+## Land tiles
+# Order determines tile index (position 0 → Tile index 1).
+# Keep ordered — tile constants are assigned by index.
+
+# corner: the shape a tile's corners are cut to where it sticks out among other tiles
+# (the neighboring tile shows in what is cut off). One of:
+#   "none"      square: never cut, and nothing is cut to make room for it
+#   "circle"    a quarter circle, as big as it gets (water)
+#   "rounded"   a smaller quarter circle: a rounded rectangle. The default.
+#   "diagonal"  cut straight across, as big as it gets (roads: a staircase of them gets straight edges)
+#   "triangle"  a smaller straight cut
+# Where tiles with different shapes meet, the more pronounced one is used for both
+# (rounded < triangle < circle < diagonal).
+
+# border: the color of a line, one pixel wide, painted along a tile's edge where it meets a
+# different tile (also along cut corners), e.g. border = "#ffffff". Not given: no line.
+# Opaque: "#rrggbb".
+
+# height: how high a tile is, in pixels (a tile is 24 wide), from -24 to 24. Higher tiles cover
+# lower ones, cast shadows on them, and get a lit rim. What stands on a tile is raised with it.
+# Not given: 0 for land, 24 for walls and ore, -12 for water (sea, lake, canal: [[special_tile]]).
+
+[[land_tile]]
+name = "sand"
+sprite = "sand"
+
+[[land_tile]]
+name = "snow"
+sprite = "snow"
+border = "#ffffff"
+
+[[land_tile]]
+name = "farmland"
+sprite = "farmland"
+can_have_water = true
+
+[[land_tile]]
+name = "road"
+sprite = "road"
+ticks_to_walk = 1
+corner = "diagonal"
+border = "#181818"
+
+[[land_tile]]
+name = "floor_stone"
+sprite = "brfloor_stone"
+cost = { brick_stone = 3 }
+ticks_to_walk = 1
+
+[[land_tile]]
+name = "floor_clay"
+sprite = "brfloor_clay"
+cost = { brick_clay = 3 }
+ticks_to_walk = 1
+
+[[land_tile]]
+name = "floor_mud"
+sprite = "brfloor_mud"
+cost = { brick_mud = 3 }
+ticks_to_walk = 1
+
+[[land_tile]]
+name = "floor_wood"
+sprite = "floor_wood2"
+cost = { plank = 3 }
+ticks_to_walk = 1
+
+[[land_tile]]
+name = "floor_decor1"
+sprite = "brfloor_decor1"
+cost = { brick_stone = 3, dye_yellow = 2, dye_blue = 1 }
+ticks_to_walk = 1
+
+[[land_tile]]
+name = "tile_royal"
+sprite = "tile_royal"
+cost = { brick_stone = 10 }
+ticks_to_walk = 1
+
+[[land_tile]]
+name = "tile_god"
+sprite = "tile_god"
+cost = { brick_stone = 100 }
+ticks_to_walk = 3
+
+[[land_tile]]
+name = "water1"
+corner = "circle"
+
+[[land_tile]]
+name = "water2"
+corner = "circle"
+
+[[land_tile]]
+name = "water3"
+corner = "circle"
+
+[[land_tile]]
+name = "water4"
+corner = "circle"
+
+[[land_tile]]
+name = "water5"
+corner = "circle"
+
+[[land_tile]]
+name = "water6"
+corner = "circle"
+
+[[land_tile]]
+name = "water7"
+corner = "circle"
+
+## Wall tiles
+
+[[wall_tile]]
+name = "wall_wood"
+sprite = "floor_wood"
+cost = { plank = 6 }
+health = 100
+corner = "rounded"
+
+[[wall_tile]]
+name = "wall_mud"
+sprite = "brwall_mud1"
+cost = { brick_mud = 6 }
+health = 100
+corner = "triangle"
+
+[[wall_tile]]
+name = "wall_clay"
+sprite = "brwall_clay"
+cost = { brick_clay = 6 }
+health = 100
+corner = "diagonal"
+
+[[wall_tile]]
+name = "wall_stone"
+sprite = "brwall_stone"
+cost = { brick_stone = 1 }
+health = 100
+corner = "rounded"
+
+[[wall_tile]]
+name = "wall_decor"
+sprite = "brwall_decor5"
+cost = { brick_stone = 1, dye_yellow = 2, dye_blue = 1 }
+health = 100
+corner = "triangle"
+
+[[wall_tile]]
+name = "wall_god"
+sprite = "wall_god2"
+cost = { brick_stone = 100 }
+health = 100
+corner = "none"
+
+## Ore tiles
+
+[[ore_tile]]
+name = "greystone"
+sprite = "greystone"
+resource = "rock"
+amount = 50
+
+[[ore_tile]]
+name = "orestone"
+sprite = "orestone"
+resource = "rawore"
+amount = 50
+
+[[ore_tile]]
+name = "coalstone"
+sprite = "coalstone"
+resource = "rawcoal"
+amount = 50
+
+[[ore_tile]]
+name = "mudstone"
+sprite = "mud_source"
+resource = "mud"
+amount = 50
+
+[[ore_tile]]
+name = "claystone"
+sprite = "clay_source"
+resource = "clay"
+amount = 50
+
+## Special tiles (hard-coded tiles configured here)
+
+[[special_tile]]
+name = "canal"
+sprite = "canal"
+cost = { stone = 2 }
+corner = "circle"
+
+[[special_tile]]
+name = "sea"
+sprite = "sea"
+corner = "circle"
+
+[[special_tile]]
+name = "lake"
+sprite = "water7"
+corner = "circle"
+
+## Items
+# Keep ordered
+# Add items to the back only
+
+[[item]]
+name = "zerobad"
+
+[[item]]
+name = "rawwheat"
+sprite = "wheat2"
+
+[[item]]
+name = "stone"
+
+[[item]]
+name = "wheat"
+calories = 5
+sprite = "leaf"
+#made_from = { rawwheat = 3 }
+
+
+
+
+[[item]]
+name = "brick_stone"
+#made_from = { rock = 3 }
+
+[[item]]
+name = "rawore"
+sprite = "ore"
+
+[[item]]
+name = "coal"
+sprite = "coalpack"
+#made_from = { rawcoal = 1 }
+
+[[item]]
+name = "iron"
+
+[[item]]
+name = "apple"
+sprite = "apple"
+calories = 160
+
+[[item]]
+name = "rawbread"
+sprite = "bread"
+calories = 200
+#made_from = { wheat = 2 }
+# on_heat = "bread"  # when heated, it becomes bread
+
+[[item]]
+name = "clay"
+
+[[item]]
+name = "rawapple"
+sprite = "apple"
+
+[[item]]
+name = "rawcoal"
+sprite = "coal"
+
+[[item]]
+name = "ore"
+sprite = "orepack"
+# on_heat = "iron"
+
+[[item]]
+name = "good_wave"
+sprite = "painting1"
+#made_from = { canvas = 1, dye_blue = 1, dye_white = 1, dye_yellow = 1 }
+
+[[item]]
+name = "canvas"
+#made_from = { plank = 1, paper = 2 }
+
+[[item]]
+name = "plank"
+#made_from = { wood = 1 }
+
+[[item]]
+name = "wood"
+
+[[item]]
+name = "paper"
+sprite = "scroll"
+#made_from = { wheat = 1 }
+
+[[item]]
+name = "appletart"
+sprite = "cake_apple"
+#made_from = { apple = 1, wheat = 2 }
+calories = 1000
+
+[[item]]
+name = "bread"
+sprite = "bread"
+calories = 900
+#made_from = { wheat = 2, coal = 1 }
+
+[[item]]
+name = "starry_evening"
+sprite = "painting2"
+#made_from = { canvas = 1, dye_black = 1, dye_blue = 1, dye_white = 1, dye_red = 1, dye_yellow = 1 }
+
+[[item]]
+name = "vase_raw"
+#made_from = { clay = 3 }
+
+[[item]]
+name = "vase"
+sprite = "vase1"
+#made_from = { vase_raw = 1, coal = 1 }
+
+[[item]]
+name = "vase_decor"
+sprite = "vase_decor1"
+#made_from = { vase = 1, dye_black = 1, dye_white = 1, dye_red = 1 }
+
+[[item]]
+name = "flowersface"
+sprite = "painting18"
+#made_from = { canvas = 1, dye_black = 1, dye_white = 1, dye_red = 1 }
+
+[[item]]
+name = "juice"
+#made_from = { apple = 1, cherry = 1 }
+calories = 100
+
+[[item]]
+name = "bread_slice"
+#made_from = { bread = 1 }
+calories = 1111
+
+[[item]]
+name = "bread_toast"
+#made_from = { bread_slice = 1, coal = 1 }
+calories = 1600
+
+[[item]]
+name = "go_play"
+#made_from = { plank = 5 }
+
+[[item]]
+name = "chess_play"
+#made_from = { plank = 3 }
+
+## ik wil het maken uit 0.5 appels, 1 appel naar 2 sap
+# items komen er niet meer in
+
+[[item]]
+name = "grain"
+#made_from = { wheat = 1 }
+calories = 700
+
+[[item]]
+name = "sugar"
+#made_from = { grain = 1 }
+calories = 800
+
+[[item]]
+name = "monalisa"
+sprite = "painting36"
+#made_from = { canvas = 1, dye_black = 1, dye_yellow = 1, dye_blue = 1, dye_red = 1, dye_white = 1 }
+
+# [[item]]
+# name = "croissant_raw "
+# #made_from = { grain = 1 }
+# calories = 10
+
+# [[item]]
+# name = "croissant"
+# #made_from = { croissant_raw = 1, coal = 1 }
+# calories = 600
+
+[[item]]
+#made_from = { paper = 1, dye_blue = 1, dye_white = 1, dye_red = 1 }
+
+name = "propaganda"
+
+[[item]]
+name = "cake"
+#made_from = { wheat = 2, sugar = 1, coal = 1 }
+calories = 1800
+
+[[item]]
+name = "orange"
+calories = 160
+
+[[item]]
+name = "bread_orange"
+#made_from = { bread_slice = 1, orange = 1, sugar = 1 }
+calories = 2000
+
+[[item]]
+name = "juice_citrus"
+sprite = "juice_orange"
+#made_from = { orange = 1, lemon = 1 }
+calories = 300
+
+[[item]]
+name = "vase_kintsugi"
+sprite = "vase_kintsugi1"
+#made_from = { vase_shards = 1 }
+
+[[item]]
+name = "vase_shards"
+#made_from = { vase = 1, vase_decor = 1 }
+
+[[item]]
+name = "tomato"
+calories = 80
+
+[[item]]
+name = "tea_leaf"
+calories = 0
+
+[[item]]
+name = "tea_leaf_roast"
+#made_from = { tea_leaf = 1, coal = 1 }
+calories = 0
+
+[[item]]
+name = "tea_ground"
+#made_from = { tea_leaf = 1 }
+calories = 0
+
+[[item]]
+name = "tea_green"
+#made_from = { tea_ground = 1 }
+calories = 100
+
+[[item]]
+name = "tea_yellow"
+#made_from = { tea_leaf = 1 }
+calories = 100
+
+[[item]]
+name = "tea_black"
+#made_from = { tea_leaf_roast = 1 }
+calories = 100
+
+[[item]]
+name = "coffebean"
+calories = 0
+
+[[item]]
+name = "coffee"
+#made_from = { coffebean = 2 }
+calories = 500
+
+[[item]]
+name = "boba_green"
+#made_from = { tea_green = 1, sugar = 1 }
+calories = 700
+
+[[item]]
+name = "boba_black"
+#made_from = { tea_yellow = 1, sugar = 1, coffee = 1 }
+calories = 900
+
+[[item]]
+name = "boba_pink"
+#made_from = { tea_black = 1, sugar = 1, cherry = 1 }
+calories = 700
+
+[[item]]
+name = "boba_yellow"
+#made_from = { tea_yellow = 1, sugar = 1, juice = 1 }
+calories = 600
+
+[[item]]
+name = "abacus"
+#made_from = { plank = 2 }
+
+[[item]]
+name = "sword"
+# #made_from = { boba_black = 1, monalisa = 1, go_play = 1, painting = 1, chess_play = 1, boba_pink = 1, boba_yellow = 1, starry_evening = 1, flowersface = 1, cake = 1, bread_orange = 1 }
+
+[[item]]
+name = "statue"
+#made_from = { stone = 4 }
+
+[[item]]
+name = "vase_decor2"
+#made_from = { vase = 1, dye_black = 1 }
+
+[[item]]
+name = "root"
+calories = 500
+
+[[item]]
+name = "bowl_raw"
+#made_from = { clay = 3 }
+
+[[item]]
+name = "bowl"
+#made_from = { bowl_raw = 1, coal = 1 }
+
+[[item]]
+name = "bowl_decor"
+#made_from = { bowl = 1, dye_white = 1, dye_black = 1, dye_red = 1 }
+
+[[item]]
+name = "bowl_shards"
+#made_from = { bowl = 1, bowl_decor = 1 }
+
+[[item]]
+name = "bowl_kintsugi"
+sprite = "bowl_kitsugi"
+#made_from = { bowl_shards = 1 }
+
+[[item]]
+name = "mealbowl"
+#made_from = { bowl = 1, root = 1, tomato = 1, beet = 1, tumeric = 1, grain = 1 }
+calories = 3000
+
+[[item]]
+name = "fruitbowl"
+#made_from = { bowl = 1, apple = 1, orange = 1, lemon = 1, cherry = 1 }
+calories = 2000
+
+[[item]]
+name = "lemon"
+calories = 80
+
+[[item]]
+name = "cherry"
+sprite = "cheer1"
+calories = 50
+
+[[item]]
+name = "dye_black"
+#made_from = { ash = 1 }
+
+[[item]]
+name = "ash"
+#made_from = { coal = 1 }
+
+[[item]]
+name = "dye_red"
+#made_from = { beet = 1 }
+
+[[item]]
+name = "meat"
+sprite = "ham"
+calories = 80
+
+[[item]]
+name = "dye_yellow"
+#made_from = { tumeric = 1 }
+
+[[item]]
+name = "dye_white"
+#made_from = { skeleton = 1 }
+
+[[item]]
+name = "skeleton"
+calories = 50
+
+[[item]]
+name = "dye_blue"
+#made_from = { lazuli_ground = 1 }
+
+[[item]]
+name = "lazuli"
+#made_from = { tomato = 1 }
+
+[[item]]
+name = "lazuli_ground"
+#made_from = { lazuli = 1 }
+# dye_=1
+
+[[item]]
+name = "lantern"
+#made_from = { coal = 1, paper = 1, plank = 1 }
+
+[[item]]
+name = "lantern_red"
+#made_from = { lantern = 1, dye_red = 1 }
+
+[[item]]
+name = "lantern_blue"
+#made_from = { lantern = 1, dye_blue = 1 }
+
+[[item]]
+name = "lantern_yellow"
+#made_from = { lantern = 1, dye_yellow = 1 }
+
+[[item]]
+name = "lantern_orange"
+#made_from = { lantern = 1, dye_yellow = 1, dye_red = 1 }
+
+[[item]]
+name = "lantern_green"
+#made_from = { lantern = 1, dye_yellow = 1, dye_blue = 1 }
+
+[[item]]
+name = "lantern_purple"
+#made_from = { lantern = 1, dye_red = 1, dye_blue = 1 }
+
+[[item]]
+name = "leafy_plant"
+
+[[item]]
+name = "flowerr_plant"
+
+[[item]]
+name = "flowerw_plant"
+
+[[item]]
+name = "coconut"
+
+[[item]]
+name = "coconut_half"
+#made_from = { coconut = 1 }
+calories = 100
+
+[[item]]
+name = "wool"
+
+[[item]]
+name = "fabric"
+#made_from = { wool = 2 }
+
+[[item]]
+name = "beet"
+
+[[item]]
+name = "tumeric"
+
+[[item]]
+name = "burger"
+#made_from = { bread_slice = 2, tomato = 1, meat = 2, dye_red = 1, salt = 1 }
+calories = 500
+
+[[item]]
+name = "sandwich"
+#made_from = { bread_toast = 2, tomato = 1, meat = 2, beet = 1, egg = 1 }
+calories = 500
+
+[[item]]
+name = "egg"
+calories = 10
+
+[[item]]
+name = "croissant_raw"
+#made_from = { grain = 1 }
+calories = 10
+
+[[item]]
+name = "croissant"
+#made_from = { croissant_raw = 1, coal = 1 }
+calories = 600
+
+[[item]]
+name = "salt"
+calories = 2
+
+[[item]]
+name = "wrap"
+#made_from = { grain = 1, salt = 1, tomato = 1 }
+calories = 600
+
+[[item]]
+name = "brick_clay"
+#made_from = { clay = 3 }
+
+[[item]]
+name = "brick_mud"
+#made_from = { mud = 3 }
+
+[[item]]
+name = "mud"
+
+[[item]]
+name = "rock"
+
+[[item]]
+name = "scarecrow"
+#made_from = { wheat = 3, plank = 1 }
+
+[[item]]
+name = "bamboo_plank"
+
+
+
+## Animals
+# Keep ordered
+# Add items to the back only
+
+[[pawn]]
+name = "tiger"
+eats = []
+hop_wait = 50
+hop_distance = 30
+vision_range = 20
+
+[[pawn]]
+name = "bunny"
+sprite = "bunnyw_l"
+hop_wait = 16
+hop_distance = 2
+eats = ["rawwheat"]
+on_killed = [{decal="bunnyw_c"}]
+animations = {
+    walk = { sprites = ["bunnyw_lj","bunnyw_l"], speed = 0.5 },
+    walk_up = { sprites = ["bunnyw_uj","bunnyw_u"], speed = 0.5 },
+    walk_down = { sprites = ["bunnyw_dj", "bunnyw_d"], speed = 0.5 },
+    idle = { sprites = ["bunnyw_l", "bunnyw_l","bunnyw_l","bunnyw", "bunnyw_e","bunnyw" ], speed = 0.5 },
+}
+
+
+[[pawn]]
+name = "kitten"
+sprite = "kit7"
+on_killed = [{decal = "skeleton"}]
+# How far it will run before deciding on a new coarse.
+hop_distance = 4
+# How long to sit still before moving, at maximum.
+hop_wait = 10
+
+[[pawn]]
+name = "evilcat"
+sprite = "kit3"
+
+[[pawn]]
+name = "redpanda"
+on_killed = [{decal = "skeleton_baby"}]
+
+[[pawn]]
+name = "baby"
+sprite = "pawn_baby"
+hop_distance = 1
+hop_wait = 30
+on_killed = [{decal = "skeleton_baby"}]
+
+[[pawn]]
+name = "child"
+sprite = "pawn_child"
+on_killed = [{decal = "skeleton_child"}]
+
+[[pawn]]
+name = "human"
+sprite = "pawn1"
+on_killed = [{decal = "guy_c"}]
+
+[[pawn]]
+name = "moth"
+
+[[pawn]]
+name = "butterfly"
+
+[[pawn]]
+name = "sheep"
+sprite = "sheep_wooly"
+eats = ["cake", "appletart"]
+on_killed = [{decal = "skeleton_baby"}]
+
+[[pawn]]
+name = "pig"
+sprite = "pig_l"
+eats = ["apple"]
+on_killed = [{decal = "skeleton_baby"}]
+
+[[pawn]]
+name = "crane"
+sprite = "crane_l"
+#eats = ["wheat", "cherry", "croissant", "frog", "spider"]
+on_killed = [{decal = "crance_c"}]
+hop_wait = 10
+hop_distance = 12
+animations = {
+    walk = { sprites = ["crane_l", "crane_l2", "crane_l3","crane_l4"], speed = 0.5 },
+    walk_up = { sprites = ["crane_u","crane_u2", "crane_u3", "crane_u4"], speed = 0.5 },
+    walk_down = { sprites = ["crane_d","crane_d2", "crane_d3", "crane_d4"], speed = 0.5 },
+    idle = { sprites = ["crane_l","crane_l","crane_l","crane_a", "crane_l","crane_l","crane_l","crane_l","crane_e","crane_l","crane_l","crane_a"], speed = 0.25 },
+}
+
+[[pawn]]
+name = "frog"
+on_killed = [{decal = "frog_c"}]
+
+[[pawn]]
+name = "spider"
+on_killed = [{decal = "spider_c"}]
+
+
+## Plants
+
+[[building]]
+name = "appletree"
+sprite = "appletree"
+shadow = "treeshade"
+size = 2
+output = "apple"
+fruit_per_cycle = 0.03
+
+[[building]]
+name = "tree_orange"
+sprite = "tree_orange"
+shadow = "treeshade"
+size = 2
+output = "orange"
+fruit_per_cycle = 0.03
+
+[[building]]
+name = "tree"
+sprite = "tree"
+shadow = "treeshade"
+size = 2
+output = "wood"
+fruit_per_cycle = 0.02
+
+[[building]]
+name = "plant_tomato"
+size = 1
+output = "tomato"
+fruit_per_cycle = 0.02
+rotate = false
+# don't rotate this one
+
+[[building]]
+name = "plant_tea"
+size = 1
+output = "tea_leaf"
+fruit_per_cycle = 0.02
+rotate = false
+# don't rotate this one
+
+[[building]]
+name = "plant_coffee"
+size = 1
+output = "coffebean"
+fruit_per_cycle = 0.01
+rotate = false
+# don't rotate this one
+
+[[building]]
+name = "plant_root"
+size = 1
+output = "root"
+fruit_per_cycle = 0.005
+rotate = false
+# don't rotate this one
+
+[[building]]
+name = "tree_lemon"
+shadow = "treeshade"
+size = 2
+output = "lemon"
+fruit_per_cycle = 0.03
+
+[[building]]
+name = "tree_sakura"
+shadow = "treeshade"
+size = 2
+output = "cherry"
+fruit_per_cycle = 0.03
+
+[[building]]
+name = "sheep_wooly"
+size = 1
+output = "wool"
+fruit_per_cycle = 0.03
+rotate = false
+
+[[building]]
+name = "tree_coco"
+shadow = "treeshade"
+size = 2
+output = "coconut"
+fruit_per_cycle = 0.03
+rotate = true
+
+[[building]]
+name = "plant_beet"
+output = "beet"
+fruit_per_cycle = 0.01
+rotate = false
+
+[[building]]
+name = "tumeric_plant"
+output = "tumeric"
+fruit_per_cycle = 0.01
+rotate = false
+
+
+[[building]]
+name = "bamboo_plant"
+output = "bamboo_plank"
+fruit_per_cycle = 0.06
+rotate = false
+
+
+## Soldiers
+# Keep ordered — SoldierTyp is assigned by index
+
+[[pawn]]
+name = "swordsman"
+sprite = "soldier3"
+ticks_per_attack = 7
+melee_damage = 20
+cost = { stone = 6 }
+
+[[pawn]]
+name = "archer"
+sprite = "soldier4"
+health = 70
+ticks_per_attack = 5
+shoots_projectile = { damage = 10, range = 5, track_target = true, sprite = "arrow_red", projectile = "arrow" }
+cost = { stone = 3, wood = 2 }
+on_killed = [{spawn = "skeleton"}]
+
+[[pawn]]
+name = "soldier"
+sprite = "soldier"
+ticks_per_attack = 5
+melee_damage = 4
+cost = { stone = 2 }
+
+[[pawn]]
+name = "daggersoldier"
+sprite = "soldier2"
+ticks_per_attack = 2
+melee_damage = 4
+cost = { stone = 5 }
+
+[[pawn]]
+name = "berserker"
+sprite = "soldier6"
+ticks_per_attack = 2
+melee_damage = 20
+cost = { stone = 25 }
+
+[[pawn]]
+name = "king"
+ticks_per_attack = 10
+shoots_projectile = { damage = 50 }
+cost = { wheat = 1 }
+
+[[pawn]]
+name = "demon"
+sprite = "demon"
+ticks_per_attack = 1
+melee_damage = 5
+health = 100
+cost = { stone = 10 }
+## Turrets
+# Keep ordered — TurretTyp is assigned by index
+
+# [[building]]
+# name = "cannon_tower"
+# sprite = "turret2"
+# health = 200
+# #ticks_per_attack = 15
+# #shoots_projectile = { damage = 20, range = 8 }
+# input = { stone = 10 }
+# cost = { stone = 5 }
+
+## Workers (mannekes)
+
+[[pawn]]
+name = "worker"
+sprite = "pawn1"
+animations = {
+    walk = { sprites = ["walk1", "walk2"], speed = 0.5 },
+    # walk_up = { sprites = ["walk1", "walk2"], speed = 1 },
+    # walk_down = { sprites = ["walk1", "walk2"], speed = 1 },
+    #idle = { sprites = ["pawn1", "walk1", "pawn1", "walk2"], speed = 0.25 },
+}
+# How many ticks a worker can work before needing sleep.
+awake_time = 500
+# How many ticks a worker sleeps for.
+sleep_time = 100
+# Draw hat shifted by this amount of pixels.
+hat_offset = [-1, 0]
+hungry_below_calories = 500
+# Do these things when killed
+on_killed = [{ spawn = "skeleton" }]
+
+first_names = [
+  "A",
+  "Jay",
+  "K",
+  "OK",
+  "Okay",
+  "JJ",
+  "Guy",
+  "Bo",
+  "Saai",
+  "I",
+  "Ai",
+  "Y",
+  "Why",
+  "B",
+  "Me",
+  "Wry",
+  "The",
+  "T",
+  "Lee",
+  "They",
+  "Z",
+  "L",
+  "Pon",
+  "Pawn",
+  "Pion",
+  "Peon",
+  "C",
+  "Ron",
+  "Troy",
+  "Oi",
+  "Hi",
+  "Bye",
+  "D",
+  "V",
+  "G",
+  "Haai",
+  "Oh",
+  "Uh",
+  "Um",
+  "Eu",
+  "Ew",
+  "Erm",
+  "Ahum",
+  "Hum",
+  "Though",
+  "Low",
+  "Cow",
+  "How",
+  "When",
+  "Then",
+  "Them",
+  "Who",
+  "Some",
+  "Sun",
+  "Jan",
+  "May",
+  "Hoo",
+  "How",
+  "Wow",
+  "Ow",
+  "Ewe",
+  "Should",
+  "Would",
+  "Could",
+  "Can",
+  "Will",
+  "Do",
+  "Aaaaa",
+  "Ah",
+  "Ha",
+  "Aha",
+  "Hmmm",
+  "Doe",
+  "Wil",
+  "Jon",
+  "La",
+  "Know",
+  "Soon",
+  "Say",
+  "Sigh",
+  "Go",
+  "See",
+  "Jees",
+  "Me",
+  "Sane",
+  "Not",
+  "...",
+  "U",
+  "O",
+  "Io",
+  "IOU",
+  "My",
+  "Ohno",
+  "No",
+  "Meh",
+  "Yay",
+  "Day",
+  "Pi",
+  "Kai",
+  "Hoi",
+  "Joy",
+  "You",
+  "Too",
+  "To",
+  "Key",
+  "Ui",
+  "Ao",
+  "Lie",
+  "J",
+  "B",
+  "Waai",
+  "So",
+  "Ho",
+  "Do",
+  "Jo",
+  "Yo",
+  "Chow",
+  "Ben",
+  "Bee",
+  "Meee",
+  "Ja",
+  "Le",
+  "Oui",
+  "Moe",
+  "Mu",
+  "Yu",
+  "We",
+  "Hu",
+  "The",
+]
+
+last_names = [
+  "Surname",
+  "Nom",
+  "Thatguy",
+  "Thechosenone",
+  "Thisone",
+  "Thatone",
+  "Theguy",
+  "Aperson",
+  "Aguy",
+  "Theperson",
+  "Thatperson",
+  "Whichperson",
+  "Whichguy",
+  "Who",
+  "Asinwho",
+  "Asinme",
+  "Thisname",
+  "Imnotsure",
+  "Probably",
+  "Possibly",
+  "Maybe",
+  "Vonsurname",
+  "Aname",
+  "Somebody",
+  "Someguy",
+  "Someperson",
+  "Green",
+  "Brown",
+  "Gold",
+  "Beige",
+  "Lavender",
+  "Rose",
+  "Moon",
+  "Square",
+  "Pixelated",
+  "Twoeyes",
+  "Sun",
+  "Blue",
+  "Pink",
+  "Aquamarine",
+  "Goodguy",
+  "Sorry",
+  "Name",
+  "Tuesday",
+  "Peg",
+  "Although",
+  "Because",
+  "Result",
+  "Die",
+  "Try",
+  "Change",
+  "Mybad",
+  "Whatdidyousay",
+  "Notreally",
+  "Ontheotherhand",
+  "Abit",
+  "Whoexactly",
+  "Crisis",
+  "Already",
+  "Ithink",
+  "Alive",
+  "Therefore",
+  "Potato",
+  "Ratatata",
+  "Little",
+  "!",
+  "?",
+  "...",
+  "!?",
+  "Myapologies",
+  "Forgiveme",
+  "Exuseme",
+  "Warning",
+  "Thelate",
+  "Notusually",
+  "Thankyou",
+  "Us",
+  "Youthere",
+  "Ornot",
+  "Turquoise",
+  "Violet",
+  "Canyourepeatthat",
+  "('-')",
+  ":)",
+  ":(",
+  ":D",
+  "(T-T)",
+  "('o')",
+  "Christus",
+  "Key",
+  "Van Der Computer",
+  "Van Ergens",
+  "Fromoverthere",
+  ", Remember?",
+  "Redacted",
+  "Isawyouthattime",
+  "Sincerely",
+  "Rememberme",
+  "Whichone",
+  "Hhhhhh",
+  "Really",
+  "Ohthem",
+  "Youthere",
+  ":/",
+  "Cause",
+  "Ordinary",
+  "WithanE",
+  "Youspelthatwrong",
+  "Dying",
+  "Usually",
+  "Person",
+  "Theguy",
+  "Real",
+  ".",
+  "Non",
+  "No",
+  "Ne",
+  "Nah",
+  "Ie",
+]
+
+
+[[building]]
+name = "home"
+size = 2
+sprite = "floor_wood2"
+housing = 1
+cost = {stone = 5}
+
+
+[[building]]
+name = "farm"
+sprite = "workspace"
+output = "wheat"
+hat = "hat_farmer"
+housing = 2
+input = { rawwheat = 3 }
+ticks_to_make = 5
+size = 3
+
+[[building]]
+name = "quarry"
+sprite = "workspace"
+output = "stone"
+hat = "hat_miner"
+housing = 0
+input = { rock = 2 }
+ticks_to_make = 5
+size = 2
+cost = {stone = 10}
+
+[[building]]
+name = "bakery"
+sprite = "workspace"
+output = "bread"
+hat = "hat_cook"
+housing = 0
+input = { coal = 1, wheat = 1 }
+ticks_to_make = 5
+size = 2
+cost = {stone = 10}
+
+
+
+## HQ (Headquarters) — a special building with unique_per_team=true.
+[[building]]
+name = "hq"
+sprite = "hq"
+size = 3
+health = 255
+cost = {}                  # HQ is free to place
+input = { stone = 1000, wheat = 1000, iron = 1000 }
+initial_resources = 250
+unique_per_team = true
+
+# General game settings
+[game]
+# can animals eat animals?
+carnivors_enabled = true
+decal_ttl = 50
+
+## User interface (menus, buttons, ...)
+[ui]
+# UI background color: red, green, blue, alpha (opacity). values 0-255.
+# E.g. semi-transparent green = [0,  255, 0,   128],
+#                                ^   ^    ^    ^
+#                               red green blue alpha
+bg_color = [50, 120, 50, 159]
+
+# UI border color
+border_color = [128, 128, 128, 196]
+
