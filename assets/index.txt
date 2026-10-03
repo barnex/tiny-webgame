@@ -15,6 +15,7 @@ axe_dubble_rusty.png
 axe.png
 axe_red.png
 axe_rusty.png
+bakery.png
 bamboo_plank.png
 bamboo_plant.png
 banner1.png
@@ -126,6 +127,7 @@ clothes.png
 clothes_worn.png
 club.png
 club_red.png
+coal_mine.png
 coalpack.png
 coal.png
 coalstone.png
@@ -151,6 +153,7 @@ crane_s.png
 crane_u2.png
 crane_u3.png
 crane_u4.png
+crane_u5.png
 crane_u.png
 crate2.png
 crate3.png
@@ -248,6 +251,7 @@ ham_roast_rot.png
 ham_rot.png
 hat_art.png
 hat_builder.png
+hat_cook.png
 hat_farmer.png
 hat_miner.png
 hat_scolar.png

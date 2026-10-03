@@ -215,13 +215,19 @@ name = "zerobad"
 [[item]]
 name = "rawwheat"
 sprite = "wheat2"
+calories = 1
+
+[[item]]
+name = "food"
+sprite = "chicken"
+special = 2
 
 [[item]]
 name = "stone"
 
 [[item]]
 name = "wheat"
-calories = 5
+calories = 1
 sprite = "leaf"
 #made_from = { rawwheat = 3 }
 
@@ -247,12 +253,12 @@ name = "iron"
 [[item]]
 name = "apple"
 sprite = "apple"
-calories = 160
+calories = 1
 
 [[item]]
 name = "rawbread"
 sprite = "bread"
-calories = 200
+calories = 1
 #made_from = { wheat = 2 }
 # on_heat = "bread"  # when heated, it becomes bread
 
@@ -297,12 +303,12 @@ sprite = "scroll"
 name = "appletart"
 sprite = "cake_apple"
 #made_from = { apple = 1, wheat = 2 }
-calories = 1000
+calories = 3
 
 [[item]]
 name = "bread"
 sprite = "bread"
-calories = 900
+calories = 2
 #made_from = { wheat = 2, coal = 1 }
 
 [[item]]
@@ -332,17 +338,17 @@ sprite = "painting18"
 [[item]]
 name = "juice"
 #made_from = { apple = 1, cherry = 1 }
-calories = 100
+calories = 1
 
 [[item]]
 name = "bread_slice"
 #made_from = { bread = 1 }
-calories = 1111
+calories = 1
 
 [[item]]
 name = "bread_toast"
 #made_from = { bread_slice = 1, coal = 1 }
-calories = 1600
+calories = 2
 
 [[item]]
 name = "go_play"
@@ -358,12 +364,12 @@ name = "chess_play"
 [[item]]
 name = "grain"
 #made_from = { wheat = 1 }
-calories = 700
+calories = 1
 
 [[item]]
 name = "sugar"
 #made_from = { grain = 1 }
-calories = 800
+calories = 1
 
 [[item]]
 name = "monalisa"
@@ -388,22 +394,22 @@ name = "propaganda"
 [[item]]
 name = "cake"
 #made_from = { wheat = 2, sugar = 1, coal = 1 }
-calories = 1800
+calories = 4
 
 [[item]]
 name = "orange"
-calories = 160
+calories = 1
 
 [[item]]
 name = "bread_orange"
 #made_from = { bread_slice = 1, orange = 1, sugar = 1 }
-calories = 2000
+calories = 3
 
 [[item]]
 name = "juice_citrus"
 sprite = "juice_orange"
 #made_from = { orange = 1, lemon = 1 }
-calories = 300
+calories = 1
 
 [[item]]
 name = "vase_kintsugi"
@@ -416,7 +422,7 @@ name = "vase_shards"
 
 [[item]]
 name = "tomato"
-calories = 80
+calories = 1
 
 [[item]]
 name = "tea_leaf"
@@ -435,17 +441,17 @@ calories = 0
 [[item]]
 name = "tea_green"
 #made_from = { tea_ground = 1 }
-calories = 100
+calories = 1
 
 [[item]]
 name = "tea_yellow"
 #made_from = { tea_leaf = 1 }
-calories = 100
+calories = 1
 
 [[item]]
 name = "tea_black"
 #made_from = { tea_leaf_roast = 1 }
-calories = 100
+calories = 1
 
 [[item]]
 name = "coffebean"
@@ -454,27 +460,27 @@ calories = 0
 [[item]]
 name = "coffee"
 #made_from = { coffebean = 2 }
-calories = 500
+calories = 1
 
 [[item]]
 name = "boba_green"
 #made_from = { tea_green = 1, sugar = 1 }
-calories = 700
+calories = 2
 
 [[item]]
 name = "boba_black"
 #made_from = { tea_yellow = 1, sugar = 1, coffee = 1 }
-calories = 900
+calories = 2
 
 [[item]]
 name = "boba_pink"
 #made_from = { tea_black = 1, sugar = 1, cherry = 1 }
-calories = 700
+calories = 2
 
 [[item]]
 name = "boba_yellow"
 #made_from = { tea_yellow = 1, sugar = 1, juice = 1 }
-calories = 600
+calories = 2
 
 [[item]]
 name = "abacus"
@@ -494,7 +500,7 @@ name = "vase_decor2"
 
 [[item]]
 name = "root"
-calories = 500
+calories = 1
 
 [[item]]
 name = "bowl_raw"
@@ -520,21 +526,21 @@ sprite = "bowl_kitsugi"
 [[item]]
 name = "mealbowl"
 #made_from = { bowl = 1, root = 1, tomato = 1, beet = 1, tumeric = 1, grain = 1 }
-calories = 3000
+calories = 5
 
 [[item]]
 name = "fruitbowl"
 #made_from = { bowl = 1, apple = 1, orange = 1, lemon = 1, cherry = 1 }
-calories = 2000
+calories = 3
 
 [[item]]
 name = "lemon"
-calories = 80
+calories = 1
 
 [[item]]
 name = "cherry"
 sprite = "cheer1"
-calories = 50
+calories = 1
 
 [[item]]
 name = "dye_black"
@@ -551,7 +557,7 @@ name = "dye_red"
 [[item]]
 name = "meat"
 sprite = "ham"
-calories = 80
+calories = 1
 
 [[item]]
 name = "dye_yellow"
@@ -563,7 +569,7 @@ name = "dye_white"
 
 [[item]]
 name = "skeleton"
-calories = 50
+calories = 1
 
 [[item]]
 name = "dye_blue"
@@ -621,7 +627,7 @@ name = "coconut"
 [[item]]
 name = "coconut_half"
 #made_from = { coconut = 1 }
-calories = 100
+calories = 1
 
 [[item]]
 name = "wool"
@@ -639,35 +645,35 @@ name = "tumeric"
 [[item]]
 name = "burger"
 #made_from = { bread_slice = 2, tomato = 1, meat = 2, dye_red = 1, salt = 1 }
-calories = 500
+calories = 3
 
 [[item]]
 name = "sandwich"
 #made_from = { bread_toast = 2, tomato = 1, meat = 2, beet = 1, egg = 1 }
-calories = 500
+calories = 3
 
 [[item]]
 name = "egg"
-calories = 10
+calories = 1
 
 [[item]]
 name = "croissant_raw"
 #made_from = { grain = 1 }
-calories = 10
+calories = 1
 
 [[item]]
 name = "croissant"
 #made_from = { croissant_raw = 1, coal = 1 }
-calories = 600
+calories = 2
 
 [[item]]
 name = "salt"
-calories = 2
+calories = 0
 
 [[item]]
 name = "wrap"
 #made_from = { grain = 1, salt = 1, tomato = 1 }
-calories = 600
+calories = 3
 
 [[item]]
 name = "brick_clay"
@@ -698,7 +704,6 @@ name = "bamboo_plank"
 
 [[pawn]]
 name = "tiger"
-eats = []
 hop_wait = 50
 hop_distance = 30
 vision_range = 20
@@ -708,7 +713,6 @@ name = "bunny"
 sprite = "bunnyw_l"
 hop_wait = 16
 hop_distance = 2
-eats = ["rawwheat"]
 on_killed = [{decal="bunnyw_c"}]
 animations = {
     walk = { sprites = ["bunnyw_lj","bunnyw_l"], speed = 0.5 },
@@ -761,19 +765,16 @@ name = "butterfly"
 [[pawn]]
 name = "sheep"
 sprite = "sheep_wooly"
-eats = ["cake", "appletart"]
 on_killed = [{decal = "skeleton_baby"}]
 
 [[pawn]]
 name = "pig"
 sprite = "pig_l"
-eats = ["apple"]
 on_killed = [{decal = "skeleton_baby"}]
 
 [[pawn]]
 name = "crane"
 sprite = "crane_l"
-#eats = ["wheat", "cherry", "croissant", "frog", "spider"]
 on_killed = [{decal = "crance_c"}]
 hop_wait = 10
 hop_distance = 12
@@ -944,7 +945,7 @@ cost = { stone = 25 }
 name = "king"
 ticks_per_attack = 10
 shoots_projectile = { damage = 50 }
-cost = { wheat = 1 }
+cost = { food = 1 }
 
 [[pawn]]
 name = "demon"
@@ -982,7 +983,6 @@ awake_time = 500
 sleep_time = 100
 # Draw hat shifted by this amount of pixels.
 hat_offset = [-1, 0]
-hungry_below_calories = 500
 # Do these things when killed
 on_killed = [{ spawn = "skeleton" }]
 
@@ -1290,7 +1290,7 @@ sprite = "hq"
 size = 3
 health = 255
 cost = {}                  # HQ is free to place
-input = { stone = 1000, wheat = 1000, iron = 1000 }
+input = { stone = 1000, food = 1000, iron = 1000 }
 initial_resources = 250
 unique_per_team = true
 
@@ -1299,15 +1299,4 @@ unique_per_team = true
 # can animals eat animals?
 carnivors_enabled = true
 decal_ttl = 50
-
-## User interface (menus, buttons, ...)
-[ui]
-# UI background color: red, green, blue, alpha (opacity). values 0-255.
-# E.g. semi-transparent green = [0,  255, 0,   128],
-#                                ^   ^    ^    ^
-#                               red green blue alpha
-bg_color = [50, 120, 50, 159]
-
-# UI border color
-border_color = [128, 128, 128, 196]
 

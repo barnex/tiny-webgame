@@ -21,6 +21,7 @@ ticks_to_walk = 1
 corner = "diagonal"
 border = "#959595"
 height = 3
+cost = { stone = 1 }
 
 [[land_tile]]
 name = "floor"
@@ -42,6 +43,7 @@ sprite = "block24"
 cost = { stone = 1 }
 health = 100
 corner = "rounded"
+border = "#4b4f00"
 
 [[wall_tile]]
 name = "wall2"
@@ -94,7 +96,7 @@ corner = "circle"
 
 [[special_tile]]
 name = "lake"
-sprite = "water7"
+sprite = "water4"
 corner = "circle"
 
 ## Items
@@ -108,6 +110,7 @@ name = "zerobad"
 [[item]]
 name = "rawwheat"
 sprite = "wheat2"
+calories = 1
 special = 1
 
 [[item]]
@@ -120,7 +123,7 @@ name = "rock"
 
 [[item]]
 name = "wheat"
-calories = 5
+calories = 2
 sprite = "leaf"
 
 [[item]]
@@ -141,12 +144,12 @@ name = "iron"
 [[item]]
 name = "apple"
 sprite = "apple"
-calories = 100
+calories = 1
 
 [[item]]
 name = "rawbread"
 sprite = "bread"
-calories = 500
+calories = 1
 #on_heat = "bread"  # when heated, it becomes bread
 
 [[item]]
@@ -185,12 +188,12 @@ sprite = "scroll"
 [[item]]
 name = "appletart"
 sprite = "cake_apple"
-calories = 1000
+calories = 3
 
 [[item]]
 name = "bread"
 sprite = "bread"
-calories = 500
+calories = 4
 
 [[item]]
 name = "skeleton"
@@ -203,7 +206,7 @@ sprite = "floor_wood2"
 housing = 1
 walls = "wall"
 floor = "floor_decor"
-cost = {stone = 10, wheat = 20}
+cost = {stone = 10, food = 10}
 
 [[building]]
 name = "appletree"
@@ -283,7 +286,6 @@ neutral = true
 name = "bunny"
 hop_distance = 10
 hop_wait = 20
-eats = ["rawwheat"]
 neutral = true
 
 #[[pawn]]
@@ -312,7 +314,6 @@ neutral = true
 [[pawn]]
 name = "redpanda"
 hop_distance = 10
-eats = ["apple"]
 neutral = true
 
 [[pawn]]
@@ -355,7 +356,6 @@ range = 0
 awake_time = 500
 sleep_time = 100
 hat_offset = [-1, 0]
-hungry_below_calories = 200
 on_killed = [{ spawn = "skeleton" }]
 animations = { walk = { sprites = ["walk1", "walk2"], speed = 0.5 } }
 first_names = ["Billy", "Bob"]
@@ -371,16 +371,16 @@ input = { rawwheat = 2 }
 ticks_to_make = 10
 size = 3
 cost = {stone = 10}
-range = 10
+range = 20
 walls = "wall"
 housing = 2
 
 [[building]]
 name = "coal_mine"
-sprite = "workspace"
+sprite = "coal_mine"
 output = "coal"
 hat = "hat_miner"
-housing = 0
+housing = 1
 input = { rawcoal = 2 }
 ticks_to_make = 5
 size = 2
@@ -401,14 +401,15 @@ cost = {stone = 10}
 
 [[building]]
 name = "bakery"
-sprite = "workspace"
+sprite = "bakery"
 output = "bread"
-housing = 0
-input = { coal = 1, wheat = 1 }
+housing = 1
+input = { wheat = 2 }
 ticks_to_make = 30
 size = 2
 cost = {stone = 10}
 walls = "wall"
+hat = "hat_cook"
 
 ## HQ (Headquarters) — a special building with unique_per_team=true.
 [[building]]
@@ -418,9 +419,10 @@ size = 3
 walls = "wall"
 health = 255
 cost = {}                  # HQ is free to place
-input = { stone = 1000, wheat = 1000, iron = 1000, plank = 1000 }
+input = { stone = 100, food = 100, iron = 100, plank = 100 }
 initial_resources = 50
 unique_per_team = true
+housing = 2
 
 [[building]]
 name = "sawmill"
@@ -450,16 +452,4 @@ cost = {stone = 10}
 # For how many ticks decal effects (e.g. blood splatters) remain visible
 decal_ttl = 50
 
-
-## User interface (menus, buttons, ...)
-[ui]
-
-# UI background color: red, green, blue, alpha (opacity). values 0-255.
-# E.g. semi-transparent green = [0,  255, 0,   128],
-#                                ^   ^    ^    ^
-#                               red green blue alpha
-bg_color = [50, 50, 60, 200]
-
-# UI border color
-border_color = [196, 196, 196, 196]
 

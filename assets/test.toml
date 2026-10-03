@@ -92,13 +92,19 @@ name = "zerobad"
 [[item]]
 name = "rawwheat"
 sprite = "wheat2"
+calories = 1
+
+[[item]]
+name = "food"
+sprite = "chicken"
+special = 2
 
 [[item]]
 name = "rock"
 
 [[item]]
 name = "wheat"
-calories = 5
+calories = 1
 sprite = "leaf"
 
 [[item]]
@@ -119,12 +125,12 @@ name = "iron"
 [[item]]
 name = "apple"
 sprite = "apple"
-calories = 100
+calories = 1
 
 [[item]]
 name = "rawbread"
 sprite = "bread"
-calories = 200
+calories = 1
 #on_heat = "bread"  # when heated, it becomes bread
 
 [[item]]
@@ -163,12 +169,12 @@ sprite = "scroll"
 [[item]]
 name = "appletart"
 sprite = "cake_apple"
-calories = 1000
+calories = 3
 
 [[item]]
 name = "bread"
 sprite = "bread"
-calories = 900
+calories = 2
 
 [[item]]
 name = "skeleton"
@@ -181,7 +187,7 @@ sprite = "floor_wood2"
 housing = 1
 walls = "wall"
 floor = "floor_decor"
-cost = {stone = 10, wheat = 30}
+cost = {stone = 10, food = 30}
 
 [[building]]
 name = "appletree"
@@ -254,7 +260,6 @@ neutral = true
 name = "bunny"
 hop_distance = 10
 hop_wait = 20
-eats = ["rawwheat"]
 neutral = true
 
 #[[pawn]]
@@ -283,7 +288,6 @@ neutral = true
 [[pawn]]
 name = "redpanda"
 hop_distance = 10
-eats = ["apple"]
 neutral = true
 
 [[pawn]]
@@ -326,7 +330,6 @@ range = 0
 awake_time = 500
 sleep_time = 100
 hat_offset = [-1, 0]
-hungry_below_calories = 200
 on_killed = [{ spawn = "skeleton" }]
 animations = { walk = { sprites = ["walk1", "walk2"], speed = 0.5 } }
 first_names = ["Billy", "Bob"]
@@ -385,7 +388,7 @@ size = 3
 walls = "wall"
 health = 255
 cost = {}                  # HQ is free to place
-input = { stone = 1000, wheat = 1000, iron = 1000, plank = 1000 }
+input = { stone = 1000, food = 1000, iron = 1000, plank = 1000 }
 initial_resources = 50
 unique_per_team = true
 
@@ -435,6 +438,23 @@ size = 2
 max_workers = 1
 housing = 1
 
+# 🤖 A farm with a resident: its worker works only here (case093).
+[[building]]
+name = "farmstead"
+sprite = "workspace"
+output = "wheat"
+input = { rawwheat = 2 }
+ticks_to_make = 10
+size = 3
+range = 10
+housing = 1
+
+# 🤖 A pawn that needs no food (case084).
+[[pawn]]
+name = "ghost"
+sprite = "pawn"
+calories_per_day = 0
+
 
 # General game settings
 [game]
@@ -446,16 +466,4 @@ decal_ttl = 50
 # The default, spelled out for the tests that count on it.
 reserve_resources_ttl = 50
 
-
-## User interface (menus, buttons, ...)
-[ui]
-
-# UI background color: red, green, blue, alpha (opacity). values 0-255.
-# E.g. semi-transparent green = [0,  255, 0,   128],
-#                                ^   ^    ^    ^
-#                               red green blue alpha
-bg_color = [50, 50, 60, 200]
-
-# UI border color
-border_color = [196, 196, 196, 196]
 
