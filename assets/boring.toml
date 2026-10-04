@@ -28,12 +28,18 @@ name = "floor"
 sprite = "floor_tiles3"
 ticks_to_walk = 1
 cost = {stone = 1}
+height = 2
 
 [[land_tile]]
 name = "floor_decor"
 sprite = "floor_tile_decor"
 ticks_to_walk = 1
 cost = {stone = 1}
+
+[[land_tile]]
+name = "dry_grass"
+sprite = "dry_grass"
+ticks_to_walk = 2
 
 ## Wall tiles
 
@@ -404,12 +410,13 @@ name = "bakery"
 sprite = "bakery"
 output = "bread"
 housing = 1
-input = { wheat = 2 }
+input = { wheat = 2 , coal = 1}
 ticks_to_make = 30
-size = 2
-cost = {stone = 10}
+size = 3
+cost = {stone = 10, food = 30}
 walls = "wall"
 hat = "hat_cook"
+max_workers = 2
 
 ## HQ (Headquarters) — a special building with unique_per_team=true.
 [[building]]
