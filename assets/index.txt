@@ -75,6 +75,7 @@ bricks2.png
 bricks3.png
 bricks4.png
 brick_stone.png
+bridge.png
 broccoli.png
 broccoli_rot.png
 brush_bigger.png
@@ -102,6 +103,7 @@ bunnyw_u.png
 burger.png
 burger_rot.png
 butterfly.png
+cafe.png
 cake_apple.png
 cake_apple_rot.png
 cake_lemon.png
@@ -201,6 +203,7 @@ fence_wood.png
 ferrisblue.png
 ferris.png
 fire2.png
+fire_glow.png
 fireplace.png
 fire.png
 fish.png
@@ -347,7 +350,6 @@ leafy_rot_vase.png
 leafy_vase.png
 lemon.png
 lemon_rot.png
-line.png
 Manneke_40.png
 mayo.png
 mayo_rot.png
@@ -540,7 +542,6 @@ test.toml
 test.txt
 tiger.png
 tile_god.png
-tilemaps/arne.tiles.bincode.gz
 tile_royal kopie.png
 tile_royal.png
 tomato.png
@@ -579,6 +580,7 @@ wall_god2.png
 wall_god.png
 wall_mud.png
 wall_stone.png
+water0.png
 water1.png
 water2.png
 water3.png
@@ -588,6 +590,8 @@ water6.png
 water7.png
 water8.png
 waterjar.png
+water_ripple1.png
+water_ripple2.png
 wheat2.png
 wheat.png
 wheel_metal.png

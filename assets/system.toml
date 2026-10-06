@@ -18,7 +18,7 @@
 
 # height: how high a tile is, in pixels (a tile is 24 wide), from -24 to 24. Higher tiles cover
 # lower ones, cast shadows on them, and get a lit rim. What stands on a tile is raised with it.
-# Not given: 0 for land, 24 for walls and ore, -12 for water (sea, lake, canal: [[special_tile]]).
+# Not given: 0 for land, 24 for walls and ore. A [[special_tile]] always gives it.
 
 [[land_tile]]
 name = "sand"
@@ -28,11 +28,6 @@ sprite = "sand"
 name = "snow"
 sprite = "snow"
 border = "#ffffff"
-
-[[land_tile]]
-name = "farmland"
-sprite = "farmland"
-can_have_water = true
 
 [[land_tile]]
 name = "road"
@@ -62,7 +57,7 @@ ticks_to_walk = 1
 [[land_tile]]
 name = "floor_wood"
 sprite = "floor_wood2"
-cost = { plank = 3 }
+cost = { wood = 9 }
 ticks_to_walk = 1
 
 [[land_tile]]
@@ -116,7 +111,7 @@ corner = "circle"
 [[wall_tile]]
 name = "wall_wood"
 sprite = "floor_wood"
-cost = { plank = 6 }
+cost = { wood = 18 }
 health = 100
 corner = "rounded"
 
@@ -187,23 +182,101 @@ sprite = "clay_source"
 resource = "clay"
 amount = 50
 
-## Special tiles (hard-coded tiles configured here)
-
-[[special_tile]]
-name = "canal"
-sprite = "canal"
-cost = { stone = 2 }
-corner = "circle"
+## Special tiles: the tiles the game's code knows by name (water, farm land, belts).
+# Every one of them must be here, with every field written out.
 
 [[special_tile]]
 name = "sea"
 sprite = "sea"
+description = ""
+cost = "not_for_sale"
+ticks_to_walk = 255
 corner = "circle"
+border = "none"
+height = -12
 
 [[special_tile]]
 name = "lake"
 sprite = "water7"
+description = ""
+cost = "not_for_sale"
+ticks_to_walk = 255
 corner = "circle"
+border = "none"
+height = -12
+
+[[special_tile]]
+name = "canal"
+sprite = "canal"
+description = ""
+cost = { stone = 2 }
+ticks_to_walk = 255
+corner = "circle"
+border = "none"
+height = -12
+
+# A road over water: the canal's water flows on under it. Built on water only.
+[[special_tile]]
+name = "bridge"
+sprite = "floor_wood"
+description = ""
+cost = { stone = 50 }
+ticks_to_walk = 1
+corner = "none"
+border = "none"
+height = 0
+
+# What farms grow on; canals water it.
+[[special_tile]]
+name = "farm_land"
+sprite = "farmland"
+description = ""
+cost = "not_for_sale"
+ticks_to_walk = 3
+corner = "rounded"
+border = "none"
+height = 0
+
+# Carries what lies on it along; its sprite shows which way.
+[[special_tile]]
+name = "belt_r"
+sprite = "belt_r"
+description = ""
+cost = {}
+ticks_to_walk = 3
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_l"
+sprite = "belt_l"
+description = ""
+cost = {}
+ticks_to_walk = 3
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_u"
+sprite = "belt_u"
+description = ""
+cost = {}
+ticks_to_walk = 3
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_d"
+sprite = "belt_d"
+description = ""
+cost = {}
+ticks_to_walk = 3
+corner = "none"
+border = "none"
+height = 0
 
 ## Items
 # Keep ordered
@@ -222,8 +295,23 @@ name = "food"
 sprite = "chicken"
 special = 2
 
+# Any item that burns, counted in fuel: a "fuel" input takes coal, wood, ... (see `fuel` on items).
+[[item]]
+name = "fuel"
+sprite = "fire"
+special = 3
+
+# Anything built with, counted in stone: a "stone" input (the HQ's, which pays for buildings)
+# takes rock, brick, ... (see `stone` on items).
 [[item]]
 name = "stone"
+special = 4
+
+# Any wood, counted in wood: a "wood" input (the HQ's, which pays for buildings) takes logs,
+# planks, ... (see `wood` on items).
+[[item]]
+name = "wood"
+special = 5
 
 [[item]]
 name = "wheat"
@@ -289,10 +377,14 @@ name = "canvas"
 
 [[item]]
 name = "plank"
+wood = 3
 #made_from = { wood = 1 }
 
+# Raw wood, chopped from trees.
 [[item]]
-name = "wood"
+name = "log"
+sprite = "wood"
+wood = 1
 
 [[item]]
 name = "paper"
@@ -817,7 +909,7 @@ name = "tree"
 sprite = "tree"
 shadow = "treeshade"
 size = 2
-output = "wood"
+output = "log"
 fruit_per_cycle = 0.02
 
 [[building]]
@@ -981,6 +1073,8 @@ animations = {
 awake_time = 500
 # How many ticks a worker sleeps for.
 sleep_time = 100
+# Calories burned a day; eats up to 3 days worth at a time.
+calories_per_day = 10
 # Draw hat shifted by this amount of pixels.
 hat_offset = [-1, 0]
 # Do these things when killed
@@ -1290,7 +1384,7 @@ sprite = "hq"
 size = 3
 health = 255
 cost = {}                  # HQ is free to place
-input = { stone = 1000, food = 1000, iron = 1000 }
+input = { stone = 1000, food = 1000, iron = 1000, wood = 1000 }
 initial_resources = 250
 unique_per_team = true
 

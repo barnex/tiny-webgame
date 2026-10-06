@@ -66,20 +66,101 @@ amount = 50
 
 
 
-## Special tiles (hard-coded tiles configured here)
-
-[[special_tile]]
-name = "canal"
-sprite = "canal"
-cost = { stone = 2 }
+## Special tiles: the tiles the game's code knows by name (water, farm land, belts).
+# Every one of them must be here, with every field written out.
 
 [[special_tile]]
 name = "sea"
 sprite = "sea"
+description = ""
+cost = "not_for_sale"
+ticks_to_walk = 255
+corner = "rounded"
+border = "none"
+height = -12
 
 [[special_tile]]
 name = "lake"
 sprite = "water7"
+description = ""
+cost = "not_for_sale"
+ticks_to_walk = 255
+corner = "rounded"
+border = "none"
+height = -12
+
+[[special_tile]]
+name = "canal"
+sprite = "canal"
+description = ""
+cost = { stone = 2 }
+ticks_to_walk = 255
+corner = "rounded"
+border = "none"
+height = -12
+
+# A road over water: the canal's water flows on under it. Built on water only.
+[[special_tile]]
+name = "bridge"
+sprite = "floor_wood"
+description = ""
+cost = "not_for_sale"
+ticks_to_walk = 1
+corner = "none"
+border = "none"
+height = 0
+
+# What farms grow on; canals water it.
+[[special_tile]]
+name = "farm_land"
+sprite = "farmland"
+description = ""
+cost = "not_for_sale"
+ticks_to_walk = 3
+corner = "rounded"
+border = "none"
+height = 0
+
+# Carries what lies on it along; its sprite shows which way.
+[[special_tile]]
+name = "belt_r"
+sprite = "belt_r"
+description = ""
+cost = {}
+ticks_to_walk = 3
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_l"
+sprite = "belt_l"
+description = ""
+cost = {}
+ticks_to_walk = 3
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_u"
+sprite = "belt_u"
+description = ""
+cost = {}
+ticks_to_walk = 3
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_d"
+sprite = "belt_d"
+description = ""
+cost = {}
+ticks_to_walk = 3
+corner = "none"
+border = "none"
+height = 0
 
 ## Items
 # Keep ordered
@@ -99,8 +180,24 @@ name = "food"
 sprite = "chicken"
 special = 2
 
+# Any item that burns, counted in fuel: a "fuel" input takes coal, wood, ... (see `fuel` on items).
 [[item]]
-name = "rock"
+name = "fuel"
+sprite = "fire"
+special = 3
+
+# Anything built with, counted in stone: a "stone" input (the HQ's, which pays for buildings)
+# takes rock, brick, ... (see `stone` on items).
+[[item]]
+name = "stone"
+sprite = "brick"
+special = 4
+
+# Any wood, counted in wood: a "wood" input (the HQ's, which pays for buildings) takes logs,
+# planks, ... (see `wood` on items).
+[[item]]
+name = "wood"
+special = 5
 
 [[item]]
 name = "wheat"
@@ -108,8 +205,8 @@ calories = 1
 sprite = "leaf"
 
 [[item]]
-name = "stone"
-sprite = "brick"
+name = "rock"
+stone = 1
 
 [[item]]
 name = "rawore"
@@ -158,9 +255,13 @@ name = "canvas"
 
 [[item]]
 name = "plank"
+wood = 3
 
+# Raw wood, chopped from trees.
 [[item]]
-name = "wood"
+name = "log"
+sprite = "wood"
+wood = 1
 
 [[item]]
 name = "paper"
@@ -179,6 +280,11 @@ calories = 2
 [[item]]
 name = "skeleton"
 sprite = "skeleton"
+
+# 3 stone in one item: worth a longer trip than a rock (case108).
+[[item]]
+name = "brick"
+stone = 3
 
 [[building]]
 name = "home"
@@ -204,28 +310,168 @@ name = "tree"
 sprite = "tree"
 shadow = "treeshade"
 size = 2
-output = "wood"
+output = "log"
 fruit_per_cycle = 0.03
 neutral = true
+
+## Looks: what pawns are drawn as. A pawn names its look (`look`); looks are shared by name.
+
+[[look]]
+name = "king"
+sprite = "king"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "swordsman"
+sprite = "pawn"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "archer"
+sprite = "pawn6"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "demon"
+sprite = "demon"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "tiger"
+sprite = "tiger"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "bunny"
+sprite = "bunny"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "evilcat"
+sprite = "kit3"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "crane"
+sprite = "crane_l"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+animations = {
+    walk = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]},
+    walk_up = { sprites = ["crane_u", "crane_u2", "crane_u3", "crane_u4"]},
+    walk_down = { sprites = ["crane_d", "crane_d2", "crane_d3", "crane_d4"]},
+}
+
+[[look]]
+name = "redpanda"
+sprite = "redpanda"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "baby"
+sprite = "pawn_baby"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "child"
+sprite = "pawn_child"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "human"
+sprite = "pawn1"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "moth"
+sprite = "moth"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "butterfly"
+sprite = "butterfly"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "worker"
+sprite = "pawn1"
+hat_offset = [-1, 0]
+blob_shadow = true
+height = 0
+animations = { walk = { sprites = ["walk1", "walk2"], speed = 0.5 } }
+
+[[look]]
+name = "ghost"
+sprite = "pawn"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "rat"
+sprite = "frog"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "cat"
+sprite = "kit7"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
 
 ## Pawns are things that can move
 # Keep ordered
 
 [[pawn]]
 name = "king"
-sprite = "king"
+pathfinding = "smart"
+look = "king"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 on_spawn = [{spawn = "butterfly"}]
 
 [[pawn]]
 name = "swordsman"
-sprite = "pawn"
+pathfinding = "smart"
+look = "swordsman"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 ticks_per_attack = 5
 melee_damage = 10
 cost = { stone = 5 }
 
 [[pawn]]
 name = "archer"
-sprite = "pawn6"
+pathfinding = "smart"
+look = "archer"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 health = 70
 ticks_per_attack = 5
 # arrow: track_target=true (default), sprite=None ⇒ line visual, range=12 (default)
@@ -237,7 +483,9 @@ on_killed = [
 
 [[pawn]]
 name = "demon"
-sprite = "demon"
+pathfinding = "smart"
+look = "demon"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 health = 200
 ticks_per_attack = 2
 # fixed-tile fireball: damage at impact tile, spawn "fire" blueprint there
@@ -251,6 +499,9 @@ on_killed = [{spawn = "fire"}]
 
 [[pawn]]
 name = "tiger"
+pathfinding = "dumb"
+look = "tiger"
+eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 30
 hop_wait = 50
 vision_range = 20
@@ -258,6 +509,9 @@ neutral = true
 
 [[pawn]]
 name = "bunny"
+pathfinding = "dumb"
+look = "bunny"
+eating = { diet = ["rawwheat", "wheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
 hop_wait = 20
 neutral = true
@@ -270,52 +524,66 @@ neutral = true
 
 [[pawn]]
 name = "evilcat"
-sprite = "kit3"
+pathfinding = "dumb"
+look = "evilcat"
+eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
 shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire" }
 
 [[pawn]]
 name = "crane"
-sprite = "crane_l"
+pathfinding = "smart"
+look = "crane"
+eating = { diet = ["rawwheat", "wheat"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 #hop_distance = 10
-animations = {
-    walk = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]},
-    walk_up = { sprites = ["crane_u", "crane_u2", "crane_u3", "crane_u4"]},
-    walk_down = { sprites = ["crane_d", "crane_d2", "crane_d3", "crane_d4"]},
-}
 neutral = true
 
 [[pawn]]
 name = "redpanda"
+pathfinding = "dumb"
+look = "redpanda"
+eating = { diet = ["apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
 neutral = true
 
 [[pawn]]
 name = "baby"
-sprite = "pawn_baby"
+pathfinding = "dumb"
+look = "baby"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 1
 hop_wait = 30
 neutral = true
 
 [[pawn]]
 name = "child"
-sprite = "pawn_child"
+pathfinding = "dumb"
+look = "child"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
 neutral = true
 
 [[pawn]]
 name = "human"
-sprite = "pawn1"
+pathfinding = "dumb"
+look = "human"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 12
 neutral = true
 
 [[pawn]]
 name = "moth"
+pathfinding = "dumb"
+look = "moth"
+eating = { diet = ["rawwheat", "wheat", "bread"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
 neutral = true
 
 [[pawn]]
 name = "butterfly"
+pathfinding = "dumb"
+look = "butterfly"
+eating = { diet = ["apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
 neutral = true
 
@@ -324,14 +592,14 @@ neutral = true
 
 [[pawn]]
 name = "worker"
-sprite = "pawn1"
+pathfinding = "smart"
+look = "worker"
+eating = { diet = ["food"], appetite = "any", calories_per_day = 1, start_calories = 3 }
 health = 10
 range = 0
 awake_time = 500
 sleep_time = 100
-hat_offset = [-1, 0]
 on_killed = [{ spawn = "skeleton" }]
-animations = { walk = { sprites = ["walk1", "walk2"], speed = 0.5 } }
 first_names = ["Billy", "Bob"]
 last_names = ["A", "B"]
 
@@ -388,7 +656,7 @@ size = 3
 walls = "wall"
 health = 255
 cost = {}                  # HQ is free to place
-input = { stone = 1000, food = 1000, iron = 1000, plank = 1000 }
+input = { stone = 1000, food = 1000, iron = 1000, wood = 3000 }
 initial_resources = 50
 unique_per_team = true
 
@@ -397,7 +665,7 @@ name = "sawmill"
 sprite = "workspace"
 output = "plank"
 housing = 0
-input = { wood = 2 }
+input = { log = 2 }
 ticks_to_make = 20
 size = 2
 cost = {stone = 10}
@@ -449,11 +717,52 @@ size = 3
 range = 10
 housing = 1
 
+# 🤖 A factory of high-quality food (as in boring.toml), for case111: bread and an apple make an
+#    apple tart, which workers eat off its output tile. Quick, so the test need not wait. No workers:
+#    nobody hauls the tarts away. No inhabitant: nobody but the test's worker. Not for sale, like
+#    `solo_mine`.
+[[building]]
+name = "cafe"
+sprite = "cafe"
+size = 2
+output = "appletart"
+# 🤖 Two tarts out at once (as in boring.toml): two eaters each reserve one (case112).
+num_output_tiles = 2
+input = { bread = 1, apple = 1 }
+ticks_to_make = 1
+max_workers = 0
+housing = 0
+
 # 🤖 A pawn that needs no food (case084).
 [[pawn]]
 name = "ghost"
-sprite = "pawn"
-calories_per_day = 0
+pathfinding = "smart"
+look = "ghost"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 0, start_calories = 10 }
+
+# 🤖 A hunter and its prey (as in boring.toml), for the hunting test. No min_population: no
+#    migrant walks into a test.
+[[pawn]]
+name = "rat"
+pathfinding = "dumb"
+look = "rat"
+eating = { diet = ["wheat", "rawwheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 6
+hop_wait = 5
+vision_range = 15
+neutral = true
+
+[[pawn]]
+name = "cat"
+pathfinding = "dumb"
+look = "cat"
+eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 8
+hop_wait = 10
+vision_range = 12
+neutral = true
+prey = ["rat"]
+lives_in = "home"
 
 
 # General game settings
