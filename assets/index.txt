@@ -21,6 +21,7 @@ bamboo_plant.png
 banner1.png
 banner2.png
 banner.png
+bed2.png
 bed.png
 beet.png
 belt_d.png
@@ -28,6 +29,7 @@ belt_l.png
 belt_r.png
 belt_u.png
 bench2.png
+bird.png
 blob_brush.png
 block24.png
 block25.png
@@ -66,7 +68,9 @@ brfloor_decor4.png
 brfloor_decor5.png
 brfloor_mud.png
 brfloor_stone.png
+brick1.png
 brick_clay.png
+brick_clay_raw.png
 brick_mud.png
 brick.png
 brick_raw.png
@@ -123,6 +127,7 @@ chicken.png
 chicken_roast.png
 chicken_roast_rot.png
 chicken_rot.png
+clay2.png
 clay.png
 clay_source.png
 clothes.png
@@ -132,6 +137,7 @@ club_red.png
 coal_mine.png
 coalpack.png
 coal.png
+coalstone2.png
 coalstone.png
 coconut_half.png
 coconut_half_rot.png
@@ -196,6 +202,7 @@ fabric_yellow.png
 factory.png
 farmer.png
 farmland2.png
+farmland3.png
 farmland.png
 felix.png
 fence_metal.png
@@ -217,6 +224,7 @@ floor_tile_decor.png
 floor_tile.png
 floor_tiles3.png
 floor_wood2.png
+floor_wood3.png
 floor_wood.png
 flower_red.png
 flower_red_vase.png
@@ -234,12 +242,14 @@ frog.png
 fruit_bowl.png
 fruitbowl.png
 fruit_bowl_rot.png
+glasses_sun.png
 glass.png
 gold_ore.png
 gold.png
 go_play.png
 go.png
 grain.png
+greystone2.png
 greystone.png
 grid24.png
 grid32.png
@@ -254,12 +264,22 @@ ham_roast.png
 ham_roast_rot.png
 ham_rot.png
 hat_art.png
+hat_builder2.png
 hat_builder.png
 hat_cook.png
 hat_farmer.png
 hat_miner.png
 hat_scolar.png
 hat_top.png
+head1.png
+head2.png
+head3.png
+head4.png
+head5.png
+head6.png
+head7.png
+head8.png
+helmet2.png
 helmet.png
 hook.png
 hook_red.png
@@ -305,6 +325,9 @@ human_hc9.png
 iceblock.png
 icon2.png
 icon.png
+Icon.png
+In_outputsManneke-20.png.png
+In_outputsManneke-217.png.png
 iron_nugget.png
 ironore.png
 iron.png
@@ -373,6 +396,7 @@ orange_rot.png
 orepack.png
 ore.png
 orestone.png
+output.png
 paint_blur.png
 paint_brighter.png
 paint_brush.png
@@ -462,6 +486,7 @@ redpanda.png
 road_decor.png
 roadornate.png
 road.png
+rock2.png
 rock.png
 rod.png
 rod_rusty.png
@@ -483,6 +508,7 @@ scroll.png
 scroll_writing.png
 sea.png
 seaweed.png
+sheep_shaven.png
 sheep_wooly.png
 shell_big.png
 shield1.png
@@ -495,9 +521,11 @@ shield_frame_metal.png
 shield_frame_wood.png
 shield_metal.png
 shield_wood.png
+skeleton1.png
 skeleton_baby.png
 skeleton_child.png
 skeleton.png
+sleepingh2.png
 sleepingh.png
 sleeping.png
 snow.png
@@ -511,7 +539,6 @@ spear_red.png
 spear_rusty.png
 spider_c.png
 spider.png
-sprite_099.png
 staff.png
 staff_red.png
 starfish.png
@@ -520,6 +547,7 @@ starnest.png
 starnest.svg
 statue.png
 stone.png
+student.png
 sugar.png
 sushi.png
 sushi_rot.png

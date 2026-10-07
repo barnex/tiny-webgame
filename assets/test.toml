@@ -8,26 +8,25 @@
 
 [[land_tile]]
 name = "sand"
-ticks_to_walk = 2
 
 [[land_tile]]
 name = "snow"
-ticks_to_walk = 3
 
-[[land_tile]]
+## Road tiles
+# 🤖 Walked on fast; land tiles are walked on slowly.
+# 🤖 Order determines tile index, as for land tiles: road comes first (`Tile::Road`).
+
+[[road_tile]]
 name = "road"
-ticks_to_walk = 1
 
-[[land_tile]]
+[[road_tile]]
 name = "floor"
 sprite = "floor_tiles3"
-ticks_to_walk = 1
 cost = {stone = 1}
 
-[[land_tile]]
+[[road_tile]]
 name = "floor_decor"
 sprite = "floor_tile_decor"
-ticks_to_walk = 1
 cost = {stone = 1}
 
 ## Wall tiles
@@ -74,7 +73,6 @@ name = "sea"
 sprite = "sea"
 description = ""
 cost = "not_for_sale"
-ticks_to_walk = 255
 corner = "rounded"
 border = "none"
 height = -12
@@ -84,7 +82,6 @@ name = "lake"
 sprite = "water7"
 description = ""
 cost = "not_for_sale"
-ticks_to_walk = 255
 corner = "rounded"
 border = "none"
 height = -12
@@ -94,7 +91,6 @@ name = "canal"
 sprite = "canal"
 description = ""
 cost = { stone = 2 }
-ticks_to_walk = 255
 corner = "rounded"
 border = "none"
 height = -12
@@ -105,7 +101,6 @@ name = "bridge"
 sprite = "floor_wood"
 description = ""
 cost = "not_for_sale"
-ticks_to_walk = 1
 corner = "none"
 border = "none"
 height = 0
@@ -116,7 +111,6 @@ name = "farm_land"
 sprite = "farmland"
 description = ""
 cost = "not_for_sale"
-ticks_to_walk = 3
 corner = "rounded"
 border = "none"
 height = 0
@@ -127,7 +121,6 @@ name = "belt_r"
 sprite = "belt_r"
 description = ""
 cost = {}
-ticks_to_walk = 3
 corner = "none"
 border = "none"
 height = 0
@@ -137,7 +130,6 @@ name = "belt_l"
 sprite = "belt_l"
 description = ""
 cost = {}
-ticks_to_walk = 3
 corner = "none"
 border = "none"
 height = 0
@@ -147,7 +139,6 @@ name = "belt_u"
 sprite = "belt_u"
 description = ""
 cost = {}
-ticks_to_walk = 3
 corner = "none"
 border = "none"
 height = 0
@@ -157,7 +148,6 @@ name = "belt_d"
 sprite = "belt_d"
 description = ""
 cost = {}
-ticks_to_walk = 3
 corner = "none"
 border = "none"
 height = 0
@@ -276,6 +266,8 @@ calories = 3
 name = "bread"
 sprite = "bread"
 calories = 2
+# A hauler brings 3 loaves per trip.
+max_carry = 3
 
 [[item]]
 name = "skeleton"
@@ -448,164 +440,394 @@ hat_offset = [0, 0]
 blob_shadow = true
 height = 0
 
-## Pawns are things that can move
-# Keep ordered
+## Pawns are things that can move: the worker ([worker]) and the animals ([[animal]]: soldiers,
+## people, animals). Saved by name, so in any order.
 
-[[pawn]]
+[[animal]]
 name = "king"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = [{spawn = "butterfly"}]
 pathfinding = "smart"
 look = "king"
 eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
-on_spawn = [{spawn = "butterfly"}]
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "swordsman"
+description = ""
+health = 100
+ticks_per_attack = 5
+melee_damage = 10
+range = 16
+shoots_projectile = "none"
+chase_enemies = true
+cost = { stone = 5 }
+on_killed = []
+on_spawn = []
 pathfinding = "smart"
 look = "swordsman"
 eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
-ticks_per_attack = 5
-melee_damage = 10
-cost = { stone = 5 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "archer"
-pathfinding = "smart"
-look = "archer"
-eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+description = ""
 health = 70
 ticks_per_attack = 5
-# arrow: track_target=true (default), sprite=None ⇒ line visual, range=12 (default)
-shoots_projectile = { damage = 10, range = 5, track_target = true, sprite = "arrow_red" }
+melee_damage = 0
+range = 16
+# arrow: follows its target, drawn as a red arrow
+shoots_projectile = { damage = 10, range = 5, track_target = true, sprite = "arrow_red", speed = 2.0, projectile = "none" }
+chase_enemies = false
 cost = { stone = 3, wood = 2 }
 on_killed = [
     {animation = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]}},
 ]
+on_spawn = []
+pathfinding = "smart"
+look = "archer"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "demon"
+description = ""
+health = 200
+ticks_per_attack = 2
+melee_damage = 0
+range = 16
+# fixed-tile fireball: damage at impact tile, spawn "fire" blueprint there
+shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire", speed = 2.0 }
+chase_enemies = false
+cost = { stone = 10 }
+on_killed = [{spawn = "fire"}]
+on_spawn = []
 pathfinding = "smart"
 look = "demon"
 eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
-health = 200
-ticks_per_attack = 2
-# fixed-tile fireball: damage at impact tile, spawn "fire" blueprint there
-shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire" }
-cost = { stone = 10 }
-on_killed = [{spawn = "fire"}]
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
 
 ## Animal-style pawns (wandering grazers, no attack).
-## Listed after combat pawns so existing SoldierTyp indices stay stable.
-## Keep ordered — SoldierTyp is assigned by index.
 
-[[pawn]]
+[[animal]]
 name = "tiger"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "tiger"
 eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 30
 hop_wait = 50
 vision_range = 20
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "bunny"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "bunny"
 eating = { diet = ["rawwheat", "wheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
 hop_wait = 20
+vision_range = 10
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-#[[pawn]]
+#[[animal]]
 #name = "kitten"
 #sprite = "kit7"
 #hop_distance = 4
 #hop_wait = 10
 
-[[pawn]]
+[[animal]]
 name = "evilcat"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire", speed = 2.0 }
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "evilcat"
 eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
-shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire" }
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "crane"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "smart"
 look = "crane"
 eating = { diet = ["rawwheat", "wheat"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
 #hop_distance = 10
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "redpanda"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "redpanda"
 eating = { diet = ["apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "baby"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "baby"
 eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 1
 hop_wait = 30
+vision_range = 10
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "child"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "child"
 eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "human"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "human"
 eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 12
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "moth"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "moth"
 eating = { diet = ["rawwheat", "wheat", "bread"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "butterfly"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "butterfly"
 eating = { diet = ["apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-## Worker — a pawn that works rather than fights.
-## Kept at the end so combat/animal SoldierTyp indices stay stable.
+## The worker — the pawn that works rather than fights. One, without a name: always "worker".
 
-[[pawn]]
-name = "worker"
+[worker]
+description = ""
+health = 10
+cost = "not_for_sale"
+on_killed = [{ spawn = "skeleton" }]
+on_spawn = []
 pathfinding = "smart"
 look = "worker"
+heads = ["head1", "head2", "head3", "head4", "head5", "head6", "head7", "head8"]
 eating = { diet = ["food"], appetite = "any", calories_per_day = 1, start_calories = 3 }
-health = 10
-range = 0
+vision_range = 10
 awake_time = 500
 sleep_time = 100
-on_killed = [{ spawn = "skeleton" }]
 first_names = ["Billy", "Bob"]
 last_names = ["A", "B"]
 
 
 [[building]]
 name = "farm"
+max_workers = 5
 sprite = "workspace"
 output = "wheat"
 hat = "hat_farmer"
@@ -618,6 +840,7 @@ walls = "wall"
 
 [[building]]
 name = "coal_mine"
+max_workers = 5
 sprite = "workspace"
 output = "coal"
 hat = "hat_miner"
@@ -629,6 +852,7 @@ cost = {stone = 10}
 
 [[building]]
 name = "quarry"
+max_workers = 5
 sprite = "workspace"
 output = "stone"
 hat = "hat_miner"
@@ -640,6 +864,7 @@ cost = {stone = 10}
 
 [[building]]
 name = "bakery"
+max_workers = 5
 sprite = "workspace"
 output = "bread"
 housing = 0
@@ -651,6 +876,7 @@ cost = {stone = 10}
 ## HQ (Headquarters) — a special building with unique_per_team=true.
 [[building]]
 name = "hq"
+max_workers = 5
 sprite = "hq"
 size = 3
 walls = "wall"
@@ -662,6 +888,7 @@ unique_per_team = true
 
 [[building]]
 name = "sawmill"
+max_workers = 5
 sprite = "workspace"
 output = "plank"
 housing = 0
@@ -673,6 +900,7 @@ cost = {stone = 10}
 
 [[building]]
 name = "iron_mine"
+max_workers = 5
 sprite = "workspace"
 output = "iron"
 housing = 0
@@ -709,6 +937,7 @@ housing = 1
 # 🤖 A farm with a resident: its worker works only here (case093).
 [[building]]
 name = "farmstead"
+max_workers = 5
 sprite = "workspace"
 output = "wheat"
 input = { rawwheat = 2 }
@@ -717,50 +946,98 @@ size = 3
 range = 10
 housing = 1
 
-# 🤖 A factory of high-quality food (as in boring.toml), for case111: bread and an apple make an
-#    apple tart, which workers eat off its output tile. Quick, so the test need not wait. No workers:
-#    nobody hauls the tarts away. No inhabitant: nobody but the test's worker. Not for sale, like
-#    `solo_mine`.
+# 🤖 A bread provider (as in boring.toml), for case111: bread in, bread out, which workers eat off
+#    its output tiles. Quick, so the test need not wait. No workers: nobody brings bread, the test
+#    fills it. Its bread is never hauled away (`output_range` 0). No inhabitant: nobody but the
+#    test's worker. Not for sale, like `solo_mine`.
 [[building]]
 name = "cafe"
 sprite = "cafe"
 size = 2
-output = "appletart"
-# 🤖 Two tarts out at once (as in boring.toml): two eaters each reserve one (case112).
+output = "bread"
+# 🤖 Two loaves out at once (as in boring.toml): two eaters each reserve one (case112).
 num_output_tiles = 2
-input = { bread = 1, apple = 1 }
+input = { bread = 1 }
 ticks_to_make = 1
+output_range = 0
 max_workers = 0
 housing = 0
 
 # 🤖 A pawn that needs no food (case084).
-[[pawn]]
+[[animal]]
 name = "ghost"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "smart"
 look = "ghost"
 eating = { diet = ["food"], appetite = "picky", calories_per_day = 0, start_calories = 10 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
 
 # 🤖 A hunter and its prey (as in boring.toml), for the hunting test. No min_population: no
 #    migrant walks into a test.
-[[pawn]]
+[[animal]]
 name = "rat"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "rat"
 eating = { diet = ["wheat", "rawwheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 6
 hop_wait = 5
 vision_range = 15
+awake_time = 0
+sleep_time = 0
 neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
-[[pawn]]
+[[animal]]
 name = "cat"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
 pathfinding = "dumb"
 look = "cat"
 eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
 hop_distance = 8
 hop_wait = 10
 vision_range = 12
+awake_time = 500
+sleep_time = 100
 neutral = true
+min_population = 0
 prey = ["rat"]
 lives_in = "home"
 

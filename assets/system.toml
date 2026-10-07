@@ -1,3 +1,7 @@
+## Tiles
+# Keep ordered
+# Add items to the back only
+
 ## Land tiles
 # Order determines tile index (position 0 → Tile index 1).
 # Keep ordered — tile constants are assigned by index.
@@ -22,131 +26,118 @@
 
 [[land_tile]]
 name = "sand"
-sprite = "sand"
 
 [[land_tile]]
 name = "snow"
-sprite = "snow"
 border = "#ffffff"
 
 [[land_tile]]
+name = "dry_grass"
+sprite = "dry_grass"
+
+## Road tiles
+# 🤖 Walked on fast; land tiles are walked on slowly.
+# 🤖 Order determines tile index, as for land tiles: road comes first (`Tile::Road`).
+
+[[road_tile]]
 name = "road"
-sprite = "road"
-ticks_to_walk = 1
 corner = "diagonal"
-border = "#181818"
+border = "#959595"
+height = 3
+cost = { stone = 1 }
 
-[[land_tile]]
-name = "floor_stone"
-sprite = "brfloor_stone"
-cost = { brick_stone = 3 }
-ticks_to_walk = 1
+[[road_tile]]
+name = "floor"
+sprite = "floor_tiles3"
+cost = {stone = 1}
+height = 2
 
-[[land_tile]]
+[[road_tile]]
+name = "floor_decor"
+sprite = "floor_tile_decor"
+cost = {stone = 1}
+
+[[road_tile]]
 name = "floor_clay"
 sprite = "brfloor_clay"
-cost = { brick_clay = 3 }
-ticks_to_walk = 1
+cost = { stone = 1 }
 
-[[land_tile]]
+[[road_tile]]
 name = "floor_mud"
 sprite = "brfloor_mud"
-cost = { brick_mud = 3 }
-ticks_to_walk = 1
+cost = { stone = 1 }
 
-[[land_tile]]
+[[road_tile]]
 name = "floor_wood"
 sprite = "floor_wood2"
-cost = { wood = 9 }
-ticks_to_walk = 1
+cost = { wood = 3 }
 
-[[land_tile]]
-name = "floor_decor1"
-sprite = "brfloor_decor1"
-cost = { brick_stone = 3, dye_yellow = 2, dye_blue = 1 }
-ticks_to_walk = 1
-
-[[land_tile]]
+[[road_tile]]
 name = "tile_royal"
 sprite = "tile_royal"
-cost = { brick_stone = 10 }
-ticks_to_walk = 1
+cost = { stone = 3 }
 
-[[land_tile]]
+[[road_tile]]
 name = "tile_god"
 sprite = "tile_god"
-cost = { brick_stone = 100 }
-ticks_to_walk = 3
-
-[[land_tile]]
-name = "water1"
-corner = "circle"
-
-[[land_tile]]
-name = "water2"
-corner = "circle"
-
-[[land_tile]]
-name = "water3"
-corner = "circle"
-
-[[land_tile]]
-name = "water4"
-corner = "circle"
-
-[[land_tile]]
-name = "water5"
-corner = "circle"
-
-[[land_tile]]
-name = "water6"
-corner = "circle"
-
-[[land_tile]]
-name = "water7"
-corner = "circle"
+cost = { stone = 30 }
 
 ## Wall tiles
 
 [[wall_tile]]
-name = "wall_wood"
-sprite = "floor_wood"
-cost = { wood = 18 }
+name = "wall"
+sprite = "block24"
+cost = { stone = 1 }
 health = 100
 corner = "rounded"
+border = "#4b4f00"
 
 [[wall_tile]]
-name = "wall_mud"
-sprite = "brwall_mud1"
-cost = { brick_mud = 6 }
+name = "wall2"
+sprite = "wall_mud"
+cost = { stone = 1 }
 health = 100
 corner = "triangle"
 
 [[wall_tile]]
+# indestructible
+name = "granite"
+sprite = "block25"
+health = 100
+corner = "none"
+
+[[wall_tile]]
+name = "wall_wood"
+sprite = "floor_wood"
+cost = { wood = 1 }
+health = 100
+corner = "rounded"
+
+[[wall_tile]]
 name = "wall_clay"
 sprite = "brwall_clay"
-cost = { brick_clay = 6 }
+cost = { stone = 1 }
 health = 100
 corner = "diagonal"
 
 [[wall_tile]]
 name = "wall_stone"
 sprite = "brwall_stone"
-cost = { brick_stone = 1 }
+cost = { stone = 1 }
 health = 100
 corner = "rounded"
 
 [[wall_tile]]
 name = "wall_decor"
 sprite = "brwall_decor5"
-cost = { brick_stone = 1, dye_yellow = 2, dye_blue = 1 }
+cost = { stone = 2 }
 health = 100
 corner = "triangle"
 
 [[wall_tile]]
 name = "wall_god"
 sprite = "wall_god2"
-cost = { brick_stone = 100 }
+cost = { stone = 30 }
 health = 100
 corner = "none"
 
@@ -171,16 +162,18 @@ resource = "rawcoal"
 amount = 50
 
 [[ore_tile]]
+name = "claystone"
+sprite = "clay_source"
+resource = "rawclay"
+amount = 50
+
+[[ore_tile]]
 name = "mudstone"
 sprite = "mud_source"
 resource = "mud"
 amount = 50
 
-[[ore_tile]]
-name = "claystone"
-sprite = "clay_source"
-resource = "clay"
-amount = 50
+
 
 ## Special tiles: the tiles the game's code knows by name (water, farm land, belts).
 # Every one of them must be here, with every field written out.
@@ -190,17 +183,15 @@ name = "sea"
 sprite = "sea"
 description = ""
 cost = "not_for_sale"
-ticks_to_walk = 255
 corner = "circle"
 border = "none"
 height = -12
 
 [[special_tile]]
 name = "lake"
-sprite = "water7"
+sprite = "water4"
 description = ""
 cost = "not_for_sale"
-ticks_to_walk = 255
 corner = "circle"
 border = "none"
 height = -12
@@ -208,9 +199,8 @@ height = -12
 [[special_tile]]
 name = "canal"
 sprite = "canal"
-description = ""
-cost = { stone = 2 }
-ticks_to_walk = 255
+description = "Brings water to farm land."
+cost = { stone = 10 }
 corner = "circle"
 border = "none"
 height = -12
@@ -218,13 +208,12 @@ height = -12
 # A road over water: the canal's water flows on under it. Built on water only.
 [[special_tile]]
 name = "bridge"
-sprite = "floor_wood"
+sprite = "bridge"
 description = ""
-cost = { stone = 50 }
-ticks_to_walk = 1
+cost = { wood = 150 }
 corner = "none"
 border = "none"
-height = 0
+height = 4
 
 # What farms grow on; canals water it.
 [[special_tile]]
@@ -232,7 +221,6 @@ name = "farm_land"
 sprite = "farmland"
 description = ""
 cost = "not_for_sale"
-ticks_to_walk = 3
 corner = "rounded"
 border = "none"
 height = 0
@@ -243,7 +231,6 @@ name = "belt_r"
 sprite = "belt_r"
 description = ""
 cost = {}
-ticks_to_walk = 3
 corner = "none"
 border = "none"
 height = 0
@@ -253,7 +240,6 @@ name = "belt_l"
 sprite = "belt_l"
 description = ""
 cost = {}
-ticks_to_walk = 3
 corner = "none"
 border = "none"
 height = 0
@@ -263,7 +249,6 @@ name = "belt_u"
 sprite = "belt_u"
 description = ""
 cost = {}
-ticks_to_walk = 3
 corner = "none"
 border = "none"
 height = 0
@@ -273,7 +258,6 @@ name = "belt_d"
 sprite = "belt_d"
 description = ""
 cost = {}
-ticks_to_walk = 3
 corner = "none"
 border = "none"
 height = 0
@@ -282,6 +266,7 @@ height = 0
 # Keep ordered
 # Add items to the back only
 
+
 [[item]]
 name = "zerobad"
 
@@ -289,13 +274,14 @@ name = "zerobad"
 name = "rawwheat"
 sprite = "wheat2"
 calories = 1
+special = 1
 
 [[item]]
 name = "food"
 sprite = "chicken"
 special = 2
 
-# Any item that burns, counted in fuel: a "fuel" input takes coal, wood, ... (see `fuel` on items).
+# Any item that burns, counted in fuel: a "fuel" input takes coal, logs, ... (see `fuel` on items).
 [[item]]
 name = "fuel"
 sprite = "fire"
@@ -305,6 +291,7 @@ special = 3
 # takes rock, brick, ... (see `stone` on items).
 [[item]]
 name = "stone"
+sprite = "stone"
 special = 4
 
 # Any wood, counted in wood: a "wood" input (the HQ's, which pays for buildings) takes logs,
@@ -313,18 +300,17 @@ special = 4
 name = "wood"
 special = 5
 
+# A worker eats 10 calories a day (calories_per_day), and eats up to 3 days ahead (30).
+# Each step of processing adds calories: 4 rawwheat (4) -> 2 wheat (6) -> 1 bread (10).
 [[item]]
 name = "wheat"
-calories = 1
+calories = 3
 sprite = "leaf"
-#made_from = { rawwheat = 3 }
 
-
-
-
+# Raw stone, found by the greystone on the map.
 [[item]]
-name = "brick_stone"
-#made_from = { rock = 3 }
+name = "rock"
+stone = 1
 
 [[item]]
 name = "rawore"
@@ -333,7 +319,7 @@ sprite = "ore"
 [[item]]
 name = "coal"
 sprite = "coalpack"
-#made_from = { rawcoal = 1 }
+fuel = 3
 
 [[item]]
 name = "iron"
@@ -347,11 +333,12 @@ calories = 1
 name = "rawbread"
 sprite = "bread"
 calories = 1
-#made_from = { wheat = 2 }
-# on_heat = "bread"  # when heated, it becomes bread
+#on_heat = "bread"  # when heated, it becomes bread
 
+# No stone yet: the masonry fires it into brick.
 [[item]]
 name = "clay"
+sprite = "brick_raw"
 
 [[item]]
 name = "rawapple"
@@ -362,268 +349,81 @@ name = "rawcoal"
 sprite = "coal"
 
 [[item]]
-name = "ore"
+name = "iron_ore"
 sprite = "orepack"
-# on_heat = "iron"
+#on_heat = "iron"
 
+# Beautiful: a gallery holding it is beautiful (beauty), and idle workers go there for leisure.
 [[item]]
-name = "good_wave"
+name = "painting"
 sprite = "painting1"
-#made_from = { canvas = 1, dye_blue = 1, dye_white = 1, dye_yellow = 1 }
+beauty = 10
 
 [[item]]
 name = "canvas"
-#made_from = { plank = 1, paper = 2 }
 
+# 3 wood in one item, from the sawmill: cheaper to haul far.
 [[item]]
 name = "plank"
 wood = 3
-#made_from = { wood = 1 }
+fuel = 3
 
 # Raw wood, chopped from trees.
 [[item]]
 name = "log"
 sprite = "wood"
+fuel = 1
 wood = 1
 
 [[item]]
 name = "paper"
 sprite = "scroll"
-#made_from = { wheat = 1 }
 
 [[item]]
 name = "appletart"
 sprite = "cake_apple"
-#made_from = { apple = 1, wheat = 2 }
-calories = 3
+# 🤖 High-quality food: more than bread (10) and an apple (1). Nothing makes it yet.
+calories = 15
 
+# A day's food in one item: worth hauling far.
 [[item]]
 name = "bread"
 sprite = "bread"
-calories = 2
-#made_from = { wheat = 2, coal = 1 }
+calories = 10
+# A hauler brings 3 loaves per trip: a cafe feeds 3 eaters for one walk to the bakery.
+max_carry = 3
+
+# Bones burn. Nobody said this game is nice.
+[[item]]
+name = "skeleton"
+sprite = "skeleton"
+fuel = 1
 
 [[item]]
-name = "starry_evening"
-sprite = "painting2"
-#made_from = { canvas = 1, dye_black = 1, dye_blue = 1, dye_white = 1, dye_red = 1, dye_yellow = 1 }
+name = "paint"
+sprite = "paint_bucket"
 
+# Wood burnt down to dense fuel: 3 wood (3 fuel) make 1 charcoal (4 fuel), cheaper to haul far.
 [[item]]
-name = "vase_raw"
-#made_from = { clay = 3 }
+name = "charcoal"
+sprite = "coal"
+fuel = 4
 
+# Found by the claystone on the map: the clay pit makes clay of it.
 [[item]]
-name = "vase"
-sprite = "vase1"
-#made_from = { vase_raw = 1, coal = 1 }
+name = "rawclay"
+sprite = "clay"
 
+# 3 stone in one item: from the quarry (3 rock) or the masonry (clay and fuel), cheaper to haul far.
 [[item]]
-name = "vase_decor"
-sprite = "vase_decor1"
-#made_from = { vase = 1, dye_black = 1, dye_white = 1, dye_red = 1 }
+name = "brick"
+sprite = "brick"
+stone = 3
 
-[[item]]
-name = "flowersface"
-sprite = "painting18"
-#made_from = { canvas = 1, dye_black = 1, dye_white = 1, dye_red = 1 }
-
-[[item]]
-name = "juice"
-#made_from = { apple = 1, cherry = 1 }
-calories = 1
-
-[[item]]
-name = "bread_slice"
-#made_from = { bread = 1 }
-calories = 1
-
-[[item]]
-name = "bread_toast"
-#made_from = { bread_slice = 1, coal = 1 }
-calories = 2
-
-[[item]]
-name = "go_play"
-#made_from = { plank = 5 }
-
-[[item]]
-name = "chess_play"
-#made_from = { plank = 3 }
-
-## ik wil het maken uit 0.5 appels, 1 appel naar 2 sap
-# items komen er niet meer in
-
-[[item]]
-name = "grain"
-#made_from = { wheat = 1 }
-calories = 1
-
-[[item]]
-name = "sugar"
-#made_from = { grain = 1 }
-calories = 1
-
-[[item]]
-name = "monalisa"
-sprite = "painting36"
-#made_from = { canvas = 1, dye_black = 1, dye_yellow = 1, dye_blue = 1, dye_red = 1, dye_white = 1 }
-
-# [[item]]
-# name = "croissant_raw "
-# #made_from = { grain = 1 }
-# calories = 10
-
-# [[item]]
-# name = "croissant"
-# #made_from = { croissant_raw = 1, coal = 1 }
-# calories = 600
-
-[[item]]
-#made_from = { paper = 1, dye_blue = 1, dye_white = 1, dye_red = 1 }
-
-name = "propaganda"
-
-[[item]]
-name = "cake"
-#made_from = { wheat = 2, sugar = 1, coal = 1 }
-calories = 4
-
+# 🤖 The fruit plants' crops (see the plants below): a little free food, like apples.
 [[item]]
 name = "orange"
 calories = 1
-
-[[item]]
-name = "bread_orange"
-#made_from = { bread_slice = 1, orange = 1, sugar = 1 }
-calories = 3
-
-[[item]]
-name = "juice_citrus"
-sprite = "juice_orange"
-#made_from = { orange = 1, lemon = 1 }
-calories = 1
-
-[[item]]
-name = "vase_kintsugi"
-sprite = "vase_kintsugi1"
-#made_from = { vase_shards = 1 }
-
-[[item]]
-name = "vase_shards"
-#made_from = { vase = 1, vase_decor = 1 }
-
-[[item]]
-name = "tomato"
-calories = 1
-
-[[item]]
-name = "tea_leaf"
-calories = 0
-
-[[item]]
-name = "tea_leaf_roast"
-#made_from = { tea_leaf = 1, coal = 1 }
-calories = 0
-
-[[item]]
-name = "tea_ground"
-#made_from = { tea_leaf = 1 }
-calories = 0
-
-[[item]]
-name = "tea_green"
-#made_from = { tea_ground = 1 }
-calories = 1
-
-[[item]]
-name = "tea_yellow"
-#made_from = { tea_leaf = 1 }
-calories = 1
-
-[[item]]
-name = "tea_black"
-#made_from = { tea_leaf_roast = 1 }
-calories = 1
-
-[[item]]
-name = "coffebean"
-calories = 0
-
-[[item]]
-name = "coffee"
-#made_from = { coffebean = 2 }
-calories = 1
-
-[[item]]
-name = "boba_green"
-#made_from = { tea_green = 1, sugar = 1 }
-calories = 2
-
-[[item]]
-name = "boba_black"
-#made_from = { tea_yellow = 1, sugar = 1, coffee = 1 }
-calories = 2
-
-[[item]]
-name = "boba_pink"
-#made_from = { tea_black = 1, sugar = 1, cherry = 1 }
-calories = 2
-
-[[item]]
-name = "boba_yellow"
-#made_from = { tea_yellow = 1, sugar = 1, juice = 1 }
-calories = 2
-
-[[item]]
-name = "abacus"
-#made_from = { plank = 2 }
-
-[[item]]
-name = "sword"
-# #made_from = { boba_black = 1, monalisa = 1, go_play = 1, painting = 1, chess_play = 1, boba_pink = 1, boba_yellow = 1, starry_evening = 1, flowersface = 1, cake = 1, bread_orange = 1 }
-
-[[item]]
-name = "statue"
-#made_from = { stone = 4 }
-
-[[item]]
-name = "vase_decor2"
-#made_from = { vase = 1, dye_black = 1 }
-
-[[item]]
-name = "root"
-calories = 1
-
-[[item]]
-name = "bowl_raw"
-#made_from = { clay = 3 }
-
-[[item]]
-name = "bowl"
-#made_from = { bowl_raw = 1, coal = 1 }
-
-[[item]]
-name = "bowl_decor"
-#made_from = { bowl = 1, dye_white = 1, dye_black = 1, dye_red = 1 }
-
-[[item]]
-name = "bowl_shards"
-#made_from = { bowl = 1, bowl_decor = 1 }
-
-[[item]]
-name = "bowl_kintsugi"
-sprite = "bowl_kitsugi"
-#made_from = { bowl_shards = 1 }
-
-[[item]]
-name = "mealbowl"
-#made_from = { bowl = 1, root = 1, tomato = 1, beet = 1, tumeric = 1, grain = 1 }
-calories = 5
-
-[[item]]
-name = "fruitbowl"
-#made_from = { bowl = 1, apple = 1, orange = 1, lemon = 1, cherry = 1 }
-calories = 3
 
 [[item]]
 name = "lemon"
@@ -635,16 +435,26 @@ sprite = "cheer1"
 calories = 1
 
 [[item]]
-name = "dye_black"
-#made_from = { ash = 1 }
+name = "tomato"
+calories = 1
 
 [[item]]
-name = "ash"
-#made_from = { coal = 1 }
+name = "root"
+calories = 1
+
+# 🤖 What the mudstone on the map gives.
+[[item]]
+name = "mud"
+
+# 🤖 Ideas for crafting: nothing makes or uses these yet, so they exist only to be spawned in god
+#    mode, waiting for recipes.
+[[item]]
+name = "juice"
+calories = 1
 
 [[item]]
-name = "dye_red"
-#made_from = { beet = 1 }
+name = "sugar"
+calories = 1
 
 [[item]]
 name = "meat"
@@ -652,57 +462,158 @@ sprite = "ham"
 calories = 1
 
 [[item]]
-name = "dye_yellow"
-#made_from = { tumeric = 1 }
-
-[[item]]
-name = "dye_white"
-#made_from = { skeleton = 1 }
-
-[[item]]
-name = "skeleton"
+name = "egg"
 calories = 1
 
 [[item]]
-name = "dye_blue"
-#made_from = { lazuli_ground = 1 }
+name = "salt"
 
 [[item]]
-name = "lazuli"
-#made_from = { tomato = 1 }
+name = "coconut"
 
 [[item]]
-name = "lazuli_ground"
-#made_from = { lazuli = 1 }
-# dye_=1
+name = "coconut_half"
+calories = 1
+
+[[item]]
+name = "fruitbowl"
+calories = 3
+
+[[item]]
+name = "mealbowl"
+calories = 5
+
+[[item]]
+name = "tea_leaf"
+
+[[item]]
+name = "tea_leaf_roast"
+
+[[item]]
+name = "tea_ground"
+
+[[item]]
+name = "tea_green"
+calories = 1
+
+[[item]]
+name = "tea_yellow"
+calories = 1
+
+[[item]]
+name = "tea_black"
+calories = 1
+
+[[item]]
+name = "coffebean"
+
+[[item]]
+name = "coffee"
+calories = 1
+
+[[item]]
+name = "boba_green"
+calories = 2
+
+[[item]]
+name = "boba_black"
+calories = 2
+
+[[item]]
+name = "boba_pink"
+calories = 2
+
+[[item]]
+name = "boba_yellow"
+calories = 2
+
+[[item]]
+name = "beet"
+
+[[item]]
+name = "tumeric"
+
+[[item]]
+name = "wool"
+
+[[item]]
+name = "fabric"
+
+[[item]]
+name = "bamboo_plank"
+
+[[item]]
+name = "vase_raw"
+
+[[item]]
+name = "vase"
+sprite = "vase1"
+
+[[item]]
+name = "vase_decor"
+sprite = "vase_decor1"
+
+[[item]]
+name = "vase_shards"
+
+[[item]]
+name = "vase_kintsugi"
+sprite = "vase_kintsugi1"
+
+[[item]]
+name = "bowl_raw"
+
+[[item]]
+name = "bowl"
+
+[[item]]
+name = "bowl_decor"
+
+[[item]]
+name = "bowl_shards"
+
+[[item]]
+name = "bowl_kintsugi"
+sprite = "bowl_kitsugi"
 
 [[item]]
 name = "lantern"
-#made_from = { coal = 1, paper = 1, plank = 1 }
 
 [[item]]
 name = "lantern_red"
-#made_from = { lantern = 1, dye_red = 1 }
 
 [[item]]
 name = "lantern_blue"
-#made_from = { lantern = 1, dye_blue = 1 }
 
 [[item]]
 name = "lantern_yellow"
-#made_from = { lantern = 1, dye_yellow = 1 }
 
 [[item]]
 name = "lantern_orange"
-#made_from = { lantern = 1, dye_yellow = 1, dye_red = 1 }
 
 [[item]]
 name = "lantern_green"
-#made_from = { lantern = 1, dye_yellow = 1, dye_blue = 1 }
 
 [[item]]
 name = "lantern_purple"
-#made_from = { lantern = 1, dye_red = 1, dye_blue = 1 }
+
+[[item]]
+name = "go_play"
+
+[[item]]
+name = "chess_play"
+
+[[item]]
+name = "abacus"
+
+[[item]]
+name = "sword"
+
+[[item]]
+name = "propaganda"
+
+[[item]]
+name = "scarecrow"
 
 [[item]]
 name = "leafy_plant"
@@ -713,180 +624,15 @@ name = "flowerr_plant"
 [[item]]
 name = "flowerw_plant"
 
-[[item]]
-name = "coconut"
-
-[[item]]
-name = "coconut_half"
-#made_from = { coconut = 1 }
-calories = 1
-
-[[item]]
-name = "wool"
-
-[[item]]
-name = "fabric"
-#made_from = { wool = 2 }
-
-[[item]]
-name = "beet"
-
-[[item]]
-name = "tumeric"
-
-[[item]]
-name = "burger"
-#made_from = { bread_slice = 2, tomato = 1, meat = 2, dye_red = 1, salt = 1 }
-calories = 3
-
-[[item]]
-name = "sandwich"
-#made_from = { bread_toast = 2, tomato = 1, meat = 2, beet = 1, egg = 1 }
-calories = 3
-
-[[item]]
-name = "egg"
-calories = 1
-
-[[item]]
-name = "croissant_raw"
-#made_from = { grain = 1 }
-calories = 1
-
-[[item]]
-name = "croissant"
-#made_from = { croissant_raw = 1, coal = 1 }
-calories = 2
-
-[[item]]
-name = "salt"
-calories = 0
-
-[[item]]
-name = "wrap"
-#made_from = { grain = 1, salt = 1, tomato = 1 }
-calories = 3
-
-[[item]]
-name = "brick_clay"
-#made_from = { clay = 3 }
-
-[[item]]
-name = "brick_mud"
-#made_from = { mud = 3 }
-
-[[item]]
-name = "mud"
-
-[[item]]
-name = "rock"
-
-[[item]]
-name = "scarecrow"
-#made_from = { wheat = 3, plank = 1 }
-
-[[item]]
-name = "bamboo_plank"
-
-
-
-## Animals
-# Keep ordered
-# Add items to the back only
-
-[[pawn]]
-name = "tiger"
-hop_wait = 50
-hop_distance = 30
-vision_range = 20
-
-[[pawn]]
-name = "bunny"
-sprite = "bunnyw_l"
-hop_wait = 16
-hop_distance = 2
-on_killed = [{decal="bunnyw_c"}]
-animations = {
-    walk = { sprites = ["bunnyw_lj","bunnyw_l"], speed = 0.5 },
-    walk_up = { sprites = ["bunnyw_uj","bunnyw_u"], speed = 0.5 },
-    walk_down = { sprites = ["bunnyw_dj", "bunnyw_d"], speed = 0.5 },
-    idle = { sprites = ["bunnyw_l", "bunnyw_l","bunnyw_l","bunnyw", "bunnyw_e","bunnyw" ], speed = 0.5 },
-}
-
-
-[[pawn]]
-name = "kitten"
-sprite = "kit7"
-on_killed = [{decal = "skeleton"}]
-# How far it will run before deciding on a new coarse.
-hop_distance = 4
-# How long to sit still before moving, at maximum.
-hop_wait = 10
-
-[[pawn]]
-name = "evilcat"
-sprite = "kit3"
-
-[[pawn]]
-name = "redpanda"
-on_killed = [{decal = "skeleton_baby"}]
-
-[[pawn]]
-name = "baby"
-sprite = "pawn_baby"
-hop_distance = 1
-hop_wait = 30
-on_killed = [{decal = "skeleton_baby"}]
-
-[[pawn]]
-name = "child"
-sprite = "pawn_child"
-on_killed = [{decal = "skeleton_child"}]
-
-[[pawn]]
-name = "human"
-sprite = "pawn1"
-on_killed = [{decal = "guy_c"}]
-
-[[pawn]]
-name = "moth"
-
-[[pawn]]
-name = "butterfly"
-
-[[pawn]]
-name = "sheep"
-sprite = "sheep_wooly"
-on_killed = [{decal = "skeleton_baby"}]
-
-[[pawn]]
-name = "pig"
-sprite = "pig_l"
-on_killed = [{decal = "skeleton_baby"}]
-
-[[pawn]]
-name = "crane"
-sprite = "crane_l"
-on_killed = [{decal = "crance_c"}]
-hop_wait = 10
-hop_distance = 12
-animations = {
-    walk = { sprites = ["crane_l", "crane_l2", "crane_l3","crane_l4"], speed = 0.5 },
-    walk_up = { sprites = ["crane_u","crane_u2", "crane_u3", "crane_u4"], speed = 0.5 },
-    walk_down = { sprites = ["crane_d","crane_d2", "crane_d3", "crane_d4"], speed = 0.5 },
-    idle = { sprites = ["crane_l","crane_l","crane_l","crane_a", "crane_l","crane_l","crane_l","crane_l","crane_e","crane_l","crane_l","crane_a"], speed = 0.25 },
-}
-
-[[pawn]]
-name = "frog"
-on_killed = [{decal = "frog_c"}]
-
-[[pawn]]
-name = "spider"
-on_killed = [{decal = "spider_c"}]
-
-
-## Plants
+[[building]]
+name = "home"
+size = 2
+sprite = "floor_wood2"
+housing = 1
+walls = "wall"
+floor = "sand"
+cost = {stone = 10, food = 30}
+description = "provides a worker to nearby buildings"
 
 [[building]]
 name = "appletree"
@@ -894,192 +640,654 @@ sprite = "appletree"
 shadow = "treeshade"
 size = 2
 output = "apple"
-fruit_per_cycle = 0.03
+input = {}
+# A little free food, to get going: ~6 apples a day.
+fruit_per_cycle = 0.01
+neutral = true
 
-[[building]]
-name = "tree_orange"
-sprite = "tree_orange"
-shadow = "treeshade"
-size = 2
-output = "orange"
-fruit_per_cycle = 0.03
-
+# A tree holds 20 wood (its health: a logger's chop takes one). It drops a branch now and
+# then, and plants a new tree nearby every few days: slow logging lasts, clear-cutting doesn't.
 [[building]]
 name = "tree"
 sprite = "tree"
 shadow = "treeshade"
 size = 2
 output = "log"
-fruit_per_cycle = 0.02
+health = 20
+fruit_per_cycle = 0.002
+spread_per_day = 0.2
+neutral = true
 
 [[building]]
-name = "plant_tomato"
+name = "smalltree"
+sprite = "tree"
+shadow = "treeshade"
 size = 1
-output = "tomato"
-fruit_per_cycle = 0.02
-rotate = false
-# don't rotate this one
+neutral = true
 
+# 🤖 More free food, as the appletree, and at its rate: a third of what they dropped before
+#    apples were tuned down.
 [[building]]
-name = "plant_tea"
-size = 1
-output = "tea_leaf"
-fruit_per_cycle = 0.02
-rotate = false
-# don't rotate this one
-
-[[building]]
-name = "plant_coffee"
-size = 1
-output = "coffebean"
+name = "tree_orange"
+sprite = "tree_orange"
+shadow = "treeshade"
+size = 2
+output = "orange"
+input = {}
 fruit_per_cycle = 0.01
-rotate = false
-# don't rotate this one
-
-[[building]]
-name = "plant_root"
-size = 1
-output = "root"
-fruit_per_cycle = 0.005
-rotate = false
-# don't rotate this one
+neutral = true
 
 [[building]]
 name = "tree_lemon"
+sprite = "tree_lemon"
 shadow = "treeshade"
 size = 2
 output = "lemon"
-fruit_per_cycle = 0.03
+input = {}
+fruit_per_cycle = 0.01
+neutral = true
 
 [[building]]
 name = "tree_sakura"
+sprite = "tree_sakura"
 shadow = "treeshade"
 size = 2
 output = "cherry"
-fruit_per_cycle = 0.03
+input = {}
+fruit_per_cycle = 0.01
+neutral = true
 
 [[building]]
-name = "sheep_wooly"
+name = "plant_tomato"
+sprite = "Plant_tomato"
 size = 1
-output = "wool"
-fruit_per_cycle = 0.03
+output = "tomato"
+input = {}
+fruit_per_cycle = 0.007
 rotate = false
+neutral = true
 
 [[building]]
-name = "tree_coco"
-shadow = "treeshade"
-size = 2
-output = "coconut"
-fruit_per_cycle = 0.03
-rotate = true
-
-[[building]]
-name = "plant_beet"
-output = "beet"
-fruit_per_cycle = 0.01
+name = "plant_root"
+sprite = "Plant_root"
+size = 1
+output = "root"
+input = {}
+fruit_per_cycle = 0.002
 rotate = false
+neutral = true
 
-[[building]]
-name = "tumeric_plant"
-output = "tumeric"
-fruit_per_cycle = 0.01
-rotate = false
+## Looks: what pawns are drawn as. A pawn names its look (`look`); looks are shared by name.
 
-
-[[building]]
-name = "bamboo_plant"
-output = "bamboo_plank"
-fruit_per_cycle = 0.06
-rotate = false
-
-
-## Soldiers
-# Keep ordered — SoldierTyp is assigned by index
-
-[[pawn]]
-name = "swordsman"
-sprite = "soldier3"
-ticks_per_attack = 7
-melee_damage = 20
-cost = { stone = 6 }
-
-[[pawn]]
-name = "archer"
-sprite = "soldier4"
-health = 70
-ticks_per_attack = 5
-shoots_projectile = { damage = 10, range = 5, track_target = true, sprite = "arrow_red", projectile = "arrow" }
-cost = { stone = 3, wood = 2 }
-on_killed = [{spawn = "skeleton"}]
-
-[[pawn]]
-name = "soldier"
-sprite = "soldier"
-ticks_per_attack = 5
-melee_damage = 4
-cost = { stone = 2 }
-
-[[pawn]]
-name = "daggersoldier"
-sprite = "soldier2"
-ticks_per_attack = 2
-melee_damage = 4
-cost = { stone = 5 }
-
-[[pawn]]
-name = "berserker"
-sprite = "soldier6"
-ticks_per_attack = 2
-melee_damage = 20
-cost = { stone = 25 }
-
-[[pawn]]
+[[look]]
 name = "king"
-ticks_per_attack = 10
-shoots_projectile = { damage = 50 }
-cost = { food = 1 }
+sprite = "king"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
 
-[[pawn]]
+[[look]]
+name = "swordsman"
+sprite = "pawn"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "archer"
+sprite = "pawn6"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
 name = "demon"
 sprite = "demon"
-ticks_per_attack = 1
-melee_damage = 5
-health = 100
-cost = { stone = 10 }
-## Turrets
-# Keep ordered — TurretTyp is assigned by index
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
 
-# [[building]]
-# name = "cannon_tower"
-# sprite = "turret2"
-# health = 200
-# #ticks_per_attack = 15
-# #shoots_projectile = { damage = 20, range = 8 }
-# input = { stone = 10 }
-# cost = { stone = 5 }
+[[look]]
+name = "tiger"
+sprite = "tiger"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
 
-## Workers (mannekes)
+[[look]]
+name = "bunny"
+sprite = "bunnyw"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+# 🤖 Each direction has a sitting and a jumping frame: alternating them makes the bunny hop.
+animations = {
+    walk = { sprites = ["bunnyw_l", "bunnyw_lj"], speed = 0.5 },
+    walk_up = { sprites = ["bunnyw_u", "bunnyw_uj"], speed = 0.5 },
+    walk_down = { sprites = ["bunnyw_d", "bunnyw_dj"], speed = 0.5 },
+}
 
-[[pawn]]
+[[look]]
+name = "evilcat"
+sprite = "kit3"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "crane"
+sprite = "crane_l"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+animations = {
+    walk = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]},
+    walk_up = { sprites = ["crane_u", "crane_u2", "crane_u3", "crane_u4", "crane_u5"]},
+    walk_down = { sprites = ["crane_d", "crane_d2", "crane_d3", "crane_d4"]},
+    # 🤖 Standing still, the crane stands rather than freezing mid-step.
+    idle = { sprites = ["crane_s"]},
+}
+
+[[look]]
+name = "redpanda"
+sprite = "redpanda"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "baby"
+sprite = "pawn_baby"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "child"
+sprite = "pawn_child"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "human"
+sprite = "pawn1"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "moth"
+sprite = "moth"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "butterfly"
+sprite = "butterfly"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
 name = "worker"
 sprite = "pawn1"
-animations = {
-    walk = { sprites = ["walk1", "walk2"], speed = 0.5 },
-    # walk_up = { sprites = ["walk1", "walk2"], speed = 1 },
-    # walk_down = { sprites = ["walk1", "walk2"], speed = 1 },
-    #idle = { sprites = ["pawn1", "walk1", "pawn1", "walk2"], speed = 0.25 },
-}
-# How many ticks a worker can work before needing sleep.
-awake_time = 500
-# How many ticks a worker sleeps for.
-sleep_time = 100
-# Calories burned a day; eats up to 3 days worth at a time.
-calories_per_day = 10
-# Draw hat shifted by this amount of pixels.
 hat_offset = [-1, 0]
-# Do these things when killed
-on_killed = [{ spawn = "skeleton" }]
+blob_shadow = true
+height = 0
+animations = { walk = { sprites = ["walk1", "walk2"], speed = 0.5 } }
 
+[[look]]
+name = "rat"
+sprite = "frog"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "cat"
+sprite = "kit7"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "sheep"
+sprite = "sheep_wooly"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "pig"
+sprite = "pig"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+# 🤖 `pig` faces the viewer, so it serves walking up and down (and standing); `pig_l` is the side view.
+animations = {
+    walk = { sprites = ["pig_l"]},
+    walk_up = { sprites = ["pig"]},
+    walk_down = { sprites = ["pig"]},
+}
+
+[[look]]
+name = "frog"
+sprite = "frog"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "spider"
+sprite = "spider"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "cow"
+sprite = "cow"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "bird"
+sprite = "bird"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+[[look]]
+name = "starfish"
+sprite = "starfish"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+
+## Pawns are things that can move: the worker ([worker]) and the animals ([[animal]]: soldiers,
+## people, animals). Saved by name, so in any order.
+
+[[animal]]
+name = "king"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = [{spawn = "butterfly"}]
+pathfinding = "smart"
+look = "king"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "swordsman"
+description = ""
+health = 100
+ticks_per_attack = 5
+melee_damage = 10
+range = 16
+shoots_projectile = "none"
+chase_enemies = true
+cost = { stone = 5 }
+on_killed = []
+on_spawn = []
+pathfinding = "smart"
+look = "swordsman"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "archer"
+description = ""
+health = 70
+ticks_per_attack = 5
+melee_damage = 0
+range = 16
+# arrow: follows its target, drawn as a red arrow
+shoots_projectile = { damage = 10, range = 5, track_target = true, sprite = "arrow_red", speed = 2.0, projectile = "none" }
+chase_enemies = false
+cost = { stone = 3, wood = 2 }
+on_killed = [
+    {animation = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]}},
+]
+on_spawn = []
+pathfinding = "smart"
+look = "archer"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "demon"
+description = ""
+health = 200
+ticks_per_attack = 2
+melee_damage = 0
+range = 16
+# fixed-tile fireball: damage at impact tile, spawn "fire" blueprint there
+shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire", speed = 2.0 }
+chase_enemies = false
+cost = { stone = 10 }
+on_killed = [{spawn = "fire"}]
+on_spawn = []
+pathfinding = "smart"
+look = "demon"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
+
+## Animal-style pawns (wandering grazers, no attack).
+
+[[animal]]
+name = "tiger"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "tiger"
+eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 30
+hop_wait = 50
+vision_range = 20
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "bunny"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = [{decal = "bunnyw_c"}]
+on_spawn = []
+pathfinding = "dumb"
+look = "bunny"
+eating = { diet = ["rawwheat", "wheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 10
+hop_wait = 20
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+#[[animal]]
+#name = "kitten"
+#sprite = "kit7"
+#hop_distance = 4
+#hop_wait = 10
+
+[[animal]]
+name = "evilcat"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire", speed = 2.0 }
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "evilcat"
+eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = false
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "crane"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = [{decal = "crane_c"}]
+on_spawn = []
+pathfinding = "smart"
+look = "crane"
+eating = { diet = ["rawwheat", "wheat"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 0
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+#hop_distance = 10
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "redpanda"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "redpanda"
+eating = { diet = ["apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "baby"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "baby"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 1
+hop_wait = 30
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "child"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "child"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "human"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "human"
+eating = { diet = ["food"], appetite = "picky", calories_per_day = 8, start_calories = 10 }
+hop_distance = 12
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "moth"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "moth"
+eating = { diet = ["rawwheat", "wheat", "bread"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "butterfly"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "butterfly"
+eating = { diet = ["apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 10
+hop_wait = 3
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+## The worker — the pawn that works rather than fights. One, without a name: always "worker".
+
+[worker]
+description = ""
+health = 10
+cost = "not_for_sale"
+on_killed = [{ spawn = "skeleton" }]
+on_spawn = []
+pathfinding = "smart"
+look = "worker"
+heads = ["head1", "head2", "head3", "head4", "head5", "head6", "head7", "head8"]
+eating = { diet = ["food"], appetite = "any", calories_per_day = 8, start_calories = 24 }
+vision_range = 60
+awake_time = 500
+sleep_time = 100
 first_names = [
   "A",
   "Jay",
@@ -1334,63 +1542,533 @@ last_names = [
   "Ie",
 ]
 
+# Rats come by themselves (min_population: per 100×100 tiles) and eat crops and any food lying
+# around: walls keep them out. Placeholder sprite until there is a rat.
+[[animal]]
+name = "rat"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "rat"
+eating = { diet = ["wheat", "rawwheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 6
+hop_wait = 5
+vision_range = 15
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 6
+prey = []
+lives_in = "none"
 
-[[building]]
-name = "home"
-size = 2
-sprite = "floor_wood2"
-housing = 1
-cost = {stone = 5}
+# Cats come by themselves too, hunt rats, and sleep in a home (the nearest in sight at bedtime,
+# then always the same one), like workers: awake 500 ticks, asleep 100.
+[[animal]]
+name = "cat"
+description = "catches rats"
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "cat"
+eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 8
+hop_wait = 10
+vision_range = 12
+awake_time = 500
+sleep_time = 100
+neutral = true
+min_population = 2
+prey = ["rat"]
+lives_in = "home"
+
+# 🤖 Grazers wandering like the bunny: they eat crops, so walls keep them out of farms.
+[[animal]]
+name = "sheep"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = [{decal = "skeleton_baby"}]
+on_spawn = []
+pathfinding = "dumb"
+look = "sheep"
+eating = { diet = ["rawwheat", "wheat"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 10
+hop_wait = 20
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "pig"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = [{decal = "pig_c"}]
+on_spawn = []
+pathfinding = "dumb"
+look = "pig"
+eating = { diet = ["rawwheat", "wheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 10
+hop_wait = 20
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "cow"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = [{decal = "skeleton_baby"}]
+on_spawn = []
+pathfinding = "dumb"
+look = "cow"
+eating = { diet = ["rawwheat", "wheat"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 6
+hop_wait = 30
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+
+# 🤖 Small critters that only wander: nothing on the map is their food, so they never get hungry
+#    (calories_per_day = 0).
+[[animal]]
+name = "frog"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = [{decal = "frog_c"}]
+on_spawn = []
+pathfinding = "dumb"
+look = "frog"
+eating = { diet = [], appetite = "picky", calories_per_day = 0, start_calories = 10 }
+hop_distance = 4
+hop_wait = 10
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+[[animal]]
+name = "spider"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = [{decal = "spider_c"}]
+on_spawn = []
+pathfinding = "dumb"
+look = "spider"
+eating = { diet = [], appetite = "picky", calories_per_day = 0, start_calories = 10 }
+hop_distance = 4
+hop_wait = 10
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+# 🤖 Birds pick at grain, and fly further between stops than the grazers walk.
+[[animal]]
+name = "bird"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "bird"
+eating = { diet = ["rawwheat", "wheat"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+hop_distance = 15
+hop_wait = 10
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
+
+# 🤖 Barely moves and eats nothing on the map, so it never gets hungry (calories_per_day = 0).
+[[animal]]
+name = "starfish"
+description = ""
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "dumb"
+look = "starfish"
+eating = { diet = [], appetite = "picky", calories_per_day = 0, start_calories = 10 }
+hop_distance = 1
+hop_wait = 40
+vision_range = 10
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 0
+prey = []
+lives_in = "none"
 
 
 [[building]]
 name = "farm"
+max_workers = 5
 sprite = "workspace"
 output = "wheat"
 hat = "hat_farmer"
-housing = 2
-input = { rawwheat = 3 }
-ticks_to_make = 5
+input = { rawwheat = 2 }
+ticks_to_make = 10
 size = 3
+cost = {stone = 10, food = 30}
+range = 8
+walls = "wall"
+housing = 0
+floor = "floor"
+output_range = 16
+
+[[building]]
+name = "coal_mine"
+max_workers = 5
+sprite = "coal_mine"
+output = "coal"
+hat = "hat_miner"
+housing = 1
+input = { rawcoal = 2 }
+ticks_to_make = 5
+size = 2
+cost = {stone = 10, food = 60}
+range = 12
+walls = "granite"
 
 [[building]]
 name = "quarry"
+max_workers = 3
 sprite = "workspace"
-output = "stone"
+output = "brick"
 hat = "hat_miner"
+walls = "wall2"
 housing = 0
-input = { rock = 2 }
-ticks_to_make = 5
+input = { rock = 3 }
+ticks_to_make = 15
 size = 2
-cost = {stone = 10}
+cost = {stone = 10, food = 30}
 
 [[building]]
 name = "bakery"
-sprite = "workspace"
+sprite = "bakery"
 output = "bread"
+housing = 1
+input = { wheat = 2, fuel = 1 }
+ticks_to_make = 30
+size = 3
+cost = {stone = 10, food = 60}
+walls = "wall"
 hat = "hat_cook"
-housing = 0
-input = { coal = 1, wheat = 1 }
-ticks_to_make = 5
-size = 2
-cost = {stone = 10}
-
-
+max_workers = 2
+output_range = 100
+range = 32
 
 ## HQ (Headquarters) — a special building with unique_per_team=true.
 [[building]]
 name = "hq"
 sprite = "hq"
-size = 3
+size = 4
+walls = "wall"
 health = 255
 cost = {}                  # HQ is free to place
-input = { stone = 1000, food = 1000, iron = 1000, wood = 1000 }
-initial_resources = 250
+input = { stone = 500, food = 500, iron = 500, wood = 500 }
+initial_resources = 200
 unique_per_team = true
+housing = 2
+range = 16
+max_workers = 2
+description = "Headquarters. Resources get delivered here."
+
+[[building]]
+name = "sawmill"
+max_workers = 5
+sprite = "workspace"
+output = "plank"
+housing = 1
+input = { log = 2 }
+ticks_to_make = 20
+size = 2
+cost = {stone = 10}
+
+
+[[building]]
+name = "clay_pit"
+max_workers = 5
+sprite = "workspace"
+output = "clay"
+hat = "hat_miner"
+housing = 1
+input = { rawclay = 2 }
+ticks_to_make = 10
+size = 2
+cost = {stone = 10, food = 10}
+range = 12
+
+# Fires clay into brick: stone where there is no rock.
+[[building]]
+name = "masonry"
+max_workers = 5
+sprite = "fireplace"
+output = "brick"
+hat = "hat_builder"
+housing = 1
+input = { clay = 1, fuel = 1 }
+ticks_to_make = 20
+size = 2
+cost = {stone = 10}
+
+[[building]]
+name = "iron_mine"
+max_workers = 5
+sprite = "workspace"
+output = "iron"
+housing = 0
+input = { rawore = 3, fuel = 1 }
+ticks_to_make = 30
+size = 2
+cost = {stone = 10}
+
 
 # General game settings
 [game]
-# can animals eat animals?
-carnivors_enabled = true
+
+# For how many ticks decal effects (e.g. blood splatters) remain visible
 decal_ttl = 50
 
+## Industry
+
+# Chops trees in range for wood when none lies around, and keeps it.
+[[building]]
+name = "logger"
+sprite = "workbench"
+hat = "hat_builder"
+size = 2
+housing = 1
+max_workers = 1
+input = { log = 10 }
+chops = "tree"
+cost = {stone = 10}
+
+[[building]]
+name = "charcoal_kiln"
+sprite = "fireplace"
+hat = "hat_miner"
+size = 2
+input = { log = 3 }
+output = "charcoal"
+ticks_to_make = 20
+max_workers = 2
+cost = {stone = 10}
+
+# 🤖 A bread provider: bread in, bread out. Its hauler brings bread from the bakery 3 at a time
+#    and it puts the loaves out on its output tiles, where workers come to eat them: cheaper than
+#    each eater walking to the bakery for one loaf. It never hauls them away (`output_range` 0):
+#    you have to go there.
+[[building]]
+name = "cafe"
+sprite = "cafe"
+hat = "hat_cook"
+size = 2
+# 🤖 One in, one out: it makes nothing. Its intake holds one haul (3 × 1).
+input = { bread = 1 }
+output = "bread"
+# 🤖 Two loaves out at once: two eaters can each reserve one.
+num_output_tiles = 2
+ticks_to_make = 1
+# 🤖 Its stock: the loaves waiting behind those on its tiles.
+output_capacity = 20
+output_range = 0
+max_workers = 1
+# 🤖 Its hauler brings 3 at once: cheaper than eaters each walking to the bakery, which makes
+#    eating at the cafe worth it.
+cost = {stone = 10, food = 30}
+housing = 1
+range = 50
+walls = "wall"
+
+# 🤖 Providers for one good each: their haulers bring it in 3 at a time from where it is made in
+#    their range, and put it out on their output tiles for the buildings around them. They never
+#    haul it away (`output_range` 0): who needs it comes for it.
+[[building]]
+name = "brick_depot"
+sprite = "crate"
+size = 2
+# 🤖 One in, one out: it makes nothing. Its intake holds one haul (3 × 1).
+input = { brick = 1 }
+output = "brick"
+num_output_tiles = 2
+ticks_to_make = 1
+# 🤖 Its stock: what waits behind the items on its tiles.
+output_capacity = 60
+output_range = 0
+range = 20
+max_workers = 2
+cost = {stone = 10}
+
+[[building]]
+name = "coal_depot"
+sprite = "crate"
+size = 2
+# 🤖 One in, one out: it makes nothing. Its intake holds one haul (3 × 1).
+input = { coal = 1 }
+output = "coal"
+num_output_tiles = 2
+ticks_to_make = 1
+# 🤖 Its stock: what waits behind the items on its tiles.
+output_capacity = 60
+output_range = 0
+range = 20
+max_workers = 2
+cost = {stone = 10}
+
+[[building]]
+name = "plank_depot"
+sprite = "crate"
+size = 2
+# 🤖 One in, one out: it makes nothing. Its intake holds one haul (3 × 1).
+input = { plank = 1 }
+output = "plank"
+num_output_tiles = 2
+ticks_to_make = 1
+# 🤖 Its stock: what waits behind the items on its tiles.
+output_capacity = 60
+output_range = 0
+range = 20
+max_workers = 2
+cost = {stone = 10}
+
+## Enlightenment: nothing useful, only beautiful. Fed workers with no work to do spend their
+## leisure at the most beautiful building near home, and are happy for a day (the ☺ count in
+## the resource bar). A building is as beautiful as its own beauty plus that of what it holds.
+## These are examples: add your own.
+
+[[building]]
+name = "statue"
+sprite = "statue"
+beauty = 5
+max_workers = 0
+cost = {stone = 30}
+
+[[building]]
+name = "paint_mill"
+sprite = "workspace"
+hat = "hat_art"
+size = 2
+input = { rock = 2, fuel = 1 }
+output = "paint"
+ticks_to_make = 20
+max_workers = 2
+cost = {stone = 10}
+
+# The artist lives and works here.
+[[building]]
+name = "studio"
+sprite = "workbench"
+hat = "hat_art"
+size = 2
+housing = 1
+input = { paint = 3, plank = 1 }
+output = "painting"
+ticks_to_make = 60
+max_workers = 1
+cost = {stone = 10, food = 30}
+
+# Holds up to 9 paintings: the more it holds, the more beautiful.
+[[building]]
+name = "gallery"
+sprite = "floor_wood2"
+size = 3
+walls = "wall"
+floor = "floor_decor"
+input = { painting = 3 }
+beauty = 2
+max_workers = 1
+cost = {stone = 30, wood = 30}
+
+[[building]]
+name = "wheat_depot"
+sprite = "crate"
+size = 2
+cost = { stone = 10 }
+# 🤖 A provider, like the brick_depot.
+input = { brick = 1 }
+output = "brick"
+num_output_tiles = 2
+ticks_to_make = 1
+output_capacity = 60
+output_range = 0
+max_workers = 2
+range = 20
