@@ -18,6 +18,7 @@ axe_rusty.png
 bakery.png
 bamboo_plank.png
 bamboo_plant.png
+bamboo_sprout.png
 banner1.png
 banner2.png
 banner.png
@@ -175,6 +176,7 @@ dagger_red.png
 dagger_rusty.png
 delete.png
 demon.png
+demo.save
 drawing1.png
 drawing2.png
 drawing3.png
@@ -479,6 +481,7 @@ Plant_root.png
 plant_tea.png
 Plant_tomato.png
 pointer.png
+poison_ivy.png
 pollen.png
 propaganda.png
 quarry.png
@@ -622,6 +625,7 @@ water_ripple1.png
 water_ripple2.png
 wheat2.png
 wheat.png
+wheat_sprout.png
 wheel_metal.png
 wheel_rusty.png
 wheel_wood.png

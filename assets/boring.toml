@@ -1,187 +1,22 @@
-## Tiles
-# Keep ordered
-# Add items to the back only
+[game]
+decal_ttl = 50
+reserve_resources_ttl = 50
 
-## Land tiles
-# Order determines tile index (position 0 → Tile index 1).
-# Keep ordered — tile constants are assigned by index.
-
-[[land_tile]]
-name = "sand"
-
-[[land_tile]]
-name = "snow"
-border = "#ffffff"
-
-[[land_tile]]
-name = "dry_grass"
-sprite = "dry_grass"
-
-## Road tiles
-# 🤖 Walked on fast; land tiles are walked on slowly.
-# 🤖 Order determines tile index, as for land tiles: road comes first (`Tile::Road`).
-
-[[road_tile]]
-name = "road"
-corner = "diagonal"
-border = "#959595"
-height = 3
-cost = { stone = 1 }
-
-[[road_tile]]
-name = "floor"
-sprite = "floor_tiles3"
-cost = {stone = 1}
-height = 2
-
-[[road_tile]]
-name = "floor_decor"
-sprite = "floor_tile_decor"
-cost = {stone = 1}
-
-## Wall tiles
-
-[[wall_tile]]
-name = "wall"
-sprite = "block24"
-cost = { stone = 1 }
-health = 100
-corner = "rounded"
-border = "#4b4f00"
-
-[[wall_tile]]
-name = "wall2"
-sprite = "wall_mud"
-cost = { stone = 1 }
-health = 100
-corner = "triangle"
-
-[[wall_tile]]
-# indestructible
-name = "granite"
-sprite = "block25"
-health = 100
-corner = "none"
-
-## Ore tiles
-
-[[ore_tile]]
-name = "greystone"
-sprite = "greystone"
-resource = "rock"
-amount = 50
-
-[[ore_tile]]
-name = "orestone"
-sprite = "orestone"
-resource = "rawore"
-amount = 50
-
-[[ore_tile]]
-name = "coalstone"
-sprite = "coalstone"
-resource = "rawcoal"
-amount = 50
-
-[[ore_tile]]
-name = "claystone"
-sprite = "clay_source"
-resource = "rawclay"
-amount = 50
-
-
-
-## Special tiles: the tiles the game's code knows by name (water, farm land, belts).
-# Every one of them must be here, with every field written out.
-
-[[special_tile]]
-name = "sea"
-sprite = "sea"
+[worker]
 description = ""
+health = 10
 cost = "not_for_sale"
-corner = "circle"
-border = "none"
-height = -12
-
-[[special_tile]]
-name = "lake"
-sprite = "water4"
-description = ""
-cost = "not_for_sale"
-corner = "circle"
-border = "none"
-height = -12
-
-[[special_tile]]
-name = "canal"
-sprite = "canal"
-description = "Brings water to farm land."
-cost = { stone = 10 }
-corner = "circle"
-border = "none"
-height = -12
-
-# A road over water: the canal's water flows on under it. Built on water only.
-[[special_tile]]
-name = "bridge"
-sprite = "bridge"
-description = ""
-cost = { wood = 150 }
-corner = "none"
-border = "none"
-height = 4
-
-# What farms grow on; canals water it.
-[[special_tile]]
-name = "farm_land"
-sprite = "farmland"
-description = ""
-cost = "not_for_sale"
-corner = "rounded"
-border = "none"
-height = 0
-
-# Carries what lies on it along; its sprite shows which way.
-[[special_tile]]
-name = "belt_r"
-sprite = "belt_r"
-description = ""
-cost = {}
-corner = "none"
-border = "none"
-height = 0
-
-[[special_tile]]
-name = "belt_l"
-sprite = "belt_l"
-description = ""
-cost = {}
-corner = "none"
-border = "none"
-height = 0
-
-[[special_tile]]
-name = "belt_u"
-sprite = "belt_u"
-description = ""
-cost = {}
-corner = "none"
-border = "none"
-height = 0
-
-[[special_tile]]
-name = "belt_d"
-sprite = "belt_d"
-description = ""
-cost = {}
-corner = "none"
-border = "none"
-height = 0
-
-## Items
-# Keep ordered
-# Add items to the back only
-
+on_killed = [{ spawn = "skeleton" }]
+on_spawn = []
+pathfinding = "smart"
+look = "worker"
+heads = ["head1", "head2", "head3", "head4", "head5", "head6", "head7", "head8"]
+eating = { diet = ["food"], appetite = "any", calories_per_day = 5, start_calories = 24 }
+vision_range = 60
+awake_time = 500
+sleep_time = 100
+first_names = ["Billy", "Bob"]
+last_names = ["A", "B"]
 
 [[item]]
 name = "zerobad"
@@ -190,43 +25,41 @@ name = "zerobad"
 name = "rawwheat"
 sprite = "wheat2"
 calories = 1
-special = 1
+spreads = { item = "wheat_sprout", onto = ["farm_land_wet"], spread_ticks = 1200 }
 
 [[item]]
 name = "food"
 sprite = "chicken"
 special = 2
 
-# Any item that burns, counted in fuel: a "fuel" input takes coal, logs, ... (see `fuel` on items).
 [[item]]
 name = "fuel"
 sprite = "fire"
 special = 3
 
-# Anything built with, counted in stone: a "stone" input (the HQ's, which pays for buildings)
-# takes rock, brick, ... (see `stone` on items).
 [[item]]
 name = "stone"
 sprite = "stone"
 special = 4
 
-# Any wood, counted in wood: a "wood" input (the HQ's, which pays for buildings) takes logs,
-# planks, ... (see `wood` on items).
 [[item]]
 name = "wood"
 special = 5
 
-# A worker eats 10 calories a day (calories_per_day), and eats up to 3 days ahead (30).
-# Each step of processing adds calories: 4 rawwheat (4) -> 2 wheat (6) -> 1 bread (10).
 [[item]]
 name = "wheat"
-calories = 3
 sprite = "leaf"
+calories = 3
+cost = { rawwheat = 2 }
 
-# Raw stone, found by the greystone on the map.
 [[item]]
 name = "rock"
 stone = 1
+cost = { rawrock = 2 }
+
+[[item]]
+name = "rawrock"
+sprite = "rock2"
 
 [[item]]
 name = "rawore"
@@ -236,25 +69,27 @@ sprite = "ore"
 name = "coal"
 sprite = "coalpack"
 fuel = 3
+cost = { rawcoal = 2 }
 
 [[item]]
 name = "iron"
+cost = { fuel = 1, rawore = 3 }
 
 [[item]]
 name = "apple"
 sprite = "apple"
 calories = 1
+cost = {}
 
 [[item]]
 name = "rawbread"
 sprite = "bread"
 calories = 1
-#on_heat = "bread"  # when heated, it becomes bread
 
-# No stone yet: the masonry fires it into brick.
 [[item]]
 name = "clay"
 sprite = "brick_raw"
+cost = { rawclay = 2 }
 
 [[item]]
 name = "rawapple"
@@ -267,29 +102,37 @@ sprite = "coal"
 [[item]]
 name = "iron_ore"
 sprite = "orepack"
-#on_heat = "iron"
 
-# Beautiful: a gallery holding it is beautiful (beauty), and idle workers go there for leisure.
 [[item]]
 name = "painting"
 sprite = "painting1"
 beauty = 10
+cost = { paint = 3, plank = 1 }
 
 [[item]]
 name = "canvas"
 
-# 3 wood in one item, from the sawmill: cheaper to haul far.
 [[item]]
 name = "plank"
-wood = 3
 fuel = 3
+wood = 3
+cost = { log = 2 }
 
-# Raw wood, chopped from trees.
 [[item]]
 name = "log"
 sprite = "wood"
 fuel = 1
 wood = 1
+cost = { tree = 1 }
+
+[[item]]
+name = "tree"
+sprite = "tree"
+spreads = { item = "tree_sprout", onto = ["sand", "dry_grass", "farm_land"], spread_ticks = 3000 }
+
+[[item]]
+name = "tree_sprout"
+sprout = { grows_into = "tree", grow_ticks = 1800, grows_on = ["sand", "dry_grass", "farm_land"] }
 
 [[item]]
 name = "paper"
@@ -298,18 +141,15 @@ sprite = "scroll"
 [[item]]
 name = "appletart"
 sprite = "cake_apple"
-# 🤖 High-quality food: more than bread (10) and an apple (1). Nothing makes it yet.
 calories = 15
 
-# A day's food in one item: worth hauling far.
 [[item]]
 name = "bread"
 sprite = "bread"
 calories = 10
-# A hauler brings 3 loaves per trip: a cafe feeds 3 eaters for one walk to the bakery.
+cost = { fuel = 1, wheat = 2 }
 max_carry = 3
 
-# Bones burn. Nobody said this game is nice.
 [[item]]
 name = "skeleton"
 sprite = "skeleton"
@@ -318,66 +158,82 @@ fuel = 1
 [[item]]
 name = "paint"
 sprite = "paint_bucket"
+cost = { fuel = 1, rock = 2 }
 
-# Wood burnt down to dense fuel: 3 wood (3 fuel) make 1 charcoal (4 fuel), cheaper to haul far.
 [[item]]
 name = "charcoal"
 sprite = "coal"
 fuel = 4
+cost = { log = 3 }
 
-# Found by the claystone on the map: the clay pit makes clay of it.
 [[item]]
 name = "rawclay"
 sprite = "clay"
 
-# 3 stone in one item: from the quarry (3 rock) or the masonry (clay and fuel), cheaper to haul far.
 [[item]]
 name = "brick"
 sprite = "brick"
 stone = 3
+cost = { rock = 3 }
 
-[[building]]
-name = "home"
-size = 2
-sprite = "floor_wood2"
-housing = 1
-walls = "wall"
-floor = "floor_decor"
-cost = {stone = 10, food = 30}
-description = "provides a worker to nearby buildings"
+[[item]]
+name = "rawrice"
+sprite = "grain"
+calories = 1
+spreads = { item = "rice_sprout", onto = ["farm_land_wet"], spread_ticks = 1200 }
 
-[[building]]
-name = "appletree"
-sprite = "appletree"
-shadow = "treeshade"
-size = 2
-output = "apple"
-input = {}
-# A little free food, to get going: ~6 apples a day.
-fruit_per_cycle = 0.01
-neutral = true
+[[item]]
+name = "rawbamboo"
+sprite = "bamboo_plant"
+spreads = { item = "bamboo_sprout", onto = ["farm_land_wet"], spread_ticks = 1200 }
 
-# A tree holds 20 wood (its health: a logger's chop takes one). It drops a branch now and
-# then, and plants a new tree nearby every few days: slow logging lasts, clear-cutting doesn't.
-[[building]]
-name = "tree"
-sprite = "tree"
-shadow = "treeshade"
-size = 2
-output = "log"
-health = 20
-fruit_per_cycle = 0.002
-spread_per_day = 0.2
-neutral = true
+[[item]]
+name = "rice"
+sprite = "meal_bowl"
+calories = 3
+cost = { rawrice = 2 }
 
-[[building]]
-name = "smalltree"
-sprite = "tree"
-shadow = "treeshade"
-size = 1
-neutral = true
+[[item]]
+name = "bamboo"
+sprite = "bamboo_plank"
+fuel = 1
+wood = 1
+cost = { rawbamboo = 2 }
 
-## Looks: what pawns are drawn as. A pawn names its look (`look`); looks are shared by name.
+[[item]]
+name = "vase"
+sprite = "vase"
+cost = { clay = 2, fuel = 1 }
+
+[[item]]
+name = "vase_decor"
+sprite = "vase_decor"
+beauty = 5
+cost = { paint = 1, vase = 1 }
+
+[[item]]
+name = "vase_kintsugi"
+sprite = "vase_kintsugi"
+beauty = 15
+cost = { iron = 1, vase_decor = 1 }
+
+[[item]]
+name = "wheat_sprout"
+sprout = { grows_into = "rawwheat", grow_ticks = 300, grows_on = ["farm_land_wet"] }
+
+[[item]]
+name = "rice_sprout"
+sprout = { grows_into = "rawrice", grow_ticks = 200, grows_on = ["farm_land_wet"] }
+
+[[item]]
+name = "bamboo_sprout"
+calories = 1
+sprout = { grows_into = "rawbamboo", grow_ticks = 200, grows_on = ["farm_land_wet"] }
+
+[[item]]
+name = "poison_ivy"
+sprite = "poison_ivy"
+spreads = { item = "poison_ivy", onto = ["farm_land", "farm_land_wet"], spread_ticks = 30 }
 
 [[look]]
 name = "king"
@@ -435,9 +291,9 @@ hat_offset = [0, 0]
 blob_shadow = true
 height = 0
 animations = {
-    walk = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]},
-    walk_up = { sprites = ["crane_u", "crane_u2", "crane_u3", "crane_u4"]},
-    walk_down = { sprites = ["crane_d", "crane_d2", "crane_d3", "crane_d4"]},
+    walk = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"] },
+    walk_up = { sprites = ["crane_u", "crane_u2", "crane_u3", "crane_u4"] },
+    walk_down = { sprites = ["crane_d", "crane_d2", "crane_d3", "crane_d4"] },
 }
 
 [[look]]
@@ -504,9 +360,6 @@ hat_offset = [0, 0]
 blob_shadow = true
 height = 0
 
-## Pawns are things that can move: the worker ([worker]) and the animals ([[animal]]: soldiers,
-## people, animals). Saved by name, so in any order.
-
 [[animal]]
 name = "king"
 description = ""
@@ -518,7 +371,7 @@ shoots_projectile = "none"
 chase_enemies = false
 cost = "not_for_sale"
 on_killed = []
-on_spawn = [{spawn = "butterfly"}]
+on_spawn = [{ spawn = "butterfly" }]
 pathfinding = "smart"
 look = "king"
 eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
@@ -564,13 +417,17 @@ health = 70
 ticks_per_attack = 5
 melee_damage = 0
 range = 16
-# arrow: follows its target, drawn as a red arrow
-shoots_projectile = { damage = 10, range = 5, track_target = true, sprite = "arrow_red", speed = 2.0, projectile = "none" }
+shoots_projectile = {
+    damage = 10,
+    range = 5,
+    speed = 2.0,
+    track_target = true,
+    sprite = "arrow_red",
+    projectile = "none",
+}
 chase_enemies = false
 cost = { stone = 3, wood = 2 }
-on_killed = [
-    {animation = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"]}},
-]
+on_killed = [{ animation = { sprites = ["crane_l", "crane_l2", "crane_l3", "crane_l4"] } }]
 on_spawn = []
 pathfinding = "smart"
 look = "archer"
@@ -592,11 +449,17 @@ health = 200
 ticks_per_attack = 2
 melee_damage = 0
 range = 16
-# fixed-tile fireball: damage at impact tile, spawn "fire" blueprint there
-shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire", speed = 2.0 }
+shoots_projectile = {
+    damage = 30,
+    range = 5,
+    speed = 2.0,
+    track_target = false,
+    sprite = "fire",
+    projectile = "fire",
+}
 chase_enemies = false
 cost = { stone = 10 }
-on_killed = [{spawn = "fire"}]
+on_killed = [{ spawn = "fire" }]
 on_spawn = []
 pathfinding = "smart"
 look = "demon"
@@ -610,8 +473,6 @@ neutral = false
 min_population = 0
 prey = []
 lives_in = "none"
-
-## Animal-style pawns (wandering grazers, no attack).
 
 [[animal]]
 name = "tiger"
@@ -652,7 +513,12 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "bunny"
-eating = { diet = ["rawwheat", "wheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["rawwheat", "wheat", "apple"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+}
 hop_distance = 10
 hop_wait = 20
 vision_range = 10
@@ -663,12 +529,6 @@ min_population = 0
 prey = []
 lives_in = "none"
 
-#[[animal]]
-#name = "kitten"
-#sprite = "kit7"
-#hop_distance = 4
-#hop_wait = 10
-
 [[animal]]
 name = "evilcat"
 description = ""
@@ -676,7 +536,14 @@ health = 100
 ticks_per_attack = 1
 melee_damage = 0
 range = 16
-shoots_projectile = { damage = 30, range = 5, track_target = false, projectile = "fire", sprite = "fire", speed = 2.0 }
+shoots_projectile = {
+    damage = 30,
+    range = 5,
+    speed = 2.0,
+    track_target = false,
+    sprite = "fire",
+    projectile = "fire",
+}
 chase_enemies = false
 cost = "not_for_sale"
 on_killed = []
@@ -708,13 +575,17 @@ on_killed = []
 on_spawn = []
 pathfinding = "smart"
 look = "crane"
-eating = { diet = ["rawwheat", "wheat"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["rawwheat", "wheat"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+}
 hop_distance = 0
 hop_wait = 3
 vision_range = 10
 awake_time = 0
 sleep_time = 0
-#hop_distance = 10
 neutral = true
 min_population = 0
 prey = []
@@ -834,7 +705,12 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "moth"
-eating = { diet = ["rawwheat", "wheat", "bread"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["rawwheat", "wheat", "bread"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+}
 hop_distance = 10
 hop_wait = 3
 vision_range = 10
@@ -870,26 +746,6 @@ min_population = 0
 prey = []
 lives_in = "none"
 
-## The worker — the pawn that works rather than fights. One, without a name: always "worker".
-
-[worker]
-description = ""
-health = 10
-cost = "not_for_sale"
-on_killed = [{ spawn = "skeleton" }]
-on_spawn = []
-pathfinding = "smart"
-look = "worker"
-heads = ["head1", "head2", "head3", "head4", "head5", "head6", "head7", "head8"]
-eating = { diet = ["food"], appetite = "any", calories_per_day = 8, start_calories = 24 }
-vision_range = 60
-awake_time = 500
-sleep_time = 100
-first_names = ["Billy", "Bob"]
-last_names = ["A", "B"]
-
-# Rats come by themselves (min_population: per 100×100 tiles) and eat crops and any food lying
-# around: walls keep them out. Placeholder sprite until there is a rat.
 [[animal]]
 name = "rat"
 description = ""
@@ -904,7 +760,12 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "rat"
-eating = { diet = ["wheat", "rawwheat", "apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["wheat", "rawwheat", "apple"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+}
 hop_distance = 6
 hop_wait = 5
 vision_range = 15
@@ -915,8 +776,6 @@ min_population = 6
 prey = []
 lives_in = "none"
 
-# Cats come by themselves too, hunt rats, and sleep in a home (the nearest in sight at bedtime,
-# then always the same one), like workers: awake 500 ticks, asleep 100.
 [[animal]]
 name = "cat"
 description = "catches rats"
@@ -942,298 +801,415 @@ min_population = 2
 prey = ["rat"]
 lives_in = "home"
 
+[[building]]
+name = "home"
+sprite = "floor_wood2"
+description = "provides a worker to nearby buildings"
+size = 2
+walls = "wall"
+floor = "floor_decor"
+cost = { food = 30, stone = 10 }
+housing = 1
+
+[[building]]
+name = "appletree"
+sprite = "appletree"
+size = 2
+produces = [{ item = "apple" }]
+shadow = "treeshade"
+fruit_per_cycle = 0.01
+neutral = true
+
+[[building]]
+name = "smalltree"
+sprite = "tree"
+size = 1
+shadow = "treeshade"
+neutral = true
 
 [[building]]
 name = "farm"
-max_workers = 5
 sprite = "workspace"
-output = "wheat"
-hat = "hat_farmer"
-input = { rawwheat = 2 }
-ticks_to_make = 10
 size = 3
-cost = {stone = 10, food = 30}
-range = 8
 walls = "wall"
-housing = 0
 floor = "floor"
+cost = { food = 30, stone = 10 }
+produces = [
+    { item = "wheat", plants = "wheat_sprout" },
+    { item = "rice", plants = "rice_sprout" },
+    { item = "bamboo", plants = "bamboo_sprout" },
+]
+ticks_to_make = 10
+housing = 0
+max_workers = 5
+hat = "hat_farmer"
+range = 8
 output_range = 16
 
 [[building]]
-name = "coal_mine"
-max_workers = 5
+name = "mine"
 sprite = "coal_mine"
-output = "coal"
-hat = "hat_miner"
-housing = 1
-input = { rawcoal = 2 }
-ticks_to_make = 5
 size = 2
-cost = {stone = 10, food = 60}
-range = 12
 walls = "granite"
+cost = { food = 60, stone = 10 }
+produces = [{ item = "rock" }, { item = "coal" }]
+ticks_to_make = 5
+housing = 1
+max_workers = 5
+hat = "hat_miner"
+range = 12
 
 [[building]]
 name = "quarry"
-max_workers = 3
 sprite = "workspace"
-output = "brick"
-hat = "hat_miner"
-walls = "wall2"
-housing = 0
-input = { rock = 3 }
-ticks_to_make = 15
 size = 2
-cost = {stone = 10, food = 30}
+walls = "wall2"
+cost = { food = 30, stone = 10 }
+produces = [{ item = "brick" }]
+ticks_to_make = 15
+housing = 0
+max_workers = 3
+hat = "hat_miner"
 
 [[building]]
 name = "bakery"
 sprite = "bakery"
-output = "bread"
-housing = 1
-input = { wheat = 2, fuel = 1 }
-ticks_to_make = 30
 size = 3
-cost = {stone = 10, food = 60}
 walls = "wall"
-hat = "hat_cook"
+cost = { food = 60, stone = 10 }
+produces = [{ item = "bread" }]
+ticks_to_make = 30
+housing = 1
 max_workers = 2
-output_range = 100
+hat = "hat_cook"
 range = 32
+output_range = 100
 
-## HQ (Headquarters) — a special building with unique_per_team=true.
 [[building]]
 name = "hq"
 sprite = "hq"
+description = "Headquarters. Resources get delivered here."
 size = 4
 walls = "wall"
 health = 255
-cost = {}                  # HQ is free to place
-input = { stone = 500, food = 500, iron = 500, wood = 500 }
+cost = {}
+input = { food = 500, iron = 500, stone = 500, wood = 500 }
+housing = 2
+max_workers = 5
 initial_resources = 200
 unique_per_team = true
-housing = 2
 range = 16
-max_workers = 5
-description = "Headquarters. Resources get delivered here."
 
 [[building]]
 name = "sawmill"
-max_workers = 5
 sprite = "workspace"
-output = "plank"
-housing = 1
-input = { log = 2 }
-ticks_to_make = 20
 size = 2
-cost = {stone = 10}
-
+cost = { stone = 10 }
+produces = [{ item = "plank" }]
+ticks_to_make = 20
+housing = 1
+max_workers = 5
 
 [[building]]
 name = "clay_pit"
-max_workers = 5
 sprite = "workspace"
-output = "clay"
-hat = "hat_miner"
-housing = 1
-input = { rawclay = 2 }
-ticks_to_make = 10
 size = 2
-cost = {stone = 10, food = 10}
+cost = { food = 10, stone = 10 }
+produces = [{ item = "clay" }]
+ticks_to_make = 10
+housing = 1
+max_workers = 5
+hat = "hat_miner"
 range = 12
 
-# Fires clay into brick: stone where there is no rock.
 [[building]]
 name = "masonry"
-max_workers = 5
 sprite = "fireplace"
-output = "brick"
-hat = "hat_builder"
-housing = 1
-input = { clay = 1, fuel = 1 }
-ticks_to_make = 20
 size = 2
-cost = {stone = 10}
+cost = { stone = 10 }
+produces = [{ item = "brick", cost = { clay = 1, fuel = 1 } }]
+ticks_to_make = 20
+housing = 1
+max_workers = 5
+hat = "hat_builder"
 
 [[building]]
 name = "iron_mine"
-max_workers = 5
 sprite = "workspace"
-output = "iron"
-housing = 0
-input = { rawore = 3, fuel = 1 }
-ticks_to_make = 30
 size = 2
-cost = {stone = 10}
+cost = { stone = 10 }
+produces = [{ item = "iron" }]
+ticks_to_make = 30
+housing = 0
+max_workers = 5
 
-
-# General game settings
-[game]
-
-# For how many ticks decal effects (e.g. blood splatters) remain visible
-decal_ttl = 50
-
-## Industry
-
-# Chops trees in range for wood when none lies around, and keeps it.
 [[building]]
 name = "logger"
 sprite = "workbench"
-hat = "hat_builder"
-size = 2
+size = 3
+cost = { stone = 10 }
+produces = [{ item = "log" }]
+ticks_to_make = 10
 housing = 1
 max_workers = 1
-input = { log = 10 }
-chops = "tree"
-cost = {stone = 10}
+hat = "hat_builder"
 
 [[building]]
 name = "charcoal_kiln"
 sprite = "fireplace"
-hat = "hat_miner"
 size = 2
-input = { log = 3 }
-output = "charcoal"
+cost = { stone = 10 }
+produces = [{ item = "charcoal" }]
 ticks_to_make = 20
 max_workers = 2
-cost = {stone = 10}
+hat = "hat_miner"
 
-# 🤖 A bread provider: bread in, bread out. Its hauler brings bread from the bakery 3 at a time
-#    and it puts the loaves out on its output tiles, where workers come to eat them: cheaper than
-#    each eater walking to the bakery for one loaf. It never hauls them away (`output_range` 0):
-#    you have to go there.
 [[building]]
 name = "cafe"
 sprite = "cafe"
-hat = "hat_cook"
 size = 2
-# 🤖 One in, one out: it makes nothing. Its intake holds one haul (3 × 1).
-input = { bread = 1 }
-output = "bread"
-# 🤖 Two loaves out at once: two eaters can each reserve one.
-num_output_tiles = 2
-ticks_to_make = 1
-# 🤖 Its stock: the loaves waiting behind those on its tiles.
-output_capacity = 20
-output_range = 0
-max_workers = 1
-# 🤖 Its hauler brings 3 at once: cheaper than eaters each walking to the bakery, which makes
-#    eating at the cafe worth it.
-cost = {stone = 10, food = 30}
-housing = 1
-range = 50
 walls = "wall"
-
-# 🤖 Providers for one good each: their haulers bring it in 3 at a time from where it is made in
-#    their range, and put it out on their output tiles for the buildings around them. They never
-#    haul it away (`output_range` 0): who needs it comes for it.
-[[building]]
-name = "brick_depot"
-sprite = "crate"
-size = 2
-# 🤖 One in, one out: it makes nothing. Its intake holds one haul (3 × 1).
-input = { brick = 1 }
-output = "brick"
-num_output_tiles = 2
+cost = { food = 30, stone = 10 }
+offers = ["bread"]
 ticks_to_make = 1
-# 🤖 Its stock: what waits behind the items on its tiles.
-output_capacity = 60
+housing = 1
+max_workers = 1
+hat = "hat_cook"
+range = 50
 output_range = 0
-range = 20
-max_workers = 2
-cost = {stone = 10}
+output_capacity = 20
+num_output_tiles = 2
 
 [[building]]
-name = "coal_depot"
+name = "depot"
 sprite = "crate"
 size = 2
-# 🤖 One in, one out: it makes nothing. Its intake holds one haul (3 × 1).
-input = { coal = 1 }
-output = "coal"
-num_output_tiles = 2
+cost = { stone = 10 }
+offers = ["brick", "coal", "plank"]
 ticks_to_make = 1
-# 🤖 Its stock: what waits behind the items on its tiles.
-output_capacity = 60
-output_range = 0
-range = 20
 max_workers = 2
-cost = {stone = 10}
-
-[[building]]
-name = "plank_depot"
-sprite = "crate"
-size = 2
-# 🤖 One in, one out: it makes nothing. Its intake holds one haul (3 × 1).
-input = { plank = 1 }
-output = "plank"
+range = 20
+output_range = 0
+output_capacity = 60
 num_output_tiles = 2
-ticks_to_make = 1
-# 🤖 Its stock: what waits behind the items on its tiles.
-output_capacity = 60
-output_range = 0
-range = 20
-max_workers = 2
-cost = {stone = 10}
-
-## Enlightenment: nothing useful, only beautiful. Fed workers with no work to do spend their
-## leisure at the most beautiful building near home, and are happy for a day (the ☺ count in
-## the resource bar). A building is as beautiful as its own beauty plus that of what it holds.
-## These are examples: add your own.
 
 [[building]]
 name = "statue"
 sprite = "statue"
-beauty = 5
+cost = { stone = 30 }
 max_workers = 0
-cost = {stone = 30}
+beauty = 5
 
 [[building]]
 name = "paint_mill"
 sprite = "workspace"
-hat = "hat_art"
 size = 2
-input = { rock = 2, fuel = 1 }
-output = "paint"
+cost = { stone = 10 }
+produces = [{ item = "paint" }]
 ticks_to_make = 20
 max_workers = 2
-cost = {stone = 10}
-
-# The artist lives and works here.
-[[building]]
-name = "studio"
-sprite = "workbench"
 hat = "hat_art"
-size = 2
-housing = 1
-input = { paint = 3, plank = 1 }
-output = "painting"
-ticks_to_make = 60
-max_workers = 1
-cost = {stone = 10, food = 30}
 
-# Holds up to 9 paintings: the more it holds, the more beautiful.
+[[building]]
+name = "workshop"
+sprite = "workbench"
+size = 2
+cost = { food = 30, stone = 10 }
+produces = [
+    { item = "painting" },
+    { item = "vase" },
+    { item = "vase_decor" },
+    { item = "vase_kintsugi" },
+]
+ticks_to_make = 60
+housing = 1
+max_workers = 1
+hat = "hat_art"
+
 [[building]]
 name = "gallery"
-sprite = "floor_wood2"
-size = 3
+sprite = "hq4"
+size = 4
 walls = "wall"
 floor = "floor_decor"
-input = { painting = 3 }
-beauty = 2
+cost = { stone = 30, wood = 30 }
+input = { painting = 3, vase_decor = 3, vase_kintsugi = 3 }
 max_workers = 1
-cost = {stone = 30, wood = 30}
+beauty = 2
 
 [[building]]
 name = "wheat_depot"
 sprite = "crate"
 size = 2
 cost = { stone = 10 }
-# 🤖 A provider, like the brick_depot.
-input = { brick = 1 }
-output = "brick"
-num_output_tiles = 2
+offers = ["brick"]
 ticks_to_make = 1
-output_capacity = 60
-output_range = 0
 max_workers = 2
 range = 20
+output_range = 0
+output_capacity = 60
+num_output_tiles = 2
+
+[[land_tile]]
+name = "sand"
+
+[[land_tile]]
+name = "snow"
+border = "#ffffff"
+
+[[land_tile]]
+name = "dry_grass"
+sprite = "dry_grass"
+
+[[road_tile]]
+name = "road"
+cost = { stone = 1 }
+corner = "diagonal"
+border = "#959595"
+height = 3
+
+[[road_tile]]
+name = "floor"
+sprite = "floor_tiles3"
+cost = { stone = 1 }
+height = 2
+
+[[road_tile]]
+name = "floor_decor"
+sprite = "floor_tile_decor"
+cost = { stone = 1 }
+
+[[wall_tile]]
+name = "wall"
+sprite = "block24"
+cost = { stone = 1 }
+health = 100
+corner = "rounded"
+border = "#4b4f00"
+
+[[wall_tile]]
+name = "wall2"
+sprite = "wall_mud"
+cost = { stone = 1 }
+health = 100
+corner = "triangle"
+
+[[wall_tile]]
+name = "granite"
+sprite = "block25"
+health = 100
+corner = "none"
+
+[[ore_tile]]
+name = "greystone"
+sprite = "greystone"
+resource = "rawrock"
+amount = 50
+
+[[ore_tile]]
+name = "orestone"
+sprite = "orestone"
+resource = "rawore"
+amount = 50
+
+[[ore_tile]]
+name = "coalstone"
+sprite = "coalstone"
+resource = "rawcoal"
+amount = 50
+
+[[ore_tile]]
+name = "claystone"
+sprite = "clay_source"
+resource = "rawclay"
+amount = 50
+
+[[special_tile]]
+name = "sea"
+sprite = "sea"
+description = ""
+cost = "not_for_sale"
+corner = "circle"
+border = "none"
+height = -12
+
+[[special_tile]]
+name = "lake"
+sprite = "water4"
+description = ""
+cost = "not_for_sale"
+corner = "circle"
+border = "none"
+height = -12
+
+[[special_tile]]
+name = "canal"
+sprite = "canal"
+description = "Brings water to farm land."
+cost = { stone = 10 }
+corner = "circle"
+border = "none"
+height = -12
+
+[[special_tile]]
+name = "bridge"
+sprite = "bridge"
+description = ""
+cost = { wood = 150 }
+corner = "none"
+border = "none"
+height = 4
+
+[[special_tile]]
+name = "farm_land"
+sprite = "farmland"
+description = ""
+cost = "not_for_sale"
+corner = "rounded"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "farm_land_wet"
+sprite = "farmland2"
+description = ""
+cost = "not_for_sale"
+corner = "circle"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_r"
+sprite = "belt_r"
+description = ""
+cost = {}
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_l"
+sprite = "belt_l"
+description = ""
+cost = {}
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_u"
+sprite = "belt_u"
+description = ""
+cost = {}
+corner = "none"
+border = "none"
+height = 0
+
+[[special_tile]]
+name = "belt_d"
+sprite = "belt_d"
+description = ""
+cost = {}
+corner = "none"
+border = "none"
+height = 0

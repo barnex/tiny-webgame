@@ -115,6 +115,16 @@ corner = "rounded"
 border = "none"
 height = 0
 
+# Farm land with water beside it: the game turns farm land into this and back as the water comes and goes.
+[[special_tile]]
+name = "farm_land_wet"
+sprite = "farmland2"
+description = ""
+cost = "not_for_sale"
+corner = "rounded"
+border = "none"
+height = 0
+
 # Carries what lies on it along; its sprite shows which way.
 [[special_tile]]
 name = "belt_r"
@@ -164,6 +174,7 @@ name = "zerobad"
 name = "rawwheat"
 sprite = "wheat2"
 calories = 1
+spreads = { item = "wheat_sprout", onto = ["farm_land_wet"], spread_ticks = 1200 }
 
 [[item]]
 name = "food"
@@ -180,6 +191,7 @@ special = 3
 # takes rock, brick, ... (see `stone` on items).
 [[item]]
 name = "stone"
+cost = { rock = 2 }
 sprite = "brick"
 special = 4
 
@@ -191,6 +203,7 @@ special = 5
 
 [[item]]
 name = "wheat"
+cost = { rawwheat = 2 }
 calories = 1
 sprite = "leaf"
 
@@ -204,13 +217,16 @@ sprite = "ore"
 
 [[item]]
 name = "coal"
+cost = { rawcoal = 2 }
 sprite = "coalpack"
 
 [[item]]
 name = "iron"
+cost = { rawore = 3, coal = 1 }
 
 [[item]]
 name = "apple"
+cost = {}
 sprite = "apple"
 calories = 1
 
@@ -245,11 +261,13 @@ name = "canvas"
 
 [[item]]
 name = "plank"
+cost = { log = 2 }
 wood = 3
 
-# Raw wood, chopped from trees.
+# Raw wood.
 [[item]]
 name = "log"
+cost = {}
 sprite = "wood"
 wood = 1
 
@@ -264,6 +282,7 @@ calories = 3
 
 [[item]]
 name = "bread"
+cost = { coal = 1, wheat = 1 }
 sprite = "bread"
 calories = 2
 # A hauler brings 3 loaves per trip.
@@ -277,6 +296,11 @@ sprite = "skeleton"
 [[item]]
 name = "brick"
 stone = 3
+
+# What a farm making wheat plants, growing into rawwheat on wet farm land.
+[[item]]
+name = "wheat_sprout"
+sprout = { grows_into = "rawwheat", grow_ticks = 200, grows_on = ["farm_land_wet"] }
 
 [[building]]
 name = "home"
@@ -292,17 +316,7 @@ name = "appletree"
 sprite = "appletree"
 shadow = "treeshade"
 size = 2
-output = "apple"
-input = {}
-fruit_per_cycle = 0.03
-neutral = true
-
-[[building]]
-name = "tree"
-sprite = "tree"
-shadow = "treeshade"
-size = 2
-output = "log"
+produces = [{ item = "apple" }]
 fruit_per_cycle = 0.03
 neutral = true
 
@@ -829,9 +843,8 @@ last_names = ["A", "B"]
 name = "farm"
 max_workers = 5
 sprite = "workspace"
-output = "wheat"
+produces = [{ item = "wheat", plants = "wheat_sprout" }]
 hat = "hat_farmer"
-input = { rawwheat = 2 }
 ticks_to_make = 10
 size = 3
 cost = {stone = 10}
@@ -842,10 +855,21 @@ walls = "wall"
 name = "coal_mine"
 max_workers = 5
 sprite = "workspace"
-output = "coal"
+produces = [{ item = "coal" }]
 hat = "hat_miner"
 housing = 0
-input = { rawcoal = 2 }
+ticks_to_make = 5
+size = 2
+cost = {stone = 10}
+
+# Switchable: stone from rock or coal from rawcoal (the player picks).
+[[building]]
+name = "mine"
+max_workers = 5
+sprite = "workspace"
+produces = [{ item = "stone" }, { item = "coal" }]
+hat = "hat_miner"
+housing = 0
 ticks_to_make = 5
 size = 2
 cost = {stone = 10}
@@ -854,10 +878,9 @@ cost = {stone = 10}
 name = "quarry"
 max_workers = 5
 sprite = "workspace"
-output = "stone"
+produces = [{ item = "stone" }]
 hat = "hat_miner"
 housing = 0
-input = { rock = 2 }
 ticks_to_make = 15
 size = 2
 cost = {stone = 10}
@@ -866,9 +889,8 @@ cost = {stone = 10}
 name = "bakery"
 max_workers = 5
 sprite = "workspace"
-output = "bread"
+produces = [{ item = "bread" }]
 housing = 0
-input = { coal = 1, wheat = 1 }
 ticks_to_make = 20
 size = 2
 cost = {stone = 10}
@@ -890,9 +912,8 @@ unique_per_team = true
 name = "sawmill"
 max_workers = 5
 sprite = "workspace"
-output = "plank"
+produces = [{ item = "plank" }]
 housing = 0
-input = { log = 2 }
 ticks_to_make = 20
 size = 2
 cost = {stone = 10}
@@ -902,9 +923,8 @@ cost = {stone = 10}
 name = "iron_mine"
 max_workers = 5
 sprite = "workspace"
-output = "iron"
+produces = [{ item = "iron" }]
 housing = 0
-input = { rawore = 3, coal = 1 }
 ticks_to_make = 30
 size = 2
 cost = {stone = 10}
@@ -914,9 +934,8 @@ cost = {stone = 10}
 [[building]]
 name = "solo_mine"
 sprite = "workspace"
-output = "coal"
+produces = [{ item = "coal" }]
 hat = "hat_miner"
-input = { rawcoal = 2 }
 ticks_to_make = 5
 size = 2
 max_workers = 1
@@ -926,9 +945,8 @@ max_workers = 1
 [[building]]
 name = "family_mine"
 sprite = "workspace"
-output = "coal"
+produces = [{ item = "coal" }]
 hat = "hat_miner"
-input = { rawcoal = 2 }
 ticks_to_make = 5
 size = 2
 max_workers = 1
@@ -939,8 +957,7 @@ housing = 1
 name = "farmstead"
 max_workers = 5
 sprite = "workspace"
-output = "wheat"
-input = { rawwheat = 2 }
+produces = [{ item = "wheat" }]
 ticks_to_make = 10
 size = 3
 range = 10
@@ -954,10 +971,9 @@ housing = 1
 name = "cafe"
 sprite = "cafe"
 size = 2
-output = "bread"
+offers = ["bread"]
 # 🤖 Two loaves out at once (as in boring.toml): two eaters each reserve one (case112).
 num_output_tiles = 2
-input = { bread = 1 }
 ticks_to_make = 1
 output_range = 0
 max_workers = 0
