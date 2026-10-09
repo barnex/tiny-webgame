@@ -11,7 +11,13 @@ on_spawn = []
 pathfinding = "smart"
 look = "worker"
 heads = ["head1", "head2", "head3", "head4", "head5", "head6", "head7", "head8"]
-eating = { diet = ["food"], appetite = "any", calories_per_day = 5, start_calories = 24 }
+eating = {
+    diet = ["food"],
+    appetite = "any",
+    calories_per_day = 5,
+    start_calories = 24,
+    full_calories = 50,
+}
 vision_range = 60
 awake_time = 500
 sleep_time = 100
@@ -25,7 +31,13 @@ name = "zerobad"
 name = "rawwheat"
 sprite = "wheat2"
 calories = 1
-spreads = { item = "wheat_sprout", onto = ["farm_land_wet"], spread_ticks = 1200 }
+spreads = {
+    item = "wheat_sprout",
+    onto = ["farm_land_wet"],
+    spread_ticks = 1200,
+    range = 1,
+    max_density = 100,
+}
 
 [[item]]
 name = "food"
@@ -82,6 +94,12 @@ calories = 1
 cost = {}
 
 [[item]]
+name = "banana"
+sprite = "banana"
+calories = 1
+cost = {}
+
+[[item]]
 name = "rawbread"
 sprite = "bread"
 calories = 1
@@ -108,6 +126,8 @@ name = "painting"
 sprite = "painting1"
 beauty = 10
 cost = { paint = 3, plank = 1 }
+blob_shadow = false
+height = 2
 
 [[item]]
 name = "canvas"
@@ -128,7 +148,16 @@ cost = { tree = 1 }
 [[item]]
 name = "tree"
 sprite = "tree"
-spreads = { item = "tree_sprout", onto = ["sand", "dry_grass", "farm_land"], spread_ticks = 3000 }
+blob_shadow = false
+height = 12
+spreads = {
+    item = "acorn",
+    onto = ["dry_grass", "farm_land", "farm_land_wet"],
+    spread_ticks = 600,
+    range = 2,
+    max_density = 50,
+}
+on_removal = [{ spawn = "tree_stump" }]
 
 [[item]]
 name = "tree_sprout"
@@ -180,12 +209,24 @@ cost = { rock = 3 }
 name = "rawrice"
 sprite = "grain"
 calories = 1
-spreads = { item = "rice_sprout", onto = ["farm_land_wet"], spread_ticks = 1200 }
+spreads = {
+    item = "rice_sprout",
+    onto = ["farm_land_wet"],
+    spread_ticks = 1200,
+    range = 1,
+    max_density = 100,
+}
 
 [[item]]
 name = "rawbamboo"
 sprite = "bamboo_plant"
-spreads = { item = "bamboo_sprout", onto = ["farm_land_wet"], spread_ticks = 1200 }
+spreads = {
+    item = "bamboo_sprout",
+    onto = ["farm_land_wet"],
+    spread_ticks = 600,
+    range = 1,
+    max_density = 100,
+}
 
 [[item]]
 name = "rice"
@@ -222,6 +263,9 @@ name = "wheat_sprout"
 sprout = { grows_into = "rawwheat", grow_ticks = 300, grows_on = ["farm_land_wet"] }
 
 [[item]]
+name = "scarecrow"
+
+[[item]]
 name = "rice_sprout"
 sprout = { grows_into = "rawrice", grow_ticks = 200, grows_on = ["farm_land_wet"] }
 
@@ -233,7 +277,32 @@ sprout = { grows_into = "rawbamboo", grow_ticks = 200, grows_on = ["farm_land_we
 [[item]]
 name = "poison_ivy"
 sprite = "poison_ivy"
-spreads = { item = "poison_ivy", onto = ["farm_land", "farm_land_wet"], spread_ticks = 30 }
+spreads = {
+    item = "poison_ivy",
+    onto = ["farm_land", "farm_land_wet"],
+    spread_ticks = 30,
+    range = 1,
+    max_density = 100,
+}
+
+[[item]]
+name = "acorn"
+sprite = "acorn"
+calories = 1
+blob_shadow = false
+height = 3
+sprout = {
+    grows_into = "tree_sprout",
+    grow_ticks = 1800,
+    grows_on = ["farm_land", "farm_land_wet"],
+}
+
+[[item]]
+name = "tree_stump"
+sprite = "tree_stump"
+blob_shadow = true
+height = 0
+decays = { into = "none", decay_ticks = 6000 }
 
 [[look]]
 name = "king"
@@ -265,7 +334,20 @@ height = 0
 
 [[look]]
 name = "tiger"
-sprite = "tiger"
+sprite = "tiger_l"
+hat_offset = [0, 0]
+blob_shadow = true
+height = 0
+animations = {
+    walk = { sprites = ["tiger_l", "tiger_l1", "tiger_l2"], speed = 1.0 },
+    walk_up = { sprites = ["tiger_u", "tiger_u1", "tiger_u2"], speed = 1.0 },
+    walk_down = { sprites = ["tiger_d", "tiger_d1", "tiger_d2"], speed = 1.0 },
+    idle = { sprites = ["tiger_s", "tiger_s1"], speed = 0.1 },
+}
+
+[[look]]
+name = "capybara"
+sprite = "capybara_00"
 hat_offset = [0, 0]
 blob_shadow = true
 height = 0
@@ -374,7 +456,13 @@ on_killed = []
 on_spawn = [{ spawn = "butterfly" }]
 pathfinding = "smart"
 look = "king"
-eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["food"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 0
 hop_wait = 3
 vision_range = 10
@@ -384,6 +472,8 @@ neutral = false
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "swordsman"
@@ -399,7 +489,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "smart"
 look = "swordsman"
-eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["food"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 0
 hop_wait = 3
 vision_range = 10
@@ -409,6 +505,8 @@ neutral = false
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "archer"
@@ -431,7 +529,13 @@ on_killed = [{ animation = { sprites = ["crane_l", "crane_l2", "crane_l3", "cran
 on_spawn = []
 pathfinding = "smart"
 look = "archer"
-eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["food"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 0
 hop_wait = 3
 vision_range = 10
@@ -441,6 +545,8 @@ neutral = false
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "demon"
@@ -463,7 +569,13 @@ on_killed = [{ spawn = "fire" }]
 on_spawn = []
 pathfinding = "smart"
 look = "demon"
-eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["food"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 0
 hop_wait = 3
 vision_range = 10
@@ -473,6 +585,8 @@ neutral = false
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "tiger"
@@ -488,7 +602,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "tiger"
-eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = [],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 30
 hop_wait = 50
 vision_range = 20
@@ -496,8 +616,46 @@ awake_time = 0
 sleep_time = 0
 neutral = true
 min_population = 0
+prey = ["capybara", "bunny"]
+lives_in = "none"
+likes_being_near = []
+dislikes_being_near = [{ what = ["tiger"], distance = 16, strength = 85 }]
+
+[[animal]]
+name = "capybara"
+description = "grazes on fields, keeps to its herd and to the water, runs from tigers"
+health = 100
+ticks_per_attack = 1
+melee_damage = 0
+range = 16
+shoots_projectile = "none"
+chase_enemies = false
+cost = "not_for_sale"
+on_killed = []
+on_spawn = []
+pathfinding = "smart"
+look = "capybara"
+eating = {
+    diet = ["rawwheat", "rawrice", "wheat_sprout", "rice_sprout"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
+hop_distance = 4
+hop_wait = 60
+vision_range = 12
+awake_time = 0
+sleep_time = 0
+neutral = true
+min_population = 4
 prey = []
 lives_in = "none"
+likes_being_near = [
+    { what = ["capybara"], distance_min = 1, distance_max = 4, strength = 60 },
+    { what = ["lake", "canal", "sea"], distance_min = 1, distance_max = 4, strength = 40 },
+]
+dislikes_being_near = [{ what = ["tiger"], distance = 8, strength = 90 }]
 
 [[animal]]
 name = "bunny"
@@ -518,6 +676,7 @@ eating = {
     appetite = "picky",
     calories_per_day = 1,
     start_calories = 10,
+    full_calories = 20,
 }
 hop_distance = 10
 hop_wait = 20
@@ -528,6 +687,8 @@ neutral = true
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "evilcat"
@@ -550,7 +711,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "evilcat"
-eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = [],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 10
 hop_wait = 3
 vision_range = 10
@@ -560,10 +727,12 @@ neutral = false
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "crane"
-description = ""
+description = "a wading bird: flocks, and forages on fields"
 health = 100
 ticks_per_attack = 1
 melee_damage = 0
@@ -576,20 +745,26 @@ on_spawn = []
 pathfinding = "smart"
 look = "crane"
 eating = {
-    diet = ["rawwheat", "wheat"],
-    appetite = "picky",
+    diet = ["rawwheat", "wheat", "wheat_sprout"],
+    appetite = "any",
     calories_per_day = 1,
     start_calories = 10,
+    full_calories = 12,
 }
-hop_distance = 0
-hop_wait = 3
-vision_range = 10
+hop_distance = 6
+hop_wait = 40
+vision_range = 14
 awake_time = 0
 sleep_time = 0
 neutral = true
-min_population = 0
+min_population = 4
 prey = []
 lives_in = "none"
+likes_being_near = [
+    { what = ["crane"], distance_min = 1, distance_max = 3, strength = 60 },
+    { what = ["farm_land", "farm_land_wet"], distance_min = 0, distance_max = 3, strength = 40 },
+]
+dislikes_being_near = [{ what = ["worker", "scarecrow"], distance = 5, strength = 95 }]
 
 [[animal]]
 name = "redpanda"
@@ -605,7 +780,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "redpanda"
-eating = { diet = ["apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["apple", "banana"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 10
 hop_wait = 3
 vision_range = 10
@@ -615,6 +796,8 @@ neutral = true
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "baby"
@@ -630,7 +813,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "baby"
-eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["food"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 1
 hop_wait = 30
 vision_range = 10
@@ -640,6 +829,8 @@ neutral = true
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "child"
@@ -655,7 +846,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "child"
-eating = { diet = ["food"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["food"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 10
 hop_wait = 3
 vision_range = 10
@@ -665,6 +862,8 @@ neutral = true
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "human"
@@ -680,7 +879,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "human"
-eating = { diet = ["food"], appetite = "picky", calories_per_day = 8, start_calories = 10 }
+eating = {
+    diet = ["food"],
+    appetite = "picky",
+    calories_per_day = 8,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 12
 hop_wait = 3
 vision_range = 10
@@ -690,6 +895,8 @@ neutral = true
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "moth"
@@ -710,6 +917,7 @@ eating = {
     appetite = "picky",
     calories_per_day = 1,
     start_calories = 10,
+    full_calories = 20,
 }
 hop_distance = 10
 hop_wait = 3
@@ -720,6 +928,8 @@ neutral = true
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "butterfly"
@@ -735,7 +945,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "butterfly"
-eating = { diet = ["apple"], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = ["apple"],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 10
 hop_wait = 3
 vision_range = 10
@@ -745,6 +961,8 @@ neutral = true
 min_population = 0
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "rat"
@@ -765,6 +983,7 @@ eating = {
     appetite = "picky",
     calories_per_day = 1,
     start_calories = 10,
+    full_calories = 20,
 }
 hop_distance = 6
 hop_wait = 5
@@ -775,6 +994,8 @@ neutral = true
 min_population = 6
 prey = []
 lives_in = "none"
+likes_being_near = []
+dislikes_being_near = []
 
 [[animal]]
 name = "cat"
@@ -790,7 +1011,13 @@ on_killed = []
 on_spawn = []
 pathfinding = "dumb"
 look = "cat"
-eating = { diet = [], appetite = "picky", calories_per_day = 1, start_calories = 10 }
+eating = {
+    diet = [],
+    appetite = "picky",
+    calories_per_day = 1,
+    start_calories = 10,
+    full_calories = 20,
+}
 hop_distance = 8
 hop_wait = 10
 vision_range = 12
@@ -800,6 +1027,8 @@ neutral = true
 min_population = 2
 prey = ["rat"]
 lives_in = "home"
+likes_being_near = []
+dislikes_being_near = []
 
 [[building]]
 name = "home"
@@ -828,23 +1057,89 @@ shadow = "treeshade"
 neutral = true
 
 [[building]]
-name = "farm"
+name = "bananatree"
+sprite = "tree_banana"
+size = 2
+produces = [{ item = "banana" }]
+shadow = "treeshade"
+fruit_per_cycle = 0.01
+neutral = true
+
+[[building]]
+name = "tree2"
+sprite = "tree2"
+size = 1
+shadow = "treeshade"
+neutral = true
+
+[[building]]
+name = "tree_peach"
+sprite = "tree_peach"
+size = 1
+shadow = "treeshade"
+neutral = true
+
+[[building]]
+name = "tree_red"
+sprite = "tree_red"
+size = 1
+shadow = "treeshade"
+neutral = true
+
+[[building]]
+name = "tree_yellow"
+sprite = "tree_yellow"
+size = 1
+shadow = "treeshade"
+neutral = true
+
+[[building]]
+name = "wheat_farm"
 sprite = "workspace"
 size = 3
 walls = "wall"
 floor = "floor"
 cost = { food = 30, stone = 10 }
-produces = [
-    { item = "wheat", plants = "wheat_sprout" },
-    { item = "rice", plants = "rice_sprout" },
-    { item = "bamboo", plants = "bamboo_sprout" },
-]
+produces = [{ item = "wheat" }]
 ticks_to_make = 10
 housing = 0
 max_workers = 5
 hat = "hat_farmer"
 range = 8
 output_range = 16
+plants = "wheat_sprout"
+
+[[building]]
+name = "rice_farm"
+sprite = "workspace"
+size = 3
+walls = "wall"
+floor = "floor"
+cost = { food = 30, stone = 10 }
+produces = [{ item = "rice" }]
+ticks_to_make = 10
+housing = 0
+max_workers = 5
+hat = "hat_farmer"
+range = 8
+output_range = 16
+plants = "rice_sprout"
+
+[[building]]
+name = "bamboo_farm"
+sprite = "workspace"
+size = 3
+walls = "wall"
+floor = "floor"
+cost = { food = 30, stone = 10 }
+produces = [{ item = "bamboo" }]
+ticks_to_make = 10
+housing = 0
+max_workers = 5
+hat = "hat_farmer"
+range = 8
+output_range = 16
+plants = "bamboo_sprout"
 
 [[building]]
 name = "mine"
@@ -909,6 +1204,7 @@ produces = [{ item = "plank" }]
 ticks_to_make = 20
 housing = 1
 max_workers = 5
+hat = "hat_builder"
 
 [[building]]
 name = "clay_pit"
@@ -945,14 +1241,15 @@ max_workers = 5
 
 [[building]]
 name = "logger"
-sprite = "workbench"
-size = 3
+sprite = "logger"
+size = 2
 cost = { stone = 10 }
 produces = [{ item = "log" }]
 ticks_to_make = 10
 housing = 1
 max_workers = 1
 hat = "hat_builder"
+range = 21
 
 [[building]]
 name = "charcoal_kiln"
@@ -1050,6 +1347,19 @@ output_range = 0
 output_capacity = 60
 num_output_tiles = 2
 
+[[building]]
+name = "coal_mine"
+sprite = "coal_mine"
+size = 2
+walls = "wall2"
+cost = { food = 60, stone = 10 }
+produces = [{ item = "coal" }]
+ticks_to_make = 5
+housing = 0
+max_workers = 5
+hat = "hat_miner"
+range = 12
+
 [[land_tile]]
 name = "sand"
 
@@ -1085,7 +1395,7 @@ sprite = "block24"
 cost = { stone = 1 }
 health = 100
 corner = "rounded"
-border = "#4b4f00"
+border = "#553200"
 
 [[wall_tile]]
 name = "wall2"
