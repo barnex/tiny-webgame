@@ -1,0 +1,19 @@
+Tile((
+    name: "wall_decor",
+    sprite: "brwall_decor5",
+    description: "",
+    class: [],
+    cost: Some({
+        "stone": 2,
+    }),
+    walk: none,
+    blocks_sight: true,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 100,
+    ore: None,
+    corner: triangle,
+    border: None,
+    height: 24,
+))

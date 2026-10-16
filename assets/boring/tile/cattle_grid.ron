@@ -1,0 +1,19 @@
+Tile((
+    name: "cattle_grid",
+    sprite: "cattle_grid",
+    description: "",
+    class: [],
+    cost: Some({
+        "stone": 1,
+    }),
+    walk: fast,
+    blocks_sight: false,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 0,
+    ore: None,
+    corner: none,
+    border: Some("#959595"),
+    height: -4,
+))

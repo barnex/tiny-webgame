@@ -1,0 +1,26 @@
+Item((
+    name: "bamboo_sprout",
+    look: (
+        sprite: "bamboo_sprout",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 1,
+    fuel: 0,
+    stone: 0,
+    wood: 0,
+    beauty: 0,
+    cost: None,
+    max_carry: 1,
+    special: None,
+    sprout: Some((
+        grows_into: "rawbamboo",
+        grow_ticks: 200,
+        grows_on: ["farm_land_wet"],
+    )),
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

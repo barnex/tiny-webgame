@@ -1,0 +1,19 @@
+Tile((
+    name: "wall_god",
+    sprite: "wall_god2",
+    description: "",
+    class: [],
+    cost: Some({
+        "stone": 30,
+    }),
+    walk: none,
+    blocks_sight: true,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 100,
+    ore: None,
+    corner: none,
+    border: None,
+    height: 24,
+))

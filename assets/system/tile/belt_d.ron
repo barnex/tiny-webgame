@@ -1,0 +1,17 @@
+Tile((
+    name: "belt_d",
+    sprite: "belt_d",
+    description: "",
+    class: [],
+    cost: Some({}),
+    walk: none,
+    blocks_sight: false,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 0,
+    ore: None,
+    corner: none,
+    border: None,
+    height: 0,
+))

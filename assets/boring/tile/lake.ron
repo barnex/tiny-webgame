@@ -1,0 +1,17 @@
+Tile((
+    name: "lake",
+    sprite: "water4",
+    description: "",
+    class: [],
+    cost: None,
+    walk: none,
+    blocks_sight: false,
+    water: true,
+    water_flows: false,
+    can_have_water: false,
+    health: 0,
+    ore: None,
+    corner: circle,
+    border: None,
+    height: -16,
+))

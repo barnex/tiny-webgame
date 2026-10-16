@@ -1,0 +1,15 @@
+baby.ron
+bunny.ron
+butterfly.ron
+capybara.ron
+cat.ron
+child.ron
+crane.ron
+demon.ron
+human.ron
+king.ron
+mega_cat.ron
+moth.ron
+rat.ron
+redpanda.ron
+tiger.ron

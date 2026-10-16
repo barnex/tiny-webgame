@@ -1,0 +1,20 @@
+Tile((
+    name: "greystone",
+    sprite: "greystone",
+    description: "",
+    class: [],
+    cost: None,
+    walk: none,
+    blocks_sight: true,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 0,
+    ore: Some((
+        resource: "rock",
+        amount: 50,
+    )),
+    corner: rounded,
+    border: None,
+    height: 24,
+))

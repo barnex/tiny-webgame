@@ -1,0 +1,19 @@
+Tile((
+    name: "wall_wood",
+    sprite: "floor_wood",
+    description: "",
+    class: [],
+    cost: Some({
+        "wood": 1,
+    }),
+    walk: none,
+    blocks_sight: true,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 100,
+    ore: None,
+    corner: rounded,
+    border: None,
+    height: 24,
+))

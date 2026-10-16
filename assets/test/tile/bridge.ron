@@ -1,0 +1,17 @@
+Tile((
+    name: "bridge",
+    sprite: "floor_wood",
+    description: "",
+    class: [],
+    cost: None,
+    walk: fast,
+    blocks_sight: false,
+    water: false,
+    water_flows: true,
+    can_have_water: true,
+    health: 0,
+    ore: None,
+    corner: none,
+    border: None,
+    height: 0,
+))

@@ -1,0 +1,17 @@
+baby.ron
+bunny.ron
+butterfly.ron
+cat.ron
+child.ron
+crane.ron
+demon.ron
+evilcat.ron
+ghost.ron
+human.ron
+king.ron
+moth.ron
+rat.ron
+redpanda.ron
+road_shy.ron
+swimmer.ron
+tiger.ron

@@ -1,0 +1,25 @@
+Item((
+    name: "painting",
+    look: (
+        sprite: "painting1",
+        shadow: Heightmap(height: 2),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 0,
+    fuel: 0,
+    stone: 0,
+    wood: 0,
+    beauty: 10,
+    cost: Some({
+        "paint": 3,
+        "plank": 1,
+    }),
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

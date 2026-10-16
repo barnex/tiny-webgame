@@ -1,0 +1,4 @@
+archer.ron
+defender.ron
+fire_archer.ron
+swordsman.ron

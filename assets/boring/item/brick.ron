@@ -1,0 +1,24 @@
+Item((
+    name: "brick",
+    look: (
+        sprite: "brick",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 0,
+    fuel: 0,
+    stone: 3,
+    wood: 0,
+    beauty: 0,
+    cost: Some({
+        "rock": 3,
+    }),
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

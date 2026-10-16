@@ -1,0 +1,24 @@
+Item((
+    name: "log",
+    look: (
+        sprite: "wood",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 0,
+    fuel: 1,
+    stone: 0,
+    wood: 1,
+    beauty: 0,
+    cost: Some({
+        "tree": 1,
+    }),
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

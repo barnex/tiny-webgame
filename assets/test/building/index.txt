@@ -1,0 +1,14 @@
+appletree.ron
+bakery.ron
+cafe.ron
+coal_mine.ron
+family_mine.ron
+farm.ron
+farmstead.ron
+home.ron
+hq.ron
+iron_mine.ron
+mine.ron
+quarry.ron
+sawmill.ron
+solo_mine.ron

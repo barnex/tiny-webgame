@@ -1,0 +1,25 @@
+Item((
+    name: "vase_kintsugi",
+    look: (
+        sprite: "vase_kintsugi",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 0,
+    fuel: 0,
+    stone: 0,
+    wood: 0,
+    beauty: 15,
+    cost: Some({
+        "iron": 1,
+        "vase_decor": 1,
+    }),
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

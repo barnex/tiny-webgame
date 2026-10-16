@@ -1,0 +1,17 @@
+Tile((
+    name: "snow",
+    sprite: "snow",
+    description: "",
+    class: [],
+    cost: None,
+    walk: slow,
+    blocks_sight: false,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 0,
+    ore: None,
+    corner: rounded,
+    border: Some("#ffffff"),
+    height: 0,
+))
