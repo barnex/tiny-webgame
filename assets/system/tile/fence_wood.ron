@@ -1,0 +1,20 @@
+Tile((
+    name: "fence_wood",
+    sprite: "fence_wood",
+    description: "",
+    class: [],
+    cost: Some({
+        "wood": 1,
+    }),
+    walk: none,
+    over_ground: true,
+    blocks_sight: false,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 100,
+    ore: None,
+    corner: none,
+    border: None,
+    height: 8,
+))

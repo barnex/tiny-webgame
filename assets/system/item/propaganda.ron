@@ -2,6 +2,7 @@ Item((
     name: "propaganda",
     look: (
         sprite: "propaganda",
+        variants: ["propaganda_0", "propaganda_1", "propaganda_2", "propaganda_3", "propaganda_4", "propaganda_5", "propaganda_6", "propaganda_7", "propaganda_8"],
         shadow: BlobFeet(range: 1, strength: 50),
         scatter: (turn: none, mirror: false, offset_px: 0),
     ),
@@ -12,7 +13,8 @@ Item((
     stone: 0,
     wood: 0,
     beauty: 0,
-    cost: None,
+    made_from: None,
+    hat: None,
     max_carry: 1,
     special: None,
     sprout: None,

@@ -7,6 +7,7 @@ Tile((
         "stone": 2,
     }),
     walk: none,
+    over_ground: true,
     blocks_sight: false,
     water: true,
     water_flows: true,

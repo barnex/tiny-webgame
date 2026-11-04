@@ -1,0 +1,17 @@
+Entity((
+    name: "evilcat",
+    kind: animal,
+    look: (
+        sprite: "kit3",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    appetite: picky,
+    calories_per_day: 1,
+    vision_range: 10,
+    hop_distance: 10,
+    hop_wait: 3,
+))

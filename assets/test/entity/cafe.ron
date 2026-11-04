@@ -1,0 +1,13 @@
+Entity((
+    name: "cafe",
+    kind: cafe,
+    look: (
+        sprite: "cafe",
+        shadow: Heightmap(height: 0),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 66,
+    size: (2, 2),
+    range: 10,
+    max_workers: 1,
+))

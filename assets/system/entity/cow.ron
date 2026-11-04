@@ -1,0 +1,43 @@
+Entity((
+    name: "cow",
+    kind: animal,
+    look: (
+        sprite: "cow2",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "rawwheat",
+        "wheat",
+        "apple",
+    ],
+    calories_per_day: 1,
+    vision_range: 10,
+    hop_distance: 2,
+    hop_wait: 9,
+    never_walks_on: [
+        "cattle_grid",
+    ],
+    likes_being_near: [
+        (what: ["capybara", "farm_land", "farm_land_wet"], distance_min: 1, distance_max: 3, strength: 50),
+    ],
+    dislikes_being_near: [
+        (what: ["citizen", "tiger"], distance: 3, strength: 50),
+    ],
+    produces: Some((
+        item: "milk",
+        every_ticks: 300,
+    )),
+    on_killed: [
+        Spawn("meat"),
+    ],
+    animations: Some((
+        walk: Some((sprites: ["cow2", "cow_l2", "cow_l3"], speed: 1.0)),
+        walk_up: None,
+        walk_down: None,
+        idle: Some((sprites: ["cow2", "cow_s", "cow_s2", "cow2", "cow_s4"], speed: 0.2)),
+    )),
+))

@@ -1,0 +1,42 @@
+Entity((
+    name: "archer",
+    kind: soldier,
+    look: (
+        sprite: "pawn1",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 70,
+    range: 16,
+    ticks_per_attack: 5,
+    accuracy: 70,
+    projectile: Some((
+        damage: 10,
+        range: 5,
+        speed: 2.0,
+        sprite: "arrow_red",
+        projectile: None,
+        leaves: Some("arrow"),
+    )),
+    on_killed: [
+        Animation((sprites: ["human_hc1", "human_hc2", "human_hc3", "human_hc4", "human_hc5", "human_hc6", "human_hc7", "human_hc8", "human_hc9", "human_hc10", "human_hc11", "human_hc12", "human_hc13", "human_hc14", "human_hc15", "human_hc16", "human_hc17", "human_hc18", "human_hc19", "human_hc20", "human_hc21", "human_hc22", "human_hc23", "human_hc24", "human_hc25", "human_hc26", "human_hc27", "human_hc28", "human_hc29", "human_hc30", "human_hc31", "human_hc32", "human_hc33", "human_hc34"], speed: 0.5)),
+        Spawn("skeleton"),
+    ],
+    heads: [
+        "head1",
+        "head2",
+        "head3",
+        "head4",
+        "head5",
+        "head6",
+        "head7",
+        "head8",
+    ],
+    hat: Some("helmet2"),
+    animations: Some((
+        walk: Some((sprites: ["walk1", "walk2"], speed: 0.5)),
+        walk_up: None,
+        walk_down: None,
+        idle: None,
+    )),
+))

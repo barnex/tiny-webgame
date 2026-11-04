@@ -7,6 +7,7 @@ Tile((
         "stone": 1,
     }),
     walk: fast,
+    over_ground: true,
     blocks_sight: false,
     water: false,
     water_flows: false,
@@ -15,5 +16,5 @@ Tile((
     ore: None,
     corner: diagonal,
     border: Some("#959595"),
-    height: 3,
+    height: -2,
 ))

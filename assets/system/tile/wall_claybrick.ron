@@ -1,0 +1,20 @@
+Tile((
+    name: "wall_claybrick",
+    sprite: "bricks3",
+    description: "",
+    class: [],
+    cost: Some({
+        "stone": 1,
+    }),
+    walk: none,
+    over_ground: true,
+    blocks_sight: true,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 100,
+    ore: None,
+    corner: rounded,
+    border: Some("#642b00"),
+    height: 24,
+))

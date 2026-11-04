@@ -12,9 +12,10 @@ Item((
     stone: 0,
     wood: 0,
     beauty: 0,
-    cost: Some({
+    made_from: Some({
         "rawrice": 2,
     }),
+    hat: Some("hat_farmer"),
     max_carry: 1,
     special: None,
     sprout: None,

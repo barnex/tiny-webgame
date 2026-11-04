@@ -1,12 +1,13 @@
 Tile((
     name: "wall",
-    sprite: "block24",
+    sprite: "floor_wood",
     description: "",
     class: [],
     cost: Some({
         "stone": 1,
     }),
     walk: none,
+    over_ground: true,
     blocks_sight: true,
     water: false,
     water_flows: false,
@@ -14,6 +15,6 @@ Tile((
     health: 100,
     ore: None,
     corner: rounded,
-    border: Some("#4b4f00"),
+    border: Some("#694100"),
     height: 24,
 ))

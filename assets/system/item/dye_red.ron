@@ -1,0 +1,25 @@
+Item((
+    name: "dye_red",
+    look: (
+        sprite: "dye_red",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 0,
+    fuel: 0,
+    stone: 0,
+    wood: 0,
+    beauty: 0,
+    made_from: Some({
+        "cherry": 2,
+    }),
+    hat: Some("hat_art"),
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

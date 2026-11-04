@@ -1,12 +1,13 @@
 Tile((
     name: "wall_decor",
-    sprite: "brwall_decor5",
+    sprite: "brwall_decor",
     description: "",
     class: [],
     cost: Some({
         "stone": 2,
     }),
     walk: none,
+    over_ground: true,
     blocks_sight: true,
     water: false,
     water_flows: false,
@@ -14,6 +15,6 @@ Tile((
     health: 100,
     ore: None,
     corner: triangle,
-    border: None,
+    border: Some("#14849c"),
     height: 24,
 ))

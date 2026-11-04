@@ -5,6 +5,7 @@ Tile((
     class: [],
     cost: None,
     walk: slow,
+    over_ground: false,
     blocks_sight: false,
     water: false,
     water_flows: false,

@@ -1,0 +1,20 @@
+Tile((
+    name: "floor_darkwood",
+    sprite: "floor3",
+    description: "",
+    class: [],
+    cost: Some({
+        "wood": 3,
+    }),
+    walk: fast,
+    over_ground: true,
+    blocks_sight: false,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 0,
+    ore: None,
+    corner: rounded,
+    border: None,
+    height: 0,
+))

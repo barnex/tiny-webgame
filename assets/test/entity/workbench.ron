@@ -1,0 +1,15 @@
+Entity((
+    name: "workbench",
+    kind: workbench,
+    look: (
+        sprite: "workbench",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    size: (1, 1),
+    range: 30,
+    output_range: 30,
+    max_workers: 1,
+    ticks_to_make: 50,
+))

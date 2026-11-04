@@ -1,0 +1,11 @@
+Entity((
+    name: "table",
+    kind: table,
+    look: (
+        sprite: "workbench",
+        shadow: Heightmap(height: 0),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 66,
+    size: (1, 1),
+))

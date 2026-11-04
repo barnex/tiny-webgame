@@ -1,0 +1,21 @@
+Tile((
+    name: "goldstone",
+    sprite: "goldstone",
+    description: "",
+    class: [],
+    cost: None,
+    walk: none,
+    over_ground: false,
+    blocks_sight: true,
+    water: false,
+    water_flows: false,
+    can_have_water: false,
+    health: 0,
+    ore: Some((
+        resource: "gold_ore",
+        amount: 50,
+    )),
+    corner: rounded,
+    border: None,
+    height: 24,
+))

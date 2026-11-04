@@ -1,0 +1,39 @@
+Entity((
+    name: "capybara",
+    kind: animal,
+    look: (
+        sprite: "capybara_00",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 25,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "rawwheat",
+        "wheat",
+        "apple",
+    ],
+    calories_per_day: 1,
+    vision_range: 10,
+    hop_distance: 2,
+    hop_wait: 9,
+    never_walks_on: [
+        "cattle_grid",
+    ],
+    likes_being_near: [
+        (what: ["capybara", "farm_land", "farm_land_wet"], distance_min: 1, distance_max: 3, strength: 50),
+    ],
+    dislikes_being_near: [
+        (what: ["citizen", "tiger"], distance: 3, strength: 50),
+    ],
+    on_killed: [
+        Spawn("meat"),
+    ],
+    animations: Some((
+        walk: Some((sprites: ["capybara_08", "capybara_09", "capybara_10", "capybara_11"], speed: 0.3)),
+        walk_up: None,
+        walk_down: None,
+        idle: Some((sprites: ["capybara_00", "capybara_01", "capybara_02", "capybara_03", "capybara_04", "capybara_05", "capybara_06"], speed: 0.35)),
+    )),
+))

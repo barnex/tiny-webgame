@@ -1,0 +1,37 @@
+Entity((
+    name: "crane",
+    kind: animal,
+    look: (
+        sprite: "crane_l",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "rawwheat",
+        "wheat",
+    ],
+    appetite: picky,
+    calories_per_day: 1,
+    vision_range: 10,
+    hop_distance: 2,
+    hop_wait: 2,
+    likes_being_near: [
+        (what: ["crane"], distance_min: 1, distance_max: 3, strength: 54),
+    ],
+    dislikes_being_near: [
+        (what: ["scarecrow"], distance: 4, strength: 99),
+    ],
+    on_killed: [
+        Decal("crane_c"),
+    ],
+    neutral: true,
+    animations: Some((
+        walk: Some((sprites: ["crane_l", "crane_l2", "crane_l3", "crane_l4"], speed: 0.5)),
+        walk_up: Some((sprites: ["crane_u", "crane_u2", "crane_u3", "crane_u4", "crane_u5"], speed: 0.5)),
+        walk_down: Some((sprites: ["crane_d", "crane_d2", "crane_d3", "crane_d4"], speed: 0.5)),
+        idle: Some((sprites: ["crane_s"], speed: 1.0)),
+    )),
+))

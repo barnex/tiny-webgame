@@ -1,0 +1,31 @@
+Entity((
+    name: "swordsman",
+    kind: soldier,
+    look: (
+        sprite: "pawn1",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    range: 16,
+    melee_damage: 10,
+    ticks_per_attack: 5,
+    accuracy: 80,
+    heads: [
+        "head1",
+        "head2",
+        "head3",
+        "head4",
+        "head5",
+        "head6",
+        "head7",
+        "head8",
+    ],
+    hat: Some("helmet"),
+    animations: Some((
+        walk: Some((sprites: ["walk1", "walk2"], speed: 0.5)),
+        walk_up: None,
+        walk_down: None,
+        idle: None,
+    )),
+))

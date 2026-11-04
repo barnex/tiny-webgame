@@ -1,0 +1,17 @@
+Entity((
+    name: "starfish",
+    kind: animal,
+    look: (
+        sprite: "starfish",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    appetite: picky,
+    vision_range: 10,
+    hop_distance: 1,
+    hop_wait: 40,
+    neutral: true,
+))

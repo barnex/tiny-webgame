@@ -1,0 +1,26 @@
+Entity((
+    name: "tiger",
+    kind: animal,
+    look: (
+        sprite: "tiger",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "meat",
+    ],
+    appetite: picky,
+    calories_per_day: 1,
+    vision_range: 20,
+    hop_distance: 30,
+    hop_wait: 50,
+    attacks: [
+        "bunny",
+    ],
+    melee_damage: 100,
+    ticks_per_attack: 30,
+    neutral: true,
+))

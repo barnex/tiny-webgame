@@ -1,0 +1,27 @@
+Item((
+    name: "wrap",
+    look: (
+        sprite: "wrap",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 18,
+    fuel: 0,
+    stone: 0,
+    wood: 0,
+    beauty: 0,
+    made_from: Some({
+        "egg": 1,
+        "meat": 1,
+        "wheat": 1,
+    }),
+    hat: Some("hat_cook"),
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

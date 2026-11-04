@@ -1,0 +1,12 @@
+Entity((
+    name: "king",
+    kind: king,
+    look: (
+        sprite: "king",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    range: 30,
+    idle_ticks: 20,
+))

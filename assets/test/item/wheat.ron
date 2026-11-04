@@ -7,14 +7,15 @@ Item((
     ),
     description: "",
     class: [],
-    calories: 1,
+    calories: 3,
     fuel: 0,
     stone: 0,
     wood: 0,
     beauty: 0,
-    cost: Some({
+    made_from: Some({
         "rawwheat": 2,
     }),
+    hat: Some("hat_farmer"),
     max_carry: 1,
     special: None,
     sprout: None,

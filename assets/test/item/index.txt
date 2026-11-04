@@ -26,4 +26,3 @@ stone.ron
 wheat.ron
 wheat_sprout.ron
 wood.ron
-zerobad.ron

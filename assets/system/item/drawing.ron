@@ -1,0 +1,27 @@
+Item((
+    name: "drawing",
+    look: (
+        sprite: "drawing1",
+        variants: ["drawing2", "drawing3", "drawing4", "drawing5", "drawing6"],
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 0,
+    fuel: 0,
+    stone: 0,
+    wood: 0,
+    beauty: 5,
+    made_from: Some({
+        "dye_black": 1,
+        "paper": 1,
+    }),
+    hat: Some("hat_art"),
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

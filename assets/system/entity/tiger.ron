@@ -1,0 +1,36 @@
+Entity((
+    name: "tiger",
+    kind: animal,
+    look: (
+        sprite: "tiger_l",
+        shadow: BlobFeet(range: 2, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "meat",
+    ],
+    appetite: picky,
+    calories_per_day: 1,
+    vision_range: 20,
+    hop_distance: 30,
+    hop_wait: 50,
+    attacks: [
+        "bunny",
+        "capybara",
+    ],
+    melee_damage: 100,
+    ticks_per_attack: 30,
+    dislikes_being_near: [
+        (what: ["tiger"], distance: 16, strength: 85),
+    ],
+    neutral: true,
+    animations: Some((
+        walk: Some((sprites: ["tiger_l", "tiger_l1", "tiger_l2"], speed: 1.0)),
+        walk_up: Some((sprites: ["tiger_u", "tiger_u1", "tiger_u2"], speed: 1.0)),
+        walk_down: Some((sprites: ["tiger_d", "tiger_d1", "tiger_d2"], speed: 1.0)),
+        idle: Some((sprites: ["tiger_s", "tiger_s1"], speed: 0.1)),
+    )),
+))

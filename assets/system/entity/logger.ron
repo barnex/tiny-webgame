@@ -1,0 +1,18 @@
+Entity((
+    name: "logger",
+    kind: farm,
+    look: (
+        sprite: "logger",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    size: (2, 2),
+    range: 20,
+    output_range: 16,
+    max_workers: 1,
+    ticks_to_make: 20,
+    makes: [
+        "log",
+    ],
+))

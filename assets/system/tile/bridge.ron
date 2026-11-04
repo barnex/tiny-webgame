@@ -1,12 +1,13 @@
 Tile((
     name: "bridge",
-    sprite: "bridge",
+    sprite: "stepping_stone",
     description: "",
     class: [],
     cost: Some({
         "wood": 150,
     }),
     walk: fast,
+    over_ground: true,
     blocks_sight: false,
     water: false,
     water_flows: true,

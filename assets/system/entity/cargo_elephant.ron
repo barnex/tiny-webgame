@@ -1,0 +1,18 @@
+Entity((
+    name: "cargo_elephant",
+    kind: porter,
+    look: (
+        sprite: "elephant",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    capacity: 10,
+    idle_ticks: 20,
+    animations: Some((
+        walk: Some((sprites: ["elephant_l", "elephant", "elephant_l2", "elephant"], speed: 1.0)),
+        walk_up: None,
+        walk_down: None,
+        idle: Some((sprites: ["elephant_s", "elephant_s", "elephant_s", "elephant", "elephant_s3", "elephant_a1", "elephant_a"], speed: 0.4)),
+    )),
+))

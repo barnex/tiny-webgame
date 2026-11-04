@@ -1,0 +1,23 @@
+Item((
+    name: "banana",
+    look: (
+        sprite: "banana",
+        shadow: BlobSilhouette(range: 1, strength: 50),
+        scatter: (turn: none, mirror: true, offset_px: 4),
+    ),
+    description: "",
+    class: [],
+    calories: 3,
+    fuel: 0,
+    stone: 0,
+    wood: 0,
+    beauty: 0,
+    made_from: None,
+    hat: None,
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

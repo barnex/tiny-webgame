@@ -1,0 +1,33 @@
+Entity((
+    name: "citizen",
+    kind: citizen,
+    look: (
+        sprite: "pawn1",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    range: 30,
+    full_calories: 20,
+    start_calories: 19,
+    calories_per_day: 5,
+    awake_time: 500,
+    sleep_time: 100,
+    heads: [
+        "head1",
+        "head2",
+        "head3",
+        "head4",
+        "head5",
+        "head6",
+        "head7",
+        "head8",
+    ],
+    animations: Some((
+        walk: Some((sprites: ["walk1", "walk2"], speed: 0.5)),
+        walk_up: None,
+        walk_down: None,
+        idle: None,
+        sleep: Some((sprites: ["sleeping"], speed: 1.0)),
+    )),
+))

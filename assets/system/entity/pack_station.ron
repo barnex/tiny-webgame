@@ -1,0 +1,12 @@
+Entity((
+    name: "pack_station",
+    kind: packing_station,
+    look: (
+        sprite: "crate2",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    size: (1, 1),
+    capacity: 20,
+))

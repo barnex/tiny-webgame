@@ -1,0 +1,26 @@
+Item((
+    name: "sandwich",
+    look: (
+        sprite: "sandwich",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    description: "",
+    class: [],
+    calories: 13,
+    fuel: 0,
+    stone: 0,
+    wood: 0,
+    beauty: 0,
+    made_from: Some({
+        "bread": 1,
+        "egg": 1,
+    }),
+    hat: Some("hat_cook"),
+    max_carry: 1,
+    special: None,
+    sprout: None,
+    spreads: None,
+    decays: None,
+    on_removal: [],
+))

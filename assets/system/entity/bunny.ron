@@ -1,0 +1,33 @@
+Entity((
+    name: "bunny",
+    kind: animal,
+    look: (
+        sprite: "bunnyw",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "rawwheat",
+        "wheat",
+        "apple",
+    ],
+    appetite: picky,
+    calories_per_day: 1,
+    vision_range: 10,
+    hop_distance: 10,
+    hop_wait: 20,
+    on_killed: [
+        Spawn("meat"),
+        Decal("bunnyw_c"),
+    ],
+    neutral: true,
+    animations: Some((
+        walk: Some((sprites: ["bunnyw_l", "bunnyw_lj"], speed: 0.5)),
+        walk_up: Some((sprites: ["bunnyw_u", "bunnyw_uj"], speed: 0.5)),
+        walk_down: Some((sprites: ["bunnyw_d", "bunnyw_dj"], speed: 0.5)),
+        idle: None,
+    )),
+))

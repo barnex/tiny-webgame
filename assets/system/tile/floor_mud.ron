@@ -1,12 +1,13 @@
 Tile((
     name: "floor_mud",
-    sprite: "brfloor_mud",
+    sprite: "floor_mud2",
     description: "",
     class: [],
     cost: Some({
         "stone": 1,
     }),
     walk: fast,
+    over_ground: true,
     blocks_sight: false,
     water: false,
     water_flows: false,

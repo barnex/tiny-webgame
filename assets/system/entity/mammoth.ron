@@ -1,0 +1,34 @@
+Entity((
+    name: "mammoth",
+    kind: animal,
+    look: (
+        sprite: "mammoth",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "tree",
+    ],
+    appetite: picky,
+    calories_per_day: 1,
+    vision_range: 10,
+    hop_distance: 10,
+    hop_wait: 20,
+    likes_being_near: [
+        (what: ["elephant"], distance_min: 1, distance_max: 5, strength: 80),
+    ],
+    dislikes_being_near: [
+        (what: ["citizen", "tiger"], distance: 3, strength: 50),
+        (what: ["rat"], distance: 6, strength: 77),
+    ],
+    neutral: true,
+    animations: Some((
+        walk: None,
+        walk_up: None,
+        walk_down: None,
+        idle: None,
+    )),
+))

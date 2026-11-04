@@ -1,0 +1,33 @@
+Entity((
+    name: "pig",
+    kind: animal,
+    look: (
+        sprite: "pig_l",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "rawwheat",
+        "wheat",
+        "apple",
+    ],
+    appetite: picky,
+    calories_per_day: 1,
+    vision_range: 10,
+    hop_distance: 10,
+    hop_wait: 20,
+    on_killed: [
+        Spawn("meat"),
+        Decal("pig_c"),
+    ],
+    neutral: true,
+    animations: Some((
+        walk: Some((sprites: ["pig_l"], speed: 1.0)),
+        walk_up: Some((sprites: ["pig"], speed: 1.0)),
+        walk_down: Some((sprites: ["pig"], speed: 1.0)),
+        idle: None,
+    )),
+))

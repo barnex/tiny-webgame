@@ -1,0 +1,32 @@
+Entity((
+    name: "cat",
+    kind: animal,
+    look: (
+        sprite: "kit7",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    full_calories: 20,
+    start_calories: 10,
+    diet: [
+        "meat",
+    ],
+    appetite: picky,
+    calories_per_day: 1,
+    awake_time: 500,
+    sleep_time: 100,
+    lives_in: [
+        "bench",
+    ],
+    vision_range: 12,
+    hop_distance: 8,
+    hop_wait: 10,
+    attacks: [
+        "rat",
+    ],
+    hunts_when_full: true,
+    melee_damage: 100,
+    ticks_per_attack: 30,
+    neutral: true,
+))
