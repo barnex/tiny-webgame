@@ -3,14 +3,23 @@ Entity((
     kind: farm,
     look: (
         sprite: "workspace",
-        shadow: BlobFeet(range: 1, strength: 50),
+        shadow: Heightmap(height: 0),
         scatter: (turn: none, mirror: false, offset_px: 0),
     ),
     health: 100,
-    size: (2, 2),
+    cost: Some({}),
+    size: (3, 3),
     range: 8,
     output_range: 16,
     max_workers: 5,
     ticks_to_make: 10,
     plants: true,
+    makes: [
+        "wheat",
+    ],
+    on_spawn: [
+        SpawnAt(entity: "crate_output", at: (2, 2), item: Some("wheat")),
+    ],
+    floor: Some("floor_mudtile"),
+    wall: Some("wall_clay"),
 ))

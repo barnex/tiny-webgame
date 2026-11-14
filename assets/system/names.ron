@@ -251,4 +251,11 @@ Names((
         "Nah",
         "Ie",
     ],
+    titles: [
+        "Sir",
+        "Lord",
+        "Justice",
+        "Nobleness",
+        "Earl",
+    ],
 ))

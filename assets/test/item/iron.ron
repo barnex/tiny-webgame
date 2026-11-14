@@ -18,6 +18,8 @@ Item((
     }),
     hat: None,
     max_carry: 1,
+    strength: 1,
+    flammable: 0,
     special: None,
     sprout: None,
     spreads: None,

@@ -1,0 +1,16 @@
+Entity((
+    name: "office",
+    kind: office,
+    look: (
+        sprite: "workspace",
+        shadow: Heightmap(height: 0),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    cost: Some({}),
+    size: (2, 2),
+    range: 20,
+    max_workers: 1,
+    hat: Some("hat_top"),
+    floor: Some("floor_wood"),
+))

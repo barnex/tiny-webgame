@@ -10,11 +10,11 @@ farm_land_wet.ron
 floor_decor.ron
 floor.ron
 greystone.ron
-lake.ron
 orestone.ron
 road.ron
 sand.ron
 sea.ron
 snow.ron
+spring.ron
 wall2.ron
 wall.ron

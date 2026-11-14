@@ -17,6 +17,8 @@ Item((
     }),
     hat: Some("hat_miner"),
     max_carry: 1,
+    strength: 4,
+    flammable: 0,
     special: None,
     sprout: None,
     spreads: None,

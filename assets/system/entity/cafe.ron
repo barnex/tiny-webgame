@@ -6,8 +6,14 @@ Entity((
         shadow: Heightmap(height: 0),
         scatter: (turn: none, mirror: false, offset_px: 0),
     ),
-    health: 66,
-    size: (2, 2),
+    health: 100,
+    cost: Some({}),
+    size: (4, 4),
     range: 10,
     max_workers: 1,
+    on_spawn: [
+        SpawnAt(entity: "table", at: (3, 1), item: None),
+        SpawnAt(entity: "table", at: (1, 3), item: None),
+    ],
+    floor: Some("floor_mosaic"),
 ))

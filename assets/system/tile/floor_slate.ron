@@ -16,5 +16,5 @@ Tile((
     ore: None,
     corner: rounded,
     border: None,
-    height: 2,
+    height: 0,
 ))

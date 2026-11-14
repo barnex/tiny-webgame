@@ -17,6 +17,8 @@ Item((
     }),
     hat: Some("hat_art"),
     max_carry: 1,
+    strength: 1,
+    flammable: 3,
     special: None,
     sprout: None,
     spreads: None,

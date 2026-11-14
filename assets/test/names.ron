@@ -7,4 +7,11 @@ Names((
         "A",
         "B",
     ],
+    titles: [
+        "Sir",
+        "Lord",
+        "Justice",
+        "Nobleness",
+        "Earl",
+    ],
 ))

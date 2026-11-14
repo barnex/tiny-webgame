@@ -7,6 +7,7 @@ Entity((
         scatter: (turn: none, mirror: false, offset_px: 0),
     ),
     health: 100,
+    cost: Some({}),
     range: 16,
     melee_damage: 10,
     ticks_per_attack: 5,

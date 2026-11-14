@@ -1,0 +1,22 @@
+Entity((
+    name: "desk",
+    kind: desk,
+    look: (
+        sprite: "workspace",
+        shadow: Heightmap(height: 0),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    cost: Some({}),
+    size: (3, 3),
+    range: 3,
+    ticks_to_make: 100,
+    makes: [
+        "law",
+    ],
+    on_spawn: [
+        SpawnAt(entity: "crate_input", at: (0, 2), item: Some("paper")),
+        SpawnAt(entity: "crate_input", at: (1, 2), item: Some("dye_black")),
+    ],
+    floor: Some("floor_wood"),
+))

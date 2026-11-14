@@ -8,7 +8,6 @@ canal.ron
 cattle_grid.ron
 claystone.ron
 coalstone.ron
-dry_grass.ron
 dunes.ron
 farm_land.ron
 farm_land_wet.ron
@@ -40,7 +39,6 @@ floor_wood.ron
 goldstone.ron
 granite.ron
 greystone.ron
-lake.ron
 lazulistone.ron
 mountains.ron
 mudstone.ron
@@ -52,6 +50,7 @@ road_tiled.ron
 sand.ron
 sea.ron
 snow.ron
+spring.ron
 tile_god.ron
 tile_royal.ron
 wall2.ron

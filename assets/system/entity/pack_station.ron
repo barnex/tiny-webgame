@@ -1,12 +1,19 @@
 Entity((
     name: "pack_station",
-    kind: packing_station,
+    kind: pack_station,
     look: (
-        sprite: "crate2",
-        shadow: BlobFeet(range: 1, strength: 50),
+        sprite: "workspace",
+        shadow: Heightmap(height: 0),
         scatter: (turn: none, mirror: false, offset_px: 0),
     ),
     health: 100,
-    size: (1, 1),
-    capacity: 20,
+    cost: Some({}),
+    size: (2, 2),
+    range: 20,
+    max_workers: 1,
+    on_spawn: [
+        SpawnAt(entity: "crate_packer_in", at: (0, 0), item: None),
+        SpawnAt(entity: "cargo_elephant", at: (1, 1), item: None),
+    ],
+    floor: Some("road"),
 ))

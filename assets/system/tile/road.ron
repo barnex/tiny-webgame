@@ -16,5 +16,5 @@ Tile((
     ore: None,
     corner: diagonal,
     border: Some("#959595"),
-    height: -2,
+    height: 0,
 ))

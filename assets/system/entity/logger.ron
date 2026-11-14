@@ -3,16 +3,23 @@ Entity((
     kind: farm,
     look: (
         sprite: "logger",
-        shadow: BlobFeet(range: 1, strength: 50),
+        shadow: Heightmap(height: 0),
         scatter: (turn: none, mirror: false, offset_px: 0),
     ),
     health: 100,
+    cost: Some({
+        "stone": 10,
+    }),
     size: (2, 2),
     range: 20,
     output_range: 16,
-    max_workers: 1,
+    max_workers: 3,
     ticks_to_make: 20,
     makes: [
         "log",
     ],
+    on_spawn: [
+        SpawnAt(entity: "crate_output", at: (1, 1), item: Some("log")),
+    ],
+    floor: Some("road"),
 ))

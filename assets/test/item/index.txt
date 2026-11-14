@@ -6,10 +6,12 @@ brick.ron
 canvas.ron
 clay.ron
 coal.ron
+dye_black.ron
 food.ron
 fuel.ron
 iron_ore.ron
 iron.ron
+law.ron
 log.ron
 meat.ron
 painting.ron
@@ -23,6 +25,7 @@ rawwheat.ron
 rock.ron
 skeleton.ron
 stone.ron
+stone_statue.ron
 wheat.ron
 wheat_sprout.ron
 wood.ron

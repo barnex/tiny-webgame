@@ -1,0 +1,14 @@
+Entity((
+    name: "crate_output",
+    kind: crate,
+    look: (
+        sprite: "crate4",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    cost: Some({}),
+    size: (1, 1),
+    capacity: 10,
+    direction: output,
+))

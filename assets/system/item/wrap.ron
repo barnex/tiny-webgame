@@ -19,6 +19,8 @@ Item((
     }),
     hat: Some("hat_cook"),
     max_carry: 1,
+    strength: 2,
+    flammable: 0,
     special: None,
     sprout: None,
     spreads: None,

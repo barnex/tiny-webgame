@@ -65,8 +65,8 @@ lantern_green.ron
 lantern_orange.ron
 lantern_purple.ron
 lantern_red.ron
-lantern.ron
 lantern_yellow.ron
+law.ron
 lazuli_ore.ron
 lazuli.ron
 leafy_plant.ron

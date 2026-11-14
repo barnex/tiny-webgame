@@ -1,0 +1,17 @@
+Entity((
+    name: "fire",
+    kind: fire,
+    look: (
+        sprite: "fire",
+        shadow: BlobFeet(range: 1, strength: 50),
+        scatter: (turn: none, mirror: false, offset_px: 0),
+    ),
+    health: 100,
+    size: (1, 1),
+    animations: Some((
+        walk: None,
+        walk_up: None,
+        walk_down: None,
+        idle: Some((sprites: ["fire_s1", "fire_s2", "fire_s3", "fire_s4", "fire_s5", "fire_s6", "fire_s7", "fire_s8"], speed: 1.5)),
+    )),
+))
